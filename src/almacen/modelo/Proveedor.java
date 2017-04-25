@@ -1,4 +1,4 @@
-package model;
+package almacen.modelo;
 
 public class Proveedor {
     private String nombre;

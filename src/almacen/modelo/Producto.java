@@ -1,4 +1,6 @@
-package model;
+package almacen.modelo;
+
+import model.Alimento;
 
 public class Producto {
     private String nombre, descripcion;
