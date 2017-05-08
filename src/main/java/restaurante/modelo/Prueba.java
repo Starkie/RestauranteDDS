@@ -9,7 +9,7 @@ package restaurante.modelo;/*
  * @author Víctor
  */
 public class Prueba {
-    public static void main(String[] args){
+    public static void main(String[] args) throws Exception{
        Plato p = new ComplementoGamba( new ComplementoTernera( new SalsaCacahuetes((new BaseArroz()))));
        p.getPrecio();
        Plato p2 = new ComplementoGamba(new ComplementoGamba(new BaseArroz()));

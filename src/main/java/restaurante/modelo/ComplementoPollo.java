@@ -3,14 +3,7 @@ package restaurante.modelo;
 public class ComplementoPollo extends DecoradorComplemento{
        
     public ComplementoPollo(Plato p) {
-        super(p);
-        precio = 1.00;
-        calorias = 100;
-    }
-    
-    @Override
-    public int getNumeroComplementosGamba() {
-        return 0 + plato.getNumeroComplementosGamba();
+        super(p,1.0,100,"Pollo Crujiente",0,1,0);
     }
 
     @Override
@@ -18,10 +11,4 @@ public class ComplementoPollo extends DecoradorComplemento{
         return 1 + plato.getNumeroComplementosPollo();
     }
 
-    @Override
-    public int getNumeroComplementosTernera() {
-        return 0 + plato.getNumeroComplementosTernera();
-    }
-    
-    
 }

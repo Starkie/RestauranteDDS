@@ -10,8 +10,8 @@ package restaurante.modelo;/*
  */
 public class SalsaCacahuetes extends DecoradorSalsa{
 
-    public SalsaCacahuetes(Plato plato) {
-        super(plato);
+    public SalsaCacahuetes(Plato plato) throws Exception {
+        super(plato,0,60,"Salsa de Cacahuetes",0,0,0);
     }
 
     @Override

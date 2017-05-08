@@ -10,8 +10,8 @@ package restaurante.modelo;/*
  */
 public class SalsaOstras extends DecoradorSalsa{
 
-    public SalsaOstras(Plato plato) {
-        super(plato);
+    public SalsaOstras(Plato plato) throws Exception{
+        super(plato,0,60,"Salsa de Ostras",0,0,0);
     }
     
     @Override
