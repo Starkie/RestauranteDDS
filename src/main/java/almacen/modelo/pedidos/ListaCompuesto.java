@@ -1,4 +1,4 @@
-package almacen.modelo.ListaCompra;
+package almacen.modelo.pedidos;
 
 import java.util.ArrayList;
 import java.util.List;
