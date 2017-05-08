@@ -27,6 +27,24 @@ public class ListaCompraTest {
         base.add(lista2);
         Assert.assertEquals("El precio de Lista 1 con 2 elementos y una lista es 17 €", 17.0, base.getPrecio(), 0.1);
 
+        base.remove(elemento);
+        Assert.assertEquals("Al eliminar elemento, el precio es de 14€", 14.0, base.getPrecio(), 0.1);
+
+
+    }
+
+    @Test(expected=UnsupportedOperationException.class)
+    public void ShouldThrowUnsupportedOperationOnAddInElement() throws Exception {
+        ListaCompra elemento = new ListaElemento(1, "elemento", "elemento", 200);
+        ListaCompra elemento2 = new ListaElemento(1, "elemento", "elemento", 200);
+        elemento.add(elemento2);
+    }
+
+    @Test(expected=UnsupportedOperationException.class)
+    public void ShouldThrowUnsupportedOperationOnRemoveInElement() throws Exception {
+        ListaCompra elemento = new ListaElemento(1, "elemento", "elemento", 200);
+        ListaCompra elemento2 = new ListaElemento(1, "elemento", "elemento", 200);
+        elemento.remove(elemento2);
     }
 
 }
