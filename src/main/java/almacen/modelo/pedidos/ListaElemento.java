@@ -1,4 +1,4 @@
-package almacen.modelo.ListaCompra;
+package almacen.modelo.pedidos;
 
 public class ListaElemento extends ListaCompra {
 

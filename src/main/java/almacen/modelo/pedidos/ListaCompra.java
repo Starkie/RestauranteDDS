@@ -1,4 +1,4 @@
-package almacen.modelo.ListaCompra;
+package almacen.modelo.pedidos;
 
 public abstract class ListaCompra {
     protected int idElemento;
