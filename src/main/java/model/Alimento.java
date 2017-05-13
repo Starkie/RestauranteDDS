@@ -1,16 +1,23 @@
 package model;
 
-import java.util.ArrayList;
+import javax.persistence.*;
 import java.util.List;
 
+@Entity
 public class Alimento {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
     private String nombre;
     private String descripcion;
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
     private List<Categoria> categorias;
+
+    public Alimento() {}
 
     public Alimento(String nombre) {
         this.nombre = nombre;
-        this.categorias = new ArrayList<>();
+        //this.categorias = new ArrayList<>();
     }
 
     public Alimento(String nombre, String descripcion) {
