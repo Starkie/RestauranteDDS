@@ -1,9 +1,7 @@
 package model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Alimento {
@@ -12,8 +10,8 @@ public class Alimento {
     private long id;
     private String nombre;
     private String descripcion;
-   // @ManyToMany(cascade = {CascadeType.ALL})
-    //private List<Categoria> categorias;
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
+    private List<Categoria> categorias;
 
     public Alimento() {}
 
@@ -43,7 +41,7 @@ public class Alimento {
         this.descripcion = descripcion;
     }
 
-    /*public void addCategoria(Categoria categoria) {
+    public void addCategoria(Categoria categoria) {
         categorias.add(categoria);
     }
 
@@ -57,7 +55,7 @@ public class Alimento {
 
     public int countCategorias() {
         return categorias.size();
-    }*/
+    }
 
 
 }
