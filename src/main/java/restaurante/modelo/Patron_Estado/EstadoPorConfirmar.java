@@ -3,8 +3,6 @@ package restaurante.modelo.Patron_Estado;
 import model.PedidoRestaurante;
 import model.Reclamacion;
 
-import java.util.Date;
-
 public class EstadoPorConfirmar extends EstadoPedido{
 
     public EstadoPorConfirmar() {
@@ -14,7 +12,6 @@ public class EstadoPorConfirmar extends EstadoPedido{
     @Override
     public void confirmarPedido(PedidoRestaurante pedido) throws Exception {
         pedido.setEstado(new EstadoPendiente());
-        pedido.setHoraConfirmacion(new Date()); //Ponemos como hora de confirmación la hora actual
     }
 
     @Override

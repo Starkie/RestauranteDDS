@@ -5,10 +5,10 @@ import model.Reclamacion;
 
 import java.util.Date;
 
-public class EstadoFinalizadoCocina extends EstadoPedido {
+public class EstadoCocinandose extends EstadoPedido{
 
-    public EstadoFinalizadoCocina() {
-        super("Pedido ya preparado en Cocina.");
+    public EstadoCocinandose() {
+        super("Pedido elaborándose en Cocina.");
     }
 
     @Override
@@ -18,7 +18,7 @@ public class EstadoFinalizadoCocina extends EstadoPedido {
 
     @Override
     public void cancelarPedido(PedidoRestaurante pedido) throws Exception {
-        throw new Exception("El pedido ya ha sido preparado y no se puede cancelar.");
+        throw new Exception("El pedido ya está cocinándose y no se puede cancelar.");
     }
 
     @Override

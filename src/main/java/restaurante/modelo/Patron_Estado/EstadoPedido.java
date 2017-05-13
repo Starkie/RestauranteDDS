@@ -15,4 +15,8 @@ public abstract class EstadoPedido {
     public abstract void cancelarPedido(PedidoRestaurante pedido) throws Exception;
 
     public abstract Reclamacion  reclamarRetraso(PedidoRestaurante pedido) throws Exception;
+
+    public String getDescripcion() {
+        return descripcion;
+    }
 }
