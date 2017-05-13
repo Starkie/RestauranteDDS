@@ -1,4 +1,6 @@
-package restaurante.modelo;
+package restaurante.modelo.Patron_Decorador;
+
+import model.Plato;
 
 public class ComplementoTernera extends DecoradorComplemento{
        
@@ -12,5 +14,5 @@ public class ComplementoTernera extends DecoradorComplemento{
     public int getNumeroComplementosTernera() {
         return 1 + plato.getNumeroComplementosTernera();
     }
-    
+
 }

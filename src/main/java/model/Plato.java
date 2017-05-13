@@ -1,4 +1,4 @@
-package restaurante.modelo;
+package model;
 
 public abstract class Plato {
 

@@ -1,4 +1,6 @@
-package restaurante.modelo;
+package restaurante.modelo.Patron_Decorador;
+
+import model.Plato;
 
 public abstract class Decorador extends Plato {
     protected Plato plato;
@@ -46,7 +48,10 @@ public abstract class Decorador extends Plato {
             if(getNumeroComplementosPollo()>0){ s+= getNumeroComplementosPollo() + " de Pollo frito ";}
             if(getNumeroComplementosTernera()>0){ s+= getNumeroComplementosTernera()+ " de Ternera asada ";}
         }
-        if(tieneSalsa()) s+= getDescripcionSalsa();
+        if(tieneSalsa()) s+= " y " + getDescripcionSalsa();
+        s.replace("1","uno");
+        s.replace("2","doble");
+        s.replace("3","triple");
         return s;
     }
 

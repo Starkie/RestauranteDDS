@@ -1,4 +1,6 @@
-package restaurante.modelo;
+package restaurante.modelo.Patron_Decorador;
+
+import model.Plato;
 
 public class ComplementoPollo extends DecoradorComplemento{
        
