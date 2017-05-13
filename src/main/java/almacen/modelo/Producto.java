@@ -2,7 +2,13 @@ package almacen.modelo;
 
 import model.Alimento;
 
+import javax.persistence.*;
+
+@Entity
 public class Producto {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
     private String nombre, descripcion;
     private Alimento alimento;
     private Proveedor proveedor;
@@ -75,6 +81,7 @@ public class Producto {
         this.cantidad = cantidad;
     }
 
+    @Enumerated(EnumType.STRING)
     public UnidadesCantidad getUnidades() {
         return unidades;
     }
