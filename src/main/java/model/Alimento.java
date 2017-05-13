@@ -1,16 +1,25 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
+@Entity
 public class Alimento {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
     private String nombre;
     private String descripcion;
-    private List<Categoria> categorias;
+   // @ManyToMany(cascade = {CascadeType.ALL})
+    //private List<Categoria> categorias;
+
+    public Alimento() {}
 
     public Alimento(String nombre) {
         this.nombre = nombre;
-        this.categorias = new ArrayList<>();
+        //this.categorias = new ArrayList<>();
     }
 
     public Alimento(String nombre, String descripcion) {
@@ -34,7 +43,7 @@ public class Alimento {
         this.descripcion = descripcion;
     }
 
-    public void addCategoria(Categoria categoria) {
+    /*public void addCategoria(Categoria categoria) {
         categorias.add(categoria);
     }
 
@@ -48,7 +57,7 @@ public class Alimento {
 
     public int countCategorias() {
         return categorias.size();
-    }
+    }*/
 
 
 }
