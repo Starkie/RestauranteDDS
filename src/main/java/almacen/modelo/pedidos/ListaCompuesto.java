@@ -6,8 +6,7 @@ import java.util.List;
 public class ListaCompuesto extends ListaCompra {
     private List<ListaCompra> hijos;
 
-    public ListaCompuesto(int idElemento, String nombre, String descripcion) {
-        this.idElemento = idElemento;
+    public ListaCompuesto(String nombre, String descripcion) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         hijos = new ArrayList<>();
@@ -30,5 +29,9 @@ public class ListaCompuesto extends ListaCompra {
     @Override
     public void remove(ListaCompra p) {
         hijos.remove(p); //TO-DO Revisar método para eliminar recursivamente?
+    }
+
+    public String toString() {
+        return "Lista: " + nombre + " - " + descripcion + " - " + getPrecio();
     }
 }
