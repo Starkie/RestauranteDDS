@@ -28,7 +28,7 @@ public class ListaCompuesto extends ListaCompra {
 
     @Override
     public void remove(ListaCompra p) {
-        hijos.remove(p); //TO-DO Revisar método para eliminar recursivamente?
+        hijos.remove(p);
     }
 
     public String toString() {

@@ -7,20 +7,20 @@ import java.util.Date;
 public class Pedido {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private long id;
     private Date fecha;
     private ListaCompra lista;
     @Enumerated(EnumType.STRING)
     private EstadoPedido estado;
 
+    /**
+     * Constructor requerido por Hibernate
+     */
+
     public Pedido(ListaCompra lista) {
         this.lista = lista;
         this.fecha = new Date();
         this.estado = EstadoPedido.PENDIENTE;
-    }
-
-    public ListaCompra getLista() {
-        return lista;
     }
 
     public Date getFecha() {
@@ -53,4 +53,18 @@ public class Pedido {
             throw new EstadoPedidoInvalidoException("El pedido ya estaba en camino o completado, no se puede cancelar");
         }
     }
+
+    public double getPrecio() {
+        return this.lista.getPrecio();
+    }
+
+    public void addToPedido(ListaCompra lista) {
+        this.lista.add(lista);
+    }
+
+
+    public ListaCompra getLista() {
+        return this.lista;
+    }
+
 }
