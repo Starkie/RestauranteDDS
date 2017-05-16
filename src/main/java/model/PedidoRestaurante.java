@@ -21,6 +21,21 @@ public class PedidoRestaurante {
         platosPedido = new ArrayList<Plato>();
     }
 
+    public  void confirmarPedido() throws Exception {
+        if(platosPedido.size()<1) throw new Exception("Un pedido debe contener almenos 1 plato");
+        estado.confirmarPedido(this);
+        setHoraConfirmacion(new Date()); //La hora de confirmación es la actual
+        usuario.addPedidoUsuario(this);
+    }
+
+    public  void cancelarPedido() throws Exception {
+        estado.cancelarPedido(this);
+    }
+
+    public void reclamarRetraso() throws Exception {
+        setReclamacion(estado.reclamarRetraso(this));
+    }
+
     public EstadoPedido getEstado() {
         return estado;
     }
@@ -49,6 +64,8 @@ public class PedidoRestaurante {
         this.platosPedido.add(platoPedido);
     }
 
+    public void deletePlatoPedido(Plato platoPedido){ this.platosPedido.remove(platoPedido);}
+
     public Reclamacion getReclamacion() {
         return reclamacion;
     }
@@ -61,17 +78,6 @@ public class PedidoRestaurante {
         this.horaRecibido = horaRecibido;
     }
 
-    public  void confirmarPedido() throws Exception {
-        estado.confirmarPedido(this);
-        setHoraConfirmacion(new Date()); //La hora de confirmación es la actual
-    }
 
-    public  void cancelarPedido() throws Exception {
-        estado.cancelarPedido(this);
-    }
-
-    public void reclamarRetraso() throws Exception {
-        setReclamacion(estado.reclamarRetraso(this));
-    }
 
 }

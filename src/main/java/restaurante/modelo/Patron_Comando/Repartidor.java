@@ -1,14 +1,13 @@
 package restaurante.modelo.Patron_Comando;
 
-import model.Envio;
 import model.PedidoRestaurante;
 import model.Persona;
 import restaurante.modelo.Patron_Estado.EstadoEnCamino;
-import restaurante.modelo.Patron_Estado.EstadoFinalizadoReparto;
+import restaurante.modelo.Patron_Estado.EstadoEntregado;
 
 public class Repartidor extends Persona{
     private boolean disponible;
-    private Envio envioActual;
+    private PedidoRestaurante pedidoAtendiendo;
 
     public Repartidor(String nombre, int dni) {
         super(nombre,dni);
@@ -26,12 +25,12 @@ public class Repartidor extends Persona{
 
     public void realizarEnvio(PedidoRestaurante pedido){
         pedido.setEstado(new EstadoEnCamino());
-        envioActual = new Envio(this,pedido);
+        this.pedidoAtendiendo = pedido;
     }
 
     public void finalizarEnvio(){
-        envioActual.getPedido().setEstado(new EstadoFinalizadoReparto());
-        envioActual = null;
+        this.pedidoAtendiendo.setEstado(new EstadoEntregado());
+        this.pedidoAtendiendo = null;
         this.disponible=true;
     }
 }

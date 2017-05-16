@@ -3,8 +3,8 @@ package restaurante.modelo.Patron_Comando;
 import model.PedidoRestaurante;
 import model.Persona;
 import model.Plato;
+import restaurante.modelo.Patron_Estado.EstadoCocinado;
 import restaurante.modelo.Patron_Estado.EstadoCocinandose;
-import restaurante.modelo.Patron_Estado.EstadoFinalizadoCocina;
 
 public class Cocinero extends Persona{
     private boolean disponible;
@@ -33,7 +33,7 @@ public class Cocinero extends Persona{
     }
 
     public void finalizarCocinaPedido(){
-        this.pedidoAtendiendo.setEstado(new EstadoFinalizadoCocina());
+        this.pedidoAtendiendo.setEstado(new EstadoCocinado());
         EmisorOrdenes.getEmisorOrdenes().anyadirOrden(new OrdenRepartir(pedidoAtendiendo));
         this.pedidoAtendiendo = null;
         this.disponible=true;

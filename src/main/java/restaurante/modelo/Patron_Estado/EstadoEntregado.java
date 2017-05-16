@@ -5,9 +5,9 @@ import model.Reclamacion;
 
 import java.util.Date;
 
-public class EstadoFinalizadoReparto extends EstadoPedido{
+public class EstadoEntregado extends EstadoPedido{
 
-    public EstadoFinalizadoReparto() {
+    public EstadoEntregado() {
         super("Pedido recibido.");
     }
 

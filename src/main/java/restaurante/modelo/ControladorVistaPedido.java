@@ -18,4 +18,9 @@ public class ControladorVistaPedido {
         elPedido.confirmarPedido();
         elEmisor.anyadirOrden(new OrdenCocinar(elPedido));
     }
+
+    public void CancelarPedido() throws Exception{
+        elPedido.cancelarPedido();
+        elEmisor.cancelarOrden(elPedido);
+    }
 }

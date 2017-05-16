@@ -1,5 +1,7 @@
 package restaurante.modelo.Patron_Comando;
 
+import model.PedidoRestaurante;
+
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,20 +23,29 @@ public class EmisorOrdenes {
         getThreadDisponibilidad().start();
     }
 
-    public static EmisorOrdenes getEmisorOrdenes(){
-        if (elEmisor==null) elEmisor = new EmisorOrdenes();
+    public static EmisorOrdenes getEmisorOrdenes() {
+        if (elEmisor == null) elEmisor = new EmisorOrdenes();
         return elEmisor;
     }
 
-    public void anyadirOrden(Orden orden){
-        if(orden instanceof OrdenRepartir){
+    public void anyadirOrden(Orden orden) {
+        if (orden instanceof OrdenRepartir) {
             ordenesARepartir.add((OrdenRepartir) orden);
         }
-        if(orden instanceof OrdenCocinar){
+        if (orden instanceof OrdenCocinar) {
             ordenesACocinar.add((OrdenCocinar) orden);
         }
     }
-    
+
+    public void cancelarOrden(PedidoRestaurante elPedido) {
+        for (OrdenCocinar orden : ordenesACocinar) {
+            if (orden.pedido.equals(elPedido)) {
+                ordenesACocinar.remove(orden);
+            }
+        }
+    }
+
+
     public void registrarRepartidor(Repartidor repartidor) {
         repartidores.add(repartidor);
     }
@@ -74,4 +85,5 @@ public class EmisorOrdenes {
             }
         });
     }
+
 }

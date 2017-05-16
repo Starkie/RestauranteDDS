@@ -14,3 +14,4 @@ public class OrdenRepartir extends Orden {
         ((Repartidor)receptor).realizarEnvio(pedido);
     }
 }
+

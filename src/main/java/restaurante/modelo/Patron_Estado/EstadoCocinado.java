@@ -5,9 +5,9 @@ import model.Reclamacion;
 
 import java.util.Date;
 
-public class EstadoFinalizadoCocina extends EstadoPedido {
+public class EstadoCocinado extends EstadoPedido {
 
-    public EstadoFinalizadoCocina() {
+    public EstadoCocinado() {
         super("Pedido ya preparado en Cocina.");
     }
 
