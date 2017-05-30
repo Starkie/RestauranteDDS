@@ -1,5 +1,8 @@
 package model;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -11,6 +14,7 @@ public class Alimento {
     private String nombre;
     private String descripcion;
     @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
+    @Fetch(value = FetchMode.SUBSELECT)
     private List<Categoria> categorias;
 
     public Alimento() {}
