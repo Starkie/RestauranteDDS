@@ -1,0 +1,58 @@
+@startuml
+
+class Pedido {
+	-id : long
+	-fecha : Date
+	
+	void confirmarPedido()
+	void recibirPedido()
+	void cancelarPedido()  
+	double getPrecio()
+	void addToPedido(ListaCompra lista)
+}
+
+note right: getPrecio() => lista.getPrecio()
+
+enum EstadoPedido {
+	PENDIENTE
+	EN_CAMINO
+	COMPLETO
+	CANCELADO
+}
+
+abstract class ListaCompra {
+	#nombre : String
+	#descripcion : String
+	#precio : int
+	#unidades : int
+
+	{abstract}void add(ListaCompra p)
+	{abstract}void remove(ListaCompra p)
+	{abstract}double getPrecio()
+}
+
+
+
+Pedido "*" --> "lista 1" ListaCompra
+Pedido -left-> "estado" EstadoPedido
+
+class GestorPedidos {
+	{static} #gestorPedidos : GestorPedidos
+	__
+
+	GestorPedidos getInstance()
+	..
+	Pedido crearPedido(List<Producto> productos)
+	Pedido crearPedido(ListaCompra listaCompra)
+	void addToPedido(Pedido pedido, ListaCompra listaCompra)
+	void addToPedido(Pedido pedido, Producto producto)
+	void addToPedido(Pedido pedido, List<Producto> producto)
+	..
+	void cancelarPedido(Pedido pedido)
+	void confirmarPedido(Pedido pedido)
+	void recibirPedido(Pedido pedido)
+}
+
+GestorPedidos ..> Pedido
+
+@enduml
