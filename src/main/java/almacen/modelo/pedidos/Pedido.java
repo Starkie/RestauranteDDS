@@ -12,7 +12,7 @@ public class Pedido {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private Date fecha;
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     private ListaCompra lista;
     @Enumerated(EnumType.STRING)
     private EstadoPedido estado;
