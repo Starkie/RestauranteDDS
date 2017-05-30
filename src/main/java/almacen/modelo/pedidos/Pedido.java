@@ -1,5 +1,8 @@
 package almacen.modelo.pedidos;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -9,6 +12,7 @@ public class Pedido {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private Date fecha;
+    @ManyToOne(fetch = FetchType.EAGER)
     private ListaCompra lista;
     @Enumerated(EnumType.STRING)
     private EstadoPedido estado;
