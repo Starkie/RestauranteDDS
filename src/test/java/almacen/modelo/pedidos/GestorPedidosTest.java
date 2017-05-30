@@ -16,7 +16,7 @@ public class GestorPedidosTest {
     public void crearPedido() throws Exception {
         GestorPedidos gestorPedidos = GestorPedidos.getInstance();
         Alimento a1 = new Alimento("Manzana", "Fruta");
-        Proveedor pr1 = new Proveedor();
+        Proveedor pr1 = new Proveedor("Proveedor 1", "C/Malaga", "123456");
         Producto p1 = new Producto("Producto 1",  "Descripción de producto 1",  a1, pr1,300, 1, UnidadesCantidad.KG);
         Producto p2 = new Producto("Producto 2", "Descripción del producto 2", a1, pr1, 500, 2,UnidadesCantidad.LITRO);
         List<Producto> listaProductos = new ArrayList<>();
