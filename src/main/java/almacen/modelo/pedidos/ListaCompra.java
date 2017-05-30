@@ -1,6 +1,14 @@
 package almacen.modelo.pedidos;
 
+import javax.persistence.*;
+
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class ListaCompra {
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    private long id;
+
     protected String nombre;
     protected String descripcion;
     protected int precio;

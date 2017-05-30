@@ -1,9 +1,21 @@
 package almacen.modelo.pedidos;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToMany;
+import javax.persistence.PrimaryKeyJoinColumn;
 import java.util.ArrayList;
 import java.util.List;
 
+
+@Entity
+@PrimaryKeyJoinColumn(name = "ID")
 public class ListaCompuesto extends ListaCompra {
+    @ManyToMany(fetch = FetchType.EAGER)
+    @Fetch(value = FetchMode.SUBSELECT)
     private List<ListaCompra> hijos;
 
     public ListaCompuesto(String nombre, String descripcion) {

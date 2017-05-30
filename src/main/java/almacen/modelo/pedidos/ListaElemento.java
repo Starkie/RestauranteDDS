@@ -1,5 +1,10 @@
 package almacen.modelo.pedidos;
 
+import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
+
+@Entity
+@PrimaryKeyJoinColumn(name = "ID")
 public class ListaElemento extends ListaCompra {
 
     public ListaElemento(String nombre, String descripcion, int unidades, int precioUnidad) {
