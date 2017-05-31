@@ -21,6 +21,8 @@ public class Pedido {
      * Constructor requerido por Hibernate
      */
 
+    public  Pedido() {}
+
     public Pedido(ListaCompra lista) {
         this.lista = lista;
         this.fecha = new Date();

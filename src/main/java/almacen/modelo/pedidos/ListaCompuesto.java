@@ -15,6 +15,8 @@ public class ListaCompuesto extends ListaCompra {
     @Fetch(value = FetchMode.SUBSELECT)
     private List<ListaCompra> hijos;
 
+    public ListaCompuesto() {}
+
     public ListaCompuesto(String nombre, String descripcion) {
         this.nombre = nombre;
         this.descripcion = descripcion;

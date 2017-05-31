@@ -7,6 +7,8 @@ import javax.persistence.PrimaryKeyJoinColumn;
 @PrimaryKeyJoinColumn(name = "ID")
 public class ListaElemento extends ListaCompra {
 
+    public ListaElemento() {}
+
     public ListaElemento(String nombre, String descripcion, int unidades, int precioUnidad) {
         this.nombre = nombre;
         this.descripcion = descripcion;

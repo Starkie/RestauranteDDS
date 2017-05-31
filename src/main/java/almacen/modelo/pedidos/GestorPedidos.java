@@ -1,13 +1,20 @@
 package almacen.modelo.pedidos;
 
 import almacen.modelo.Producto;
+import almacen.persistencia.pedidos.PedidoService;
+import persistance.AppContext;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class GestorPedidos {
     private static GestorPedidos gestorPedidos;
 
-    private GestorPedidos() {}
+    private List<Pedido> listaPedidos;
+
+    private GestorPedidos() {
+        loadPedidoList();
+    }
 
     public static GestorPedidos getInstance() {
         if(gestorPedidos == null) {
@@ -21,7 +28,19 @@ public class GestorPedidos {
         for(Producto p : productos) {
             listaCompra.add(new ListaElemento(p.getNombre(), p.getDescripcion(), 1, p.getPrecio()));
         }
-        return new Pedido(listaCompra);
+        Pedido p = new Pedido(listaCompra);
+        guardarPedido(p);
+        listaPedidos.add(p);
+        return p;
+    }
+
+    public void loadPedidoList() {
+        PedidoService pedidoService = (PedidoService) AppContext.getBean("pedidoService");
+        listaPedidos = new ArrayList<>();
+        Iterable<Pedido> pedidos = pedidoService.findAll();
+        for (Pedido p : pedidos) {
+            listaPedidos.add(p);
+        }
     }
 
     public Pedido crearPedido(ListaCompra listaCompra) {
@@ -30,6 +49,7 @@ public class GestorPedidos {
 
     public void addToPedido(Pedido pedido, ListaCompra lista) {
         pedido.addToPedido(lista);
+        guardarPedido(pedido);
     }
 
     public void addToPedido(Pedido pedido, Producto producto) {
@@ -57,6 +77,12 @@ public class GestorPedidos {
 
     public void cancelarPedido(Pedido pedido) throws AlmacenException {
         pedido.cancelarPedido();
+    }
+
+    private void guardarPedido(Pedido pedido) {
+        PedidoService pedidoService = (PedidoService) AppContext.getBean("pedidoService");
+        pedidoService.add(pedido);
+
     }
 
 }
