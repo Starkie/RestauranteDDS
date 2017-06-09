@@ -1,11 +1,9 @@
-package restaurante.modelo.Patron_Estado;
+package model;
 
-import model.EstadoPedido;
-import model.PedidoRestaurante;
-import model.Reclamacion;
-
+import javax.persistence.Entity;
 import java.util.Date;
 
+@Entity
 public class EstadoCocinandose extends EstadoPedido {
 
     public EstadoCocinandose() {

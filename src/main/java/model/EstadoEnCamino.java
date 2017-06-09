@@ -1,15 +1,13 @@
-package restaurante.modelo.Patron_Estado;
+package model;
 
-import model.EstadoPedido;
-import model.PedidoRestaurante;
-import model.Reclamacion;
-
+import javax.persistence.Entity;
 import java.util.Date;
 
-public class EstadoPendiente extends EstadoPedido {
+@Entity
+public class EstadoEnCamino extends EstadoPedido {
 
-    public EstadoPendiente() {
-        super("Pendiente de Cocina");
+    public EstadoEnCamino() {
+        super("Pedido en camino a la dirección proporcionada.");
     }
 
     @Override
@@ -19,7 +17,7 @@ public class EstadoPendiente extends EstadoPedido {
 
     @Override
     public void cancelarPedido(PedidoRestaurante pedido) throws Exception {
-        pedido.setEstado(new EstadoCancelado());
+        throw new Exception("El pedido ya está en camino y no se puede cancelar.");
     }
 
     @Override
@@ -34,3 +32,5 @@ public class EstadoPendiente extends EstadoPedido {
         }
     }
 }
+
+

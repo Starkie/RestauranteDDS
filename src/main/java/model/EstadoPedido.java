@@ -3,21 +3,19 @@ package model;
 import javax.persistence.*;
 
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(
-        name="TipoEstado",
-        discriminatorType = DiscriminatorType.STRING
-)
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class EstadoPedido {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private long id;
 
     @OneToOne
-    @JoinColumn(name = "pedidoRestaurente_id")
     private PedidoRestaurante pedidoRestaurante;
 
     private String descripcion;
+
+    public EstadoPedido() {
+    }
 
     public EstadoPedido(String descripcion) {
         this.descripcion = descripcion;
@@ -27,7 +25,7 @@ public abstract class EstadoPedido {
 
     public abstract void cancelarPedido(PedidoRestaurante pedido) throws Exception;
 
-    public abstract Reclamacion  reclamarRetraso(PedidoRestaurante pedido) throws Exception;
+    public abstract Reclamacion reclamarRetraso(PedidoRestaurante pedido) throws Exception;
 
     public String getDescripcion() {
         return descripcion;

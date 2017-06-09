@@ -5,19 +5,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import model.Alimento;
-import model.Categoria;
-import model.PedidoRestaurante;
-import model.Usuario;
+import model.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import persistance.AlimentoService;
-import persistance.AppContext;
-import persistance.CategoriaService;
-import persistance.PedidoRestauranteService;
+import persistance.*;
 
 @SpringBootApplication
 @ComponentScan({"persistance"})
@@ -34,9 +28,19 @@ public class MainApplication extends Application{
         CategoriaService categoriaService = (CategoriaService) AppContext.getBean("categoriaService");
         alimentoService.update(a2);
         Categoria cat = categoriaService.findByName("categoria");
+
+        //Usuario
+        PersonaService personaService = (PersonaService) AppContext.getBean("personaService");
+        personaService.add(new Usuario("Paco",26755185,"Direccion"));
+        Iterable<Persona> listaPersonas = personaService.findAll();
+        Persona p = listaPersonas.iterator().next();
+        //personaService.add(new Repartidor("Repartidor",22344545));
+
+        //Pedido Restaurante
         PedidoRestauranteService pedidoRestauranteService = (PedidoRestauranteService) AppContext.getBean("pedidoRestauranteService");
-        pedidoRestauranteService.add(new PedidoRestaurante(new Usuario("Paco",26755185,"Mi direccion")));
-        //pedidoRestauranteService.findAll();
+        pedidoRestauranteService.add(new PedidoRestaurante((Usuario) p));
+        Iterable<PedidoRestaurante> listaPedidos = pedidoRestauranteService.findAll();
+        PedidoRestaurante pedido = listaPedidos.iterator().next();
         launch(args);
     }
 

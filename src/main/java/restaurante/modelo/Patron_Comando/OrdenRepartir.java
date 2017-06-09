@@ -2,6 +2,7 @@ package restaurante.modelo.Patron_Comando;
 
 import model.PedidoRestaurante;
 import model.Persona;
+import model.Repartidor;
 
 public class OrdenRepartir extends Orden {
 

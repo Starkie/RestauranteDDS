@@ -1,6 +1,8 @@
 package restaurante.modelo.Patron_Comando;
 
+import model.Cocinero;
 import model.PedidoRestaurante;
+import model.Repartidor;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
@@ -59,8 +61,8 @@ public class EmisorOrdenes {
             @Override
             public void run() {
                 while (true) {
-                    OrdenCocinar ordCocina = ordenesACocinar.element();
-                    if (ordCocina != null) {
+                    if(ordenesACocinar.size()>0) {
+                        OrdenCocinar ordCocina = ordenesACocinar.element();
                         for (Cocinero c : cocineros) {
                             if (c.isDisponible()) {
                                 c.setDisponible(false);
@@ -70,8 +72,8 @@ public class EmisorOrdenes {
                             }
                         }
                     }
-                    OrdenRepartir ordReparto = ordenesARepartir.element();
-                    if (ordReparto != null) {
+                    if(ordenesARepartir.size()>0) {
+                        OrdenRepartir ordReparto = ordenesARepartir.element();
                         for (Repartidor r : repartidores) {
                             if (r.isDisponible()) {
                                 r.setDisponible(false);
@@ -79,6 +81,7 @@ public class EmisorOrdenes {
                                 ordReparto.ejecutar(r);
                                 break;
                             }
+
                         }
                     }
                 }

@@ -1,17 +1,19 @@
 package model;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(
-        name="TipoPersona",
-        discriminatorType = DiscriminatorType.STRING
-)
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Persona {
     @Id
     private int dni;
     private String nombre;
+
+    public Persona() {
+    }
 
     public Persona(String nombre, int dni) {
         this.nombre = nombre;

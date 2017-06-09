@@ -1,18 +1,19 @@
-package restaurante.modelo.Patron_Comando;
+package model;
 
-import model.PedidoRestaurante;
-import model.Persona;
-import model.Plato;
-import restaurante.modelo.Patron_Estado.EstadoCocinado;
-import restaurante.modelo.Patron_Estado.EstadoCocinandose;
+import restaurante.modelo.Patron_Comando.EmisorOrdenes;
+import restaurante.modelo.Patron_Comando.OrdenRepartir;
 
-import javax.persistence.DiscriminatorValue;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 
 @Entity
-@DiscriminatorValue("Cocinero")
 public class Cocinero extends Persona{
     private boolean disponible;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn
     private PedidoRestaurante pedidoAtendiendo;
 
     public Cocinero(String nombre, int dni) {

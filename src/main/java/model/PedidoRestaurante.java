@@ -1,7 +1,5 @@
 package model;
 
-import restaurante.modelo.Patron_Estado.EstadoPorConfirmar;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
@@ -14,11 +12,11 @@ public class PedidoRestaurante {
     private long id;
 
     @ManyToOne
-    @JoinColumn(name="usuario-pedido_fk")
+    @JoinColumn(name="usuario_fk")
     private Usuario usuario;
 
-    @OneToOne
-    @JoinColumn(name = "estado_id")
+    @OneToOne(cascade =  CascadeType.ALL)
+    @JoinColumn(name="estado_id")
     private EstadoPedido estado;
 
     private Date horaConfirmacion;
@@ -28,13 +26,15 @@ public class PedidoRestaurante {
     private List<Plato> platosPedido;
 
     @OneToOne
-    @JoinColumn(name = "reclamacion_id")
+    @PrimaryKeyJoinColumn
     private Reclamacion reclamacion;
 
     public PedidoRestaurante(Usuario usuario) {
         this.usuario = usuario;
         this.estado = new EstadoPorConfirmar();
-        platosPedido = new ArrayList<Plato>();
+        this.platosPedido = new ArrayList<Plato>();
+        this.horaConfirmacion = null;
+        this.horaRecibido = null;
     }
 
     public PedidoRestaurante() {

@@ -1,6 +1,7 @@
 package restaurante.modelo.Patron_Comando;
 
 
+import model.Cocinero;
 import model.PedidoRestaurante;
 import model.Persona;
 
