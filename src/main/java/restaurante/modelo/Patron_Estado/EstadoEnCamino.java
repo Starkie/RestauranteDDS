@@ -1,11 +1,12 @@
 package restaurante.modelo.Patron_Estado;
 
+import model.EstadoPedido;
 import model.PedidoRestaurante;
 import model.Reclamacion;
 
 import java.util.Date;
 
-public class EstadoEnCamino extends EstadoPedido{
+public class EstadoEnCamino extends EstadoPedido {
 
     public EstadoEnCamino() {
         super("Pedido en camino a la dirección proporcionada.");

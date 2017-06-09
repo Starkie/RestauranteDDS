@@ -6,6 +6,11 @@ import model.Plato;
 import restaurante.modelo.Patron_Estado.EstadoCocinado;
 import restaurante.modelo.Patron_Estado.EstadoCocinandose;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
+@Entity
+@DiscriminatorValue("Cocinero")
 public class Cocinero extends Persona{
     private boolean disponible;
     private PedidoRestaurante pedidoAtendiendo;

@@ -1,11 +1,12 @@
 package restaurante.modelo.Patron_Estado;
 
+import model.EstadoPedido;
 import model.PedidoRestaurante;
 import model.Reclamacion;
 
 import java.util.Date;
 
-public class EstadoPendiente extends EstadoPedido{
+public class EstadoPendiente extends EstadoPedido {
 
     public EstadoPendiente() {
         super("Pendiente de Cocina");

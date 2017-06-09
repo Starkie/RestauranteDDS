@@ -1,6 +1,16 @@
 package model;
 
+import javax.persistence.*;
+
+@Entity
 public abstract class Plato {
+     @Id
+     @GeneratedValue(strategy = GenerationType.AUTO)
+     private long id;
+
+     @ManyToOne
+     @JoinColumn(name = "pedidoRestaurante")
+     private PedidoRestaurante pedidoRestaurante;
 
      protected double precio;
      protected double calorias;

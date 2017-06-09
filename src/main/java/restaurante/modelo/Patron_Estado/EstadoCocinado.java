@@ -1,5 +1,6 @@
 package restaurante.modelo.Patron_Estado;
 
+import model.EstadoPedido;
 import model.PedidoRestaurante;
 import model.Reclamacion;
 

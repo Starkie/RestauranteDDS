@@ -1,24 +1,43 @@
 package model;
 
-import restaurante.modelo.Patron_Estado.EstadoPedido;
 import restaurante.modelo.Patron_Estado.EstadoPorConfirmar;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+@Entity
 public class PedidoRestaurante {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+
+    @ManyToOne
+    @JoinColumn(name="usuario-pedido_fk")
     private Usuario usuario;
+
+    @OneToOne
+    @JoinColumn(name = "estado_id")
     private EstadoPedido estado;
+
     private Date horaConfirmacion;
     private Date horaRecibido;
+
+    @OneToMany (mappedBy = "pedidoRestaurante")
     private List<Plato> platosPedido;
+
+    @OneToOne
+    @JoinColumn(name = "reclamacion_id")
     private Reclamacion reclamacion;
 
     public PedidoRestaurante(Usuario usuario) {
         this.usuario = usuario;
         this.estado = new EstadoPorConfirmar();
         platosPedido = new ArrayList<Plato>();
+    }
+
+    public PedidoRestaurante() {
     }
 
     public  void confirmarPedido() throws Exception {

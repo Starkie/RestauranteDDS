@@ -5,6 +5,11 @@ import model.Persona;
 import restaurante.modelo.Patron_Estado.EstadoEnCamino;
 import restaurante.modelo.Patron_Estado.EstadoEntregado;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
+@Entity
+@DiscriminatorValue("Repartidor")
 public class Repartidor extends Persona{
     private boolean disponible;
     private PedidoRestaurante pedidoAtendiendo;

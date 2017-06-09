@@ -1,9 +1,10 @@
 package restaurante.modelo.Patron_Estado;
 
+import model.EstadoPedido;
 import model.PedidoRestaurante;
 import model.Reclamacion;
 
-public class EstadoPorConfirmar extends EstadoPedido{
+public class EstadoPorConfirmar extends EstadoPedido {
 
     public EstadoPorConfirmar() {
         super("Pedido todavía realizándose.");
