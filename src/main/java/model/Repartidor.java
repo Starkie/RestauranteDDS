@@ -1,6 +1,8 @@
 package model;
 
 import restaurante.modelo.Patron_Comando.EmisorOrdenes;
+import restaurante.modelo.Patron_Estado.EstadoEnCamino;
+import restaurante.modelo.Patron_Estado.EstadoEntregado;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;

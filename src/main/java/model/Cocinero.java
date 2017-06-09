@@ -2,6 +2,8 @@ package model;
 
 import restaurante.modelo.Patron_Comando.EmisorOrdenes;
 import restaurante.modelo.Patron_Comando.OrdenRepartir;
+import restaurante.modelo.Patron_Estado.EstadoCocinado;
+import restaurante.modelo.Patron_Estado.EstadoCocinandose;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;

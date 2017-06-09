@@ -1,5 +1,8 @@
 package model;
 
+import restaurante.modelo.Patron_Estado.EstadoPedido;
+import restaurante.modelo.Patron_Estado.EstadoPorConfirmar;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;

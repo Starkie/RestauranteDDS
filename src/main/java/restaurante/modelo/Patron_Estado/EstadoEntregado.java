@@ -1,8 +1,13 @@
-package model;
+package restaurante.modelo.Patron_Estado;
 
+import model.PedidoRestaurante;
+import model.Reclamacion;
+
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import java.util.Date;
 @Entity
+@DiscriminatorValue("Entregado")
 public class EstadoEntregado extends EstadoPedido {
 
     public EstadoEntregado() {

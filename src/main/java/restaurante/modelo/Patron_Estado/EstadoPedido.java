@@ -1,9 +1,13 @@
-package model;
+package restaurante.modelo.Patron_Estado;
+
+import model.PedidoRestaurante;
+import model.Reclamacion;
 
 import javax.persistence.*;
 
 @Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "TipoEstado",discriminatorType = DiscriminatorType.STRING)
 public abstract class EstadoPedido {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
