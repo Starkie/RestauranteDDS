@@ -9,7 +9,7 @@ public class ListaElemento extends ListaCompra {
 
     public ListaElemento() {}
 
-    public ListaElemento(String nombre, String descripcion, int unidades, int precioUnidad) {
+    public ListaElemento(String nombre, String descripcion, int unidades, double precioUnidad) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.precio = precioUnidad;
@@ -18,7 +18,7 @@ public class ListaElemento extends ListaCompra {
 
     @Override
     public double getPrecio() {
-        return (unidades * precio) / 100.0;
+        return unidades * precio;
     }
 
     @Override

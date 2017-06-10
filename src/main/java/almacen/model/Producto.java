@@ -13,13 +13,13 @@ public class Producto {
     private String descripcion;
     @ManyToOne
     private Alimento alimento;
-    private int precio;
+    private double precio;
     private double cantidad;
     private UnidadesCantidad unidades;
 
     public Producto() {}
 
-    public Producto(String nombre, Alimento alimento, int precio, double cantidad, UnidadesCantidad unidades) {
+    public Producto(String nombre, Alimento alimento, double precio, double cantidad, UnidadesCantidad unidades) {
         this.nombre = nombre;
         this.alimento = alimento;
         this.precio = precio;
@@ -27,7 +27,7 @@ public class Producto {
         this.unidades = unidades;
     }
 
-    public Producto(String nombre, String descripcion, Alimento alimento, int precio, double cantidad, UnidadesCantidad unidades) {
+    public Producto(String nombre, String descripcion, Alimento alimento, double precio, double cantidad, UnidadesCantidad unidades) {
         this(nombre, alimento, precio, cantidad, unidades);
         this.descripcion = descripcion;
     }
@@ -57,7 +57,7 @@ public class Producto {
         this.alimento = alimento;
     }
 
-    public int getPrecio() {
+    public double getPrecio() {
         return precio;
     }
 

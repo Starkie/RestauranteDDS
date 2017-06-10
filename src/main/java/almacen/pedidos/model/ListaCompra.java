@@ -7,7 +7,7 @@ import javax.persistence.*;
 public abstract class ListaCompra {
     protected String nombre;
     protected String descripcion;
-    protected int precio;
+    protected double precio;
     protected int unidades;
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
