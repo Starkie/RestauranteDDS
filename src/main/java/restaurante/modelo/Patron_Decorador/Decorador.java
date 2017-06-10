@@ -57,10 +57,13 @@ public abstract class Decorador extends Plato {
             if(getNumeroComplementosPollo()>0){ s+= getNumeroComplementosPollo() + " de Pollo frito ";}
             if(getNumeroComplementosTernera()>0){ s+= getNumeroComplementosTernera()+ " de Ternera asada ";}
         }
-        if(tieneSalsa()) s+= " y " + getDescripcionSalsa();
-        s.replace("1","uno");
-        s.replace("2","doble");
-        s.replace("3","triple");
+        s = s.trim();
+        if(tieneSalsa() & tieneComplementos()) s+= " y " + getDescripcionSalsa();
+        if(tieneSalsa() & !tieneComplementos()) s+= " con " + getDescripcionSalsa();
+
+        s = s.replace("1","uno");
+        s = s.replace("2","doble");
+        s = s.replace("3","triple");
         return s;
     }
 

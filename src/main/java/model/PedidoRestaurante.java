@@ -14,7 +14,7 @@ public class PedidoRestaurante {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="usuario_fk")
     private Usuario usuario;
 
@@ -101,6 +101,13 @@ public class PedidoRestaurante {
         this.horaRecibido = horaRecibido;
     }
 
-
+    @Override
+    public String toString(){
+        String s = new String();
+        for (Plato plato:platosPedido) {
+            s+= plato.getDescripcion() + '\n';
+        }
+        return s;
+    }
 
 }

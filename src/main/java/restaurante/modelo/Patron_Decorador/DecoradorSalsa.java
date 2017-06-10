@@ -15,7 +15,7 @@ public abstract class DecoradorSalsa extends Decorador{
     {
         super(plato,0.0, calorias, descripcion, numeroComplementosGamba, numeroComplementosPollo, numeroComplementosTernera);
         if(plato.tieneSalsa()) {
-            throw new Exception("El platoya tiene una salsa.");
+            throw new SalsaException();
         }
     }
 

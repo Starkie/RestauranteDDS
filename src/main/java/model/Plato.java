@@ -9,7 +9,7 @@ public abstract class Plato {
      @GeneratedValue(strategy = GenerationType.TABLE)
      private long id;
 
-     @ManyToOne
+     @ManyToOne(cascade = CascadeType.ALL)
      @JoinColumn(name = "pedidoRestaurante_fk")
      private PedidoRestaurante pedidoRestaurante;
 
@@ -32,6 +32,9 @@ public abstract class Plato {
           this.numeroComplementosTernera = numeroComplementosTernera;
      }
 
+     public long getId() {
+          return id;
+     }
 
      public double getPrecio(){
           return precio;

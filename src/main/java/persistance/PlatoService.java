@@ -20,12 +20,12 @@ public class PlatoService implements CrudService<Plato,Long>{
 
     @Override
     public void remove(Plato entidad) {
-        repository.save(entidad);
+        repository.delete(entidad);
     }
 
     @Override
-    public Plato findById(Long integer) {
-        return null;
+    public Plato findById(Long index) {
+        return repository.findOne(index);
     }
 
     @Override
