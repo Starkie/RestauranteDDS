@@ -19,12 +19,12 @@ public class PersonaService implements CrudService<Persona,Integer>{
 
     @Override
     public void remove(Persona entidad) {
-        repository.save(entidad);
+        repository.delete(entidad);
     }
 
     @Override
     public Persona findById(Integer i) {
-        return null;
+        return repository.findOne(i);
     }
 
     @Override

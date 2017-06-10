@@ -77,10 +77,14 @@ public class TestPlatoService {
         if(encontrado) Assert.fail();
     }
 
-/*    @Test
+   @Test
     public void TestFindById() {
+       Plato objetoInicio = new ComplementoTernera(new ComplementoGamba(new BaseTallarines()));
+       crudService.add(objetoInicio);
 
-    }*/
+       Plato encontrado = crudService.findById(objetoInicio.getId());
+       Assert.assertEquals(objetoInicio.getDescripcion(),encontrado.getDescripcion());
+    }
 
     @Test
     public void TestFindAll() {

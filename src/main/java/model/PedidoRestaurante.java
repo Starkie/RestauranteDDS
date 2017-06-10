@@ -58,6 +58,10 @@ public class PedidoRestaurante {
         setReclamacion(estado.reclamarRetraso(this));
     }
 
+    public long getId() {
+        return id;
+    }
+
     public EstadoPedido getEstado() {
         return estado;
     }

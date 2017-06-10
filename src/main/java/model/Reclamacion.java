@@ -13,7 +13,7 @@ public class Reclamacion {
     private String descripcion;
     private Date horaReclamacion;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private PedidoRestaurante pedidoRestaurante;
 
     public Reclamacion(){}
@@ -21,6 +21,10 @@ public class Reclamacion {
     public Reclamacion(Date horaReclamacion, PedidoRestaurante pedidoRestaurante) {
         this.horaReclamacion = horaReclamacion;
         this.pedidoRestaurante = pedidoRestaurante;
+    }
+
+    public long getId() {
+        return id;
     }
 
     public String getTitulo() {
@@ -37,5 +41,9 @@ public class Reclamacion {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public PedidoRestaurante getPedidoRestaurante() {
+        return pedidoRestaurante;
     }
 }

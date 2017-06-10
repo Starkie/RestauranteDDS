@@ -4,6 +4,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -18,6 +19,11 @@ public class Usuario extends Persona{
     public Usuario(String nombre, int dni, String direccion) {
         super(nombre, dni);
         this.direccion = direccion;
+        pedidosDelUsuario = new ArrayList<>();
+    }
+
+    public List<PedidoRestaurante> getPedidosDelUsuario() {
+        return pedidosDelUsuario;
     }
 
     public void addPedidoUsuario(PedidoRestaurante pedido){

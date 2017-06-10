@@ -25,7 +25,7 @@ public class PedidoRestauranteService implements CrudService<PedidoRestaurante,L
 
     @Override
     public PedidoRestaurante findById(Long aLong) {
-        return null;
+        return repository.findOne(aLong);
     }
 
     @Override

@@ -21,12 +21,12 @@ public class ReclamacionService implements CrudService<Reclamacion,Long> {
 
     @Override
     public void remove(Reclamacion entidad) {
-        repository.save(entidad);
+        repository.delete(entidad);
     }
 
     @Override
-    public Reclamacion findById(Long integer) {
-        return null;
+    public Reclamacion findById(Long index) {
+        return repository.findOne(index);
     }
 
     @Override
