@@ -1,4 +1,4 @@
-package almacen.model.pedidos;
+package almacen.pedidos.model;
 
 import javax.persistence.*;
 import java.util.Date;

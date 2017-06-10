@@ -9,10 +9,11 @@ public class Producto {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    private String nombre, descripcion;
+    private String nombre;
+    private String descripcion;
     @ManyToOne
     private Alimento alimento;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE, optional = false)
     private Proveedor proveedor;
     private int precio;
     private double cantidad;

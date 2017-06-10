@@ -60,4 +60,6 @@ public class Proveedor {
     public List<Producto> getProductos() {
         return productoList;
     }
+
+    public void addProducto(Producto p ) { productoList.add(p); }
 }

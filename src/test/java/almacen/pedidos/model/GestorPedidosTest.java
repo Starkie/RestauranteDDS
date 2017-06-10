@@ -1,4 +1,4 @@
-package almacen.model.pedidos;
+package almacen.pedidos.model;
 
 import almacen.model.Producto;
 import almacen.model.Proveedor;

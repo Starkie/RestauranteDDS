@@ -1,4 +1,4 @@
-package almacen.model.pedidos;
+package almacen.pedidos.model;
 
 import org.junit.Test;
 

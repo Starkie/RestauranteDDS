@@ -1,4 +1,4 @@
-package almacen.model.pedidos;
+package almacen.pedidos.model;
 
 public class EstadoPedidoInvalidoException extends AlmacenException {
     public EstadoPedidoInvalidoException() {
