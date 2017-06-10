@@ -10,10 +10,10 @@ public class ListaCompraTest {
         ListaCompra base = new ListaCompuesto("Lista 1", "Ejemplo");
         Assert.assertEquals("El precio de la lista vacia es 0", 0.0, base.getPrecio(), 0.1);
 
-        ListaCompra elemento = new ListaElemento("Elemento 1", "Elemento 1", 1, 300);
+        ListaCompra elemento = new ListaElemento("Elemento 1", "Elemento 1", 1, 3);
         Assert.assertEquals("El precio de elemento1 es 3 €", 3.0, elemento.getPrecio(), 0.1);
 
-        ListaCompra elemento2 = new ListaElemento("Elemento 2", "Elemento 2", 2, 800);
+        ListaCompra elemento2 = new ListaElemento("Elemento 2", "Elemento 2", 2, 8);
 
         base.add(elemento);
         base.add(elemento2);
@@ -21,7 +21,7 @@ public class ListaCompraTest {
         Assert.assertEquals("El precio de Lista 1 con 2 elementos es 19 €", 19.0, base.getPrecio(), 0.1);
 
         ListaCompra lista2 = new ListaCompuesto("Lista 2", "Ejemplo");
-        ListaCompra elemento3 = new ListaElemento("Elemento 3", "Elemento 3", 2, 600);
+        ListaCompra elemento3 = new ListaElemento("Elemento 3", "Elemento 3", 2, 6);
         lista2.add(elemento3);
 
         base.add(lista2);
@@ -33,15 +33,15 @@ public class ListaCompraTest {
 
     @Test(expected=UnsupportedOperationException.class)
     public void ShouldThrowUnsupportedOperationOnAddInElement() throws Exception {
-        ListaCompra elemento = new ListaElemento("elemento", "elemento", 2, 200);
-        ListaCompra elemento2 = new ListaElemento("elemento", "elemento", 2, 200);
+        ListaCompra elemento = new ListaElemento("elemento", "elemento", 2, 2);
+        ListaCompra elemento2 = new ListaElemento("elemento", "elemento", 2, 2);
         elemento.add(elemento2);
     }
 
     @Test(expected=UnsupportedOperationException.class)
     public void ShouldThrowUnsupportedOperationOnRemoveInElement() throws Exception {
-        ListaCompra elemento = new ListaElemento("elemento", "elemento", 2, 200);
-        ListaCompra elemento2 = new ListaElemento("elemento", "elemento", 2, 200);
+        ListaCompra elemento = new ListaElemento("elemento", "elemento", 2, 2);
+        ListaCompra elemento2 = new ListaElemento("elemento", "elemento", 2, 2);
         elemento.remove(elemento2);
     }
 
