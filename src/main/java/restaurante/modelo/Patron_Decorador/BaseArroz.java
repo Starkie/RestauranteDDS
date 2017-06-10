@@ -2,6 +2,9 @@ package restaurante.modelo.Patron_Decorador;
 
 import model.Plato;
 
+import javax.persistence.Entity;
+
+@Entity
 public class BaseArroz extends Plato {
 
     public BaseArroz(){

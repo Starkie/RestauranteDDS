@@ -9,20 +9,18 @@ public class Reclamacion {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @OneToOne
-    @JoinColumn(name = "pedidoRestaurante_id")
-    private PedidoRestaurante pedidoRestaurante;
     private String titulo;
     private String descripcion;
     private Date horaReclamacion;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="reclamacion_fk")
-    private PedidoRestaurante pedidoAsociado;
+    @OneToOne
+    private PedidoRestaurante pedidoRestaurante;
 
-    public Reclamacion(Date horaReclamacion, PedidoRestaurante pedidoAsociado) {
+    public Reclamacion(){}
+
+    public Reclamacion(Date horaReclamacion, PedidoRestaurante pedidoRestaurante) {
         this.horaReclamacion = horaReclamacion;
-        this.pedidoAsociado = pedidoAsociado;
+        this.pedidoRestaurante = pedidoRestaurante;
     }
 
     public String getTitulo() {

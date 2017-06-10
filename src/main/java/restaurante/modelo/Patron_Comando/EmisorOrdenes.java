@@ -1,8 +1,6 @@
 package restaurante.modelo.Patron_Comando;
 
-import model.Cocinero;
 import model.PedidoRestaurante;
-import model.Repartidor;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;

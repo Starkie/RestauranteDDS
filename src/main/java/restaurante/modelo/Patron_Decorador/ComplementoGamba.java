@@ -2,6 +2,9 @@ package restaurante.modelo.Patron_Decorador;
 
 import model.Plato;
 
+import javax.persistence.Entity;
+
+@Entity
 public class ComplementoGamba extends DecoradorComplemento{
      
     public ComplementoGamba(Plato p) {

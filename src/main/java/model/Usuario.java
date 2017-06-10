@@ -1,6 +1,8 @@
 package model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import java.util.List;
 
@@ -8,7 +10,7 @@ import java.util.List;
 public class Usuario extends Persona{
     private String direccion;
 
-    @OneToMany(mappedBy = "usuario")
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<PedidoRestaurante> pedidosDelUsuario;
 
     public Usuario() {}

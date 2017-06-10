@@ -2,8 +2,17 @@ package restaurante.modelo.Patron_Decorador;
 
 import model.Plato;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.OneToOne;
+
+@Entity
 public abstract class Decorador extends Plato {
+    @OneToOne(cascade = CascadeType.ALL)
     protected Plato plato;
+
+    public Decorador() {
+    }
 
     public Decorador(Plato plato, double precio, double calorias, String descripcion, int numeroComplementosGamba, int numeroComplementosPollo, int numeroComplementosTernera)
     {

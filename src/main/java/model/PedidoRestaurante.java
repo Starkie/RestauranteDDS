@@ -25,11 +25,11 @@ public class PedidoRestaurante {
     private Date horaConfirmacion;
     private Date horaRecibido;
 
-    @OneToMany (mappedBy = "pedidoRestaurante")
+    @OneToMany (mappedBy = "pedidoRestaurante",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Plato> platosPedido;
 
-    @OneToOne
-    @PrimaryKeyJoinColumn
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="reclamacion_id")
     private Reclamacion reclamacion;
 
     public PedidoRestaurante(Usuario usuario) {
@@ -82,8 +82,9 @@ public class PedidoRestaurante {
         return platosPedido;
     }
 
-    public void addPlatosPedido(Plato platoPedido) {
+    public void addPlatoPedido(Plato platoPedido) {
         this.platosPedido.add(platoPedido);
+        platoPedido.setPedidoRestaurante(this);
     }
 
     public void deletePlatoPedido(Plato platoPedido){ this.platosPedido.remove(platoPedido);}

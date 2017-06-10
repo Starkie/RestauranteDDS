@@ -10,7 +10,7 @@ public abstract class Plato {
      private long id;
 
      @ManyToOne
-     @JoinColumn(name = "pedidoRestaurante")
+     @JoinColumn(name = "pedidoRestaurante_fk")
      private PedidoRestaurante pedidoRestaurante;
 
      protected double precio;
@@ -19,6 +19,9 @@ public abstract class Plato {
      protected int numeroComplementosGamba;
      protected int numeroComplementosPollo;
      protected int numeroComplementosTernera;
+
+     public Plato() {
+     }
 
      public Plato(double precio, double calorias, String descripcion, int numeroComplementosGamba, int numeroComplementosPollo, int numeroComplementosTernera) {
           this.precio = precio;
@@ -57,5 +60,12 @@ public abstract class Plato {
      public boolean tieneSalsa(){
       return false;
      }
-     
+
+     public PedidoRestaurante getPedidoRestaurante() {
+          return pedidoRestaurante;
+     }
+
+     public void setPedidoRestaurante(PedidoRestaurante pedidoRestaurante) {
+          this.pedidoRestaurante = pedidoRestaurante;
+     }
 }
