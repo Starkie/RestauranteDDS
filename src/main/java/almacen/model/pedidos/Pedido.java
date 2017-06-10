@@ -1,7 +1,4 @@
-package almacen.modelo.pedidos;
-
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
+package almacen.model.pedidos;
 
 import javax.persistence.*;
 import java.util.Date;

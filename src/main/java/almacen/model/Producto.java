@@ -1,4 +1,4 @@
-package almacen.modelo;
+package almacen.model;
 
 import model.Alimento;
 

@@ -1,7 +1,7 @@
-package almacen.persistencia;
+package almacen.persistance;
 
 
-import almacen.modelo.Proveedor;
+import almacen.model.Proveedor;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

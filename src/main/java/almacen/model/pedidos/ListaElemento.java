@@ -1,4 +1,4 @@
-package almacen.modelo.pedidos;
+package almacen.model.pedidos;
 
 import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;

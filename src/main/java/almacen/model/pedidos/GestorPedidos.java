@@ -1,7 +1,7 @@
-package almacen.modelo.pedidos;
+package almacen.model.pedidos;
 
-import almacen.modelo.Producto;
-import almacen.persistencia.pedidos.PedidoService;
+import almacen.model.Producto;
+import almacen.persistance.pedidos.PedidoService;
 import persistance.AppContext;
 
 import java.util.ArrayList;

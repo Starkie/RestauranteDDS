@@ -1,18 +1,17 @@
-package almacen.modelo.pedidos;
+package almacen.model.pedidos;
 
 import javax.persistence.*;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class ListaCompra {
-    @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    private long id;
-
     protected String nombre;
     protected String descripcion;
     protected int precio;
     protected int unidades;
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    private long id;
 
     public String getNombre() {
         return nombre;

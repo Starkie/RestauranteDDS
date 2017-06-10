@@ -1,4 +1,4 @@
-package almacen.modelo.pedidos;
+package almacen.model.pedidos;
 
 public abstract class AlmacenException extends Exception {
 

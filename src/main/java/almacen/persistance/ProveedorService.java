@@ -1,6 +1,6 @@
-package almacen.persistencia;
+package almacen.persistance;
 
-import almacen.modelo.Proveedor;
+import almacen.model.Proveedor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import persistance.CrudService;
