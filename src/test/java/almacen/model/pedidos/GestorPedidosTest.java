@@ -1,8 +1,8 @@
-package almacen.modelo.pedidos;
+package almacen.model.pedidos;
 
-import almacen.modelo.Producto;
-import almacen.modelo.Proveedor;
-import almacen.modelo.UnidadesCantidad;
+import almacen.model.Producto;
+import almacen.model.Proveedor;
+import almacen.model.UnidadesCantidad;
 import model.Alimento;
 import org.junit.Assert;
 import org.junit.Test;
