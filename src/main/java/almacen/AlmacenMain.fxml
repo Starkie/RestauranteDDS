@@ -14,7 +14,7 @@
          <children>
             <ToolBar prefHeight="40.0" prefWidth="200.0">
               <items>
-                <Button mnemonicParsing="false" text="Button" />
+                <Button fx:id="pedidosButton" mnemonicParsing="false" text="Pedidos" />
               </items>
             </ToolBar>
             <Label text="Productos">
@@ -32,11 +32,16 @@
                <children>
                   <TableView fx:id="tablaProductos" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="467.0" prefWidth="500.0" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
                     <columns>
+                        <TableColumn id="c2" fx:id="stockColumn" prefWidth="75.0" text="Stock" />
                       <TableColumn id="c1" fx:id="nombreColumn" prefWidth="75.0" text="Nombre" />
                       <TableColumn id="c2" fx:id="alimentoColumn" prefWidth="75.0" text="Alimento" />
-                        <TableColumn id="c2" fx:id="stockColumn" prefWidth="75.0" text="Stock" />
-                        <TableColumn id="c2" fx:id="alimentoColumn11" prefWidth="75.0" text="Alimento" />
-                        <TableColumn id="c2" fx:id="alimentoColumn1" prefWidth="75.0" text="Alimento" />
+                        <TableColumn id="c2" fx:id="contenidoColumn" prefWidth="75.0" text="Contenido">
+                           <columns>
+                              <TableColumn id="c2" fx:id="cantidadColumn" prefWidth="75.0" text="Cant." />
+                              <TableColumn id="c2" fx:id="unidadColumn" prefWidth="75.0" text="Ud." />
+                           </columns>
+                        </TableColumn>
+                        <TableColumn id="c2" fx:id="precioColumn" prefWidth="75.0" text="Precio (€)" />
                     </columns>
                      <HBox.margin>
                         <Insets bottom="10.0" />
@@ -48,13 +53,13 @@
                   <Separator orientation="VERTICAL" prefHeight="200.0" HBox.hgrow="ALWAYS" />
                   <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="295.0" prefWidth="99.0" HBox.hgrow="NEVER">
                      <children>
-                        <Button fx:id="nuevoProductoButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" text="Nuevo" />
-                        <Button fx:id="editarProductoButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="76.0" text="Editar">
+                        <Button fx:id="nuevoProductoButton" mnemonicParsing="false" onAction="#OnNuevoProductoClick" prefHeight="25.0" prefWidth="75.0" text="Nuevo" />
+                        <Button fx:id="editarProductoButton" disable="true" mnemonicParsing="false" onAction="#OnEditarProductoClick" prefHeight="25.0" prefWidth="76.0" text="Editar">
                            <VBox.margin>
                               <Insets top="10.0" />
                            </VBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="76.0" text="Borrar" VBox.vgrow="ALWAYS">
+                        <Button fx:id="borrarProductoButton" disable="true" mnemonicParsing="false" onAction="#OnBorrarProductoClick" prefHeight="25.0" prefWidth="76.0" text="Borrar" VBox.vgrow="ALWAYS">
                            <VBox.margin>
                               <Insets top="10.0" />
                            </VBox.margin>
