@@ -19,8 +19,8 @@ public class Cocinero extends Persona {
 
     public Cocinero(){}
 
-    public Cocinero(String nombre, int dni) {
-        super(nombre, dni);
+    public Cocinero(String nombre, int dni, String contraseña) {
+        super(nombre, dni, contraseña);
         this.disponible = true;
         EmisorOrdenes.getEmisorOrdenes().registrarCocinero(this);
     }

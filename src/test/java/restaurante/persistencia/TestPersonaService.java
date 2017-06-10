@@ -27,9 +27,9 @@ public class TestPersonaService {
 
     @Test
     public void TestAdd() {
-        Persona p1 = new Repartidor("Repartidor",223232);
-        Persona p2 = new Usuario("Usuario",12344,"Direccion");
-        Persona p3 = new Cocinero("Cocinero",1212);
+        Persona p1 = new Repartidor("Repartidor",223232,"dksd");
+        Persona p2 = new Usuario("Usuario",12344,"Direccion","skds");
+        Persona p3 = new Cocinero("Cocinero",1212,"sdnsd");
         boolean[] encontrados = new boolean[3];
 
         crudService.add(p1);
@@ -50,7 +50,7 @@ public class TestPersonaService {
 
     @Test
     public void TestUpdate() {
-        Persona usuario = new Usuario("Pedro",232323,"Casa");
+        Persona usuario = new Usuario("Pedro",232323,"Casa","sds");
         crudService.add(usuario);
         PedidoRestaurante elPedido = new PedidoRestaurante((Usuario)usuario);
         ((Usuario) usuario).addPedidoUsuario(elPedido);
@@ -64,7 +64,7 @@ public class TestPersonaService {
 
     @Test
     public void TestRemove() {
-        Persona usuario = new Usuario("Pedro",232323,"Casa");
+        Persona usuario = new Usuario("Pedro",232323,"Casa","dsdsd");
         crudService.add(usuario);
         boolean encontrado = false;
 
@@ -80,7 +80,7 @@ public class TestPersonaService {
 
     @Test
     public void TestFindById() {
-        Persona usuario = new Usuario("Pedro",232323,"Casa");
+        Persona usuario = new Usuario("Pedro",232323,"Casa","sds");
         crudService.add(usuario);
 
         Persona encontrado = crudService.findById(usuario.getDni());
@@ -90,9 +90,9 @@ public class TestPersonaService {
     @Test
     public void TestFindAll() {
         //Se han de crear una total de 3 filas en la tabla
-        Persona p1 = new Repartidor("Repartidor", 223232);
-        Persona p2 = new Usuario("Usuario", 12344, "Direccion");
-        Persona p3 = new Cocinero("Cocinero", 1212);
+        Persona p1 = new Repartidor("Repartidor", 223232,"skdsd");
+        Persona p2 = new Usuario("Usuario", 12344, "Direccion","sdsd");
+        Persona p3 = new Cocinero("Cocinero", 1212,"sdsds");
         int cuenta = 0;
         crudService.add(p1);
         crudService.add(p2);

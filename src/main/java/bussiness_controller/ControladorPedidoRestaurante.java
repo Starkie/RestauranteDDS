@@ -1,11 +1,11 @@
-package restaurante.modelo;
+package bussiness_controller;
 
 import model.PedidoRestaurante;
 import model.Usuario;
 import restaurante.modelo.Patron_Comando.EmisorOrdenes;
 import restaurante.modelo.Patron_Comando.OrdenCocinar;
 
-public class ControladorVistaPedido {
+public class ControladorPedidoRestaurante {
     PedidoRestaurante elPedido;
     Usuario elUsuario;
     EmisorOrdenes elEmisor = EmisorOrdenes.getEmisorOrdenes();

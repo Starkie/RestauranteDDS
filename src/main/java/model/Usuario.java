@@ -16,8 +16,8 @@ public class Usuario extends Persona{
 
     public Usuario() {}
 
-    public Usuario(String nombre, int dni, String direccion) {
-        super(nombre, dni);
+    public Usuario(String nombre, int dni, String direccion, String contraseña) {
+        super(nombre, dni, contraseña);
         this.direccion = direccion;
         pedidosDelUsuario = new ArrayList<>();
     }

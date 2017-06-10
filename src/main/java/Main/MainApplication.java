@@ -5,19 +5,15 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import model.*;
+import model.Usuario;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import persistance.*;
-import restaurante.modelo.Patron_Comando.Cocinero;
-import restaurante.modelo.Patron_Comando.Repartidor;
-import restaurante.modelo.Patron_Decorador.BaseTallarines;
-import restaurante.modelo.Patron_Decorador.ComplementoPollo;
-
-import java.util.Date;
+import persistance.AppContext;
+import persistance.PersonaService;
+import view_controller.ControladorVistaLogin;
 
 @SpringBootApplication
 @ComponentScan({"persistance"})
@@ -27,7 +23,7 @@ public class MainApplication extends Application{
 
     public static void main(String[] args) throws Exception {
         SpringApplication.run(MainApplication.class, args);
-
+/*
         //Alimento
         AlimentoService alimentoService = (AlimentoService) AppContext.getBean("alimentoService");
         alimentoService.add(new Alimento("manzana", "fruta"));
@@ -42,7 +38,7 @@ public class MainApplication extends Application{
 
         //Usuario
         PersonaService personaService = (PersonaService) AppContext.getBean("personaService");
-        personaService.add(new Usuario("Paco",26755185,"Direccion"));
+        personaService.add(new Usuario("Paco",26755185,"Direccion","dd"));
         Iterable<Persona> listaPersonas = personaService.findAll();
         Persona p = listaPersonas.iterator().next();
 
@@ -68,10 +64,10 @@ public class MainApplication extends Application{
         pedidoRestauranteService.update(pedido);
 
         //Cocinero
-        personaService.add(new Cocinero("Pedro",23232112));
+        personaService.add(new Cocinero("Pedro",23232112,"ssdsd"));
 
         //Repartidor
-        personaService.add(new Repartidor("Repartidor",22344545));
+        personaService.add(new Repartidor("Repartidor",22344545,"sdsdsd"));
 
         personaService.findAll();
 
@@ -79,15 +75,24 @@ public class MainApplication extends Application{
         Reclamacion reclamacion = new Reclamacion(new Date(),pedido);
         ReclamacionService reclamacionService = (ReclamacionService) AppContext.getBean("reclamacionService");
         reclamacionService.add(reclamacion);
-        Reclamacion reclamacion1 = reclamacionService.findAll().iterator().next();
+        Reclamacion reclamacion1 = reclamacionService.findAll().iterator().next();*/
+
+        PersonaService personaService = (PersonaService) AppContext.getBean("personaService");
+        personaService.add(new Usuario("Paco",26755185,"Direccion","dd"));
         launch(args);
     }
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-        primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 300, 275));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/LoginView.fxml"));
+        Parent root = loader.load();
+
+        ControladorVistaLogin controladorVistaLogin = loader.getController();
+        controladorVistaLogin.initStage(primaryStage);
+
+        primaryStage.setTitle("Login");
+        primaryStage.setScene(new Scene(root));
+        primaryStage.setResizable(false);
         primaryStage.show();
     }
 }

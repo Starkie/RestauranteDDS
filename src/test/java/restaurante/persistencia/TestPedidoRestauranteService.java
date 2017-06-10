@@ -28,7 +28,7 @@ public class TestPedidoRestauranteService {
 
     @Test
     public void TestAdd() {
-        PedidoRestaurante objetoInicio = new PedidoRestaurante(new Usuario("Paco",23232,"Mi casa"));
+        PedidoRestaurante objetoInicio = new PedidoRestaurante(new Usuario("Paco",23232,"Mi casa","dcdc"));
         objetoInicio.addPlatoPedido(new BaseArroz());
         boolean encontrado = false;
 
@@ -45,7 +45,7 @@ public class TestPedidoRestauranteService {
     @Test
     public void TestUpdate() {
         boolean encontrado = false;
-        PedidoRestaurante objetoInicio = new PedidoRestaurante(new Usuario("Paco",23232,"Mi casa"));
+        PedidoRestaurante objetoInicio = new PedidoRestaurante(new Usuario("Paco",23232,"Mi casa","sds"));
         crudService.add(objetoInicio);
         Plato p = new ComplementoGamba(new BaseArroz());
         objetoInicio.addPlatoPedido(p);
@@ -59,7 +59,7 @@ public class TestPedidoRestauranteService {
 
     @Test
     public void TestRemove() {
-        PedidoRestaurante objetoInicio = new PedidoRestaurante(new Usuario("Paco",23232,"Mi casa"));
+        PedidoRestaurante objetoInicio = new PedidoRestaurante(new Usuario("Paco",23232,"Mi casa","sdsd"));
         objetoInicio.addPlatoPedido(new BaseArroz());
         boolean encontrado = false;
         crudService.add(objetoInicio);
@@ -76,7 +76,7 @@ public class TestPedidoRestauranteService {
 
     @Test
     public void TestFindById() {
-        PedidoRestaurante objetoInicio = new PedidoRestaurante(new Usuario("Paco",23232,"Mi casa"));
+        PedidoRestaurante objetoInicio = new PedidoRestaurante(new Usuario("Paco",23232,"Mi casa","sd"));
         objetoInicio.addPlatoPedido(new BaseArroz());
         crudService.add(objetoInicio);
 
@@ -87,8 +87,8 @@ public class TestPedidoRestauranteService {
     @Test
     public void TestFindAll() {
         //Se han de crear una total de 2 filas en la tabla
-        PedidoRestaurante objeto1 = new PedidoRestaurante(new Usuario("Paco",23232,"Mi casa"));
-        PedidoRestaurante objeto2 = new PedidoRestaurante(new Usuario("Pedro",21232,"Mi casa2"));
+        PedidoRestaurante objeto1 = new PedidoRestaurante(new Usuario("Paco",23232,"Mi casa","ddf"));
+        PedidoRestaurante objeto2 = new PedidoRestaurante(new Usuario("Pedro",21232,"Mi casa2","df"));
         crudService.add(objeto1);
         crudService.add(objeto2);
         int cuenta = 0;

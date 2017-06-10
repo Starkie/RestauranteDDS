@@ -27,7 +27,7 @@ public class TestReclamacionService {
 
     @Test
     public void TestAdd() {
-        PedidoRestaurante elPedido = new PedidoRestaurante(new Usuario("Paco",232323,"Una Casa Abandonada"));
+        PedidoRestaurante elPedido = new PedidoRestaurante(new Usuario("Paco",232323,"Una Casa Abandonada", "jndjs"));
         Reclamacion objetoInicio = new Reclamacion(new Date(),elPedido);
         boolean encontrado = false;
 
@@ -43,7 +43,7 @@ public class TestReclamacionService {
 
     @Test
     public void TestUpdate() {
-        PedidoRestaurante elPedido = new PedidoRestaurante(new Usuario("Paco",232323,"Una Casa Abandonada"));
+        PedidoRestaurante elPedido = new PedidoRestaurante(new Usuario("Paco",232323,"Una Casa Abandonada","ksmdks"));
         Reclamacion objetoInicio = new Reclamacion(new Date(),elPedido);
         crudService.add(objetoInicio);
         objetoInicio.setDescripcion("Un PROBLEMA");
@@ -57,7 +57,7 @@ public class TestReclamacionService {
 
     @Test
     public void TestRemove() {
-        PedidoRestaurante elPedido = new PedidoRestaurante(new Usuario("Paco",232323,"Una Casa Abandonada"));
+        PedidoRestaurante elPedido = new PedidoRestaurante(new Usuario("Paco",232323,"Una Casa Abandonada","sds"));
         Reclamacion objetoInicio = new Reclamacion(new Date(),elPedido);
         crudService.add(objetoInicio);
         boolean encontrado = false;
@@ -74,7 +74,7 @@ public class TestReclamacionService {
 
     @Test
     public void TestFindById() {
-        PedidoRestaurante elPedido = new PedidoRestaurante(new Usuario("Paco",232323,"Una Casa Abandonada"));
+        PedidoRestaurante elPedido = new PedidoRestaurante(new Usuario("Paco",232323,"Una Casa Abandonada","nsdj"));
         elPedido.addPlatoPedido(new BaseArroz());
         Reclamacion objetoInicio = new Reclamacion(new Date(),elPedido);
         crudService.add(objetoInicio);
@@ -86,7 +86,7 @@ public class TestReclamacionService {
     @Test
     public void TestFindAll() {
         //Se han de crear una total de 2 filas en la tabla
-        PedidoRestaurante elPedido = new PedidoRestaurante(new Usuario("Paco",232323,"Una Casa Abandonada"));
+        PedidoRestaurante elPedido = new PedidoRestaurante(new Usuario("Paco",232323,"Una Casa Abandonada","sdd"));
         Reclamacion objetoInicio = new Reclamacion(new Date(),elPedido);
         Reclamacion objeto2 = new Reclamacion(new Date(),null);
         crudService.add(objetoInicio);

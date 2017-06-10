@@ -11,13 +11,15 @@ public abstract class Persona {
     @Id
     private int dni;
     private String nombre;
+    private String contraseña;
 
     public Persona() {
     }
 
-    public Persona(String nombre, int dni) {
+    public Persona(String nombre, int dni, String  contraseña) {
         this.nombre = nombre;
         this.dni = dni;
+        this.contraseña = contraseña;
     }
 
     public String getNombre() {
@@ -26,5 +28,9 @@ public abstract class Persona {
 
     public int getDni() {
         return dni;
+    }
+
+    public String getContraseña() {
+        return contraseña;
     }
 }

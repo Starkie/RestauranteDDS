@@ -47,7 +47,7 @@ public class TestPlatoService {
         boolean encontrado = false;
         Plato objetoInicio = new ComplementoGamba(new BaseTallarines());
         crudService.add(objetoInicio);
-        PedidoRestaurante elPedido = new PedidoRestaurante(new Usuario("Paco",224545,"Mi casa"));
+        PedidoRestaurante elPedido = new PedidoRestaurante(new Usuario("Paco",224545,"Mi casa","jnjds"));
         elPedido.addPlatoPedido(objetoInicio);
 
         crudService.update(objetoInicio);

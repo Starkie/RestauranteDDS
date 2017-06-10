@@ -31,4 +31,8 @@ public class PersonaService implements CrudService<Persona,Integer>{
     public Iterable<Persona> findAll() {
         return repository.findAll();
     }
+
+    public Persona findByName(String nombre) {
+        return repository.findByNombre(nombre);
+    }
 }
