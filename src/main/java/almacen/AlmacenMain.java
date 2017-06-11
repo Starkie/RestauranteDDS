@@ -1,12 +1,9 @@
 package almacen;
 
-import almacen.model.Producto;
+
 import almacen.model.ProductoAlmacen;
-import almacen.persistance.ProductoAlmacenService;
-import almacen.persistance.ProductoService;
-import javafx.application.Application;
 import javafx.beans.binding.Bindings;
-import javafx.beans.property.DoubleProperty;
+
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -15,16 +12,17 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
+
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.BorderPane;
+
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import persistance.AppContext;
+
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
+
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -58,13 +56,14 @@ public class AlmacenMain implements Initializable {
 
     private ObservableList<ProductoAlmacen> productos;
 
+    private ProductoAlmacenController productoAlmacenController;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ProductoAlmacenService productoService = (ProductoAlmacenService) AppContext.getBean("productoAlmacenService");
-        ArrayList<ProductoAlmacen> listaProductos = new ArrayList<>();
-        productoService.findAll().forEach(p -> listaProductos.add(p));
 
-        productos = FXCollections.observableArrayList(listaProductos);
+        productoAlmacenController = ProductoAlmacenController.getInstance();
+
+        productos = FXCollections.observableArrayList(productoAlmacenController.getAllProductos());
 
         nombreColumn.setCellValueFactory(p -> new SimpleStringProperty(p.getValue().getProducto().getNombre()));
 
@@ -95,27 +94,48 @@ public class AlmacenMain implements Initializable {
         alert.setContentText("¿Desea eliminar el producto?");
         Optional<ButtonType> resultado = alert.showAndWait();
         if(resultado.get() == ButtonType.OK) {
-            ProductoAlmacenService productoAlmacenService = (ProductoAlmacenService) AppContext.getBean("productoAlmacenService");
-            productoAlmacenService.remove(producto);
+            productoAlmacenController.eliminarProducto(producto);
             Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
             alert2.setTitle("Producto Eliminado");
             alert2.setHeaderText("Producto Elminado Correctamente");
             alert2.showAndWait();
 
-            ArrayList<ProductoAlmacen> listaProductos = new ArrayList<>();
-            productoAlmacenService.findAll().forEach(p -> listaProductos.add(p));
-            productos = FXCollections.observableArrayList(listaProductos);
+            productos = FXCollections.observableArrayList(productoAlmacenController.getAllProductos());
             tablaProductos.setItems(productos);
         }
     }
     @FXML
-    private void OnNuevoProductoClick() {
+    private void OnNuevoProductoClick() throws IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("EditarProducto.fxml"));
+        VBox root = loader.load();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root, 280, 440));
+        stage.setTitle("Producto");
+        stage.setMinWidth(280);
+        stage.setMinHeight(440);
+        stage.showAndWait();
 
+        productos = FXCollections.observableArrayList(productoAlmacenController.getAllProductos());
+        tablaProductos.setItems(productos);
     }
 
     @FXML
-    private void OnEditarProductoClick() {
+    private void OnEditarProductoClick() throws IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("EditarProducto.fxml"));
+        VBox root = loader.load();
+        EditarProductoController controller = loader.getController();
 
+        controller.setProductoAlmacen((ProductoAlmacen) tablaProductos.getSelectionModel().getSelectedItem());
+
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root, 280, 440));
+        stage.setTitle("Producto");
+        stage.setMinWidth(280);
+        stage.setMinHeight(440);
+        stage.showAndWait();
+
+        productos = FXCollections.observableArrayList(productoAlmacenController.getAllProductos());
+        tablaProductos.setItems(productos);
     }
 
 }
