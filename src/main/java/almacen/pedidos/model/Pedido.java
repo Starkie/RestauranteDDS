@@ -57,6 +57,14 @@ public class Pedido {
         }
     }
 
+    public EstadoPedido getEstado() {
+        return estado;
+    }
+
+    public void setEstado(EstadoPedido estado) {
+        this.estado = estado;
+    }
+
     public double getPrecio() {
         return this.lista.getPrecio();
     }
