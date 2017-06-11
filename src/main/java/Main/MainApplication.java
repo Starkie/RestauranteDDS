@@ -2,7 +2,7 @@ package Main;
 
 import almacen.model.Producto;
 import almacen.model.UnidadesCantidad;
-import almacen.pedidos.model.GestorPedidos;
+import almacen.pedidos.GestorPedidos;
 import almacen.pedidos.model.Pedido;
 import almacen.persistance.ProductoService;
 import javafx.application.Application;
@@ -45,8 +45,8 @@ public class MainApplication extends Application{
         alimentoService.add(a3);
 
         List<Producto> lista = new ArrayList<>();
-        Producto p1 = new Producto("Producto1", "Producto1", a2,500, 2, UnidadesCantidad.KG);
-        Producto p2 = new Producto("Tallarines Gallo", "Tallarines de la marca gallo", a3 , 20, 1, UnidadesCantidad.KG);
+        Producto p1 = new Producto("Producto1", a2,500, 2, UnidadesCantidad.KG);
+        Producto p2 = new Producto("Tallarines Gallo", a3 , 20, 1, UnidadesCantidad.KG);
         ProductoService productoService = (ProductoService) AppContext.getBean("productoService");
         productoService.add(p1);
         productoService.add(p2);
