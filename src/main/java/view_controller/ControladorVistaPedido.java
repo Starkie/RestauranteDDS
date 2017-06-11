@@ -129,11 +129,11 @@ public class ControladorVistaPedido{
     @FXML
     void pressNuevoPedido(ActionEvent event) throws Exception{
         //La excepción no se captura, ya que quien la produciría es el load.
-        irAVistaPlato();
+        PedidoRestaurante pedidoNuevo = controladorPedido.NuevoPedido(usuario);
+        irAVistaPlato(pedidoNuevo);
     }
 
-    private void irAVistaPlato() throws IOException {
-        PedidoRestaurante pedidoNuevo = controladorPedido.NuevoPedido(usuario);
+    private void irAVistaPlato(PedidoRestaurante pedidoNuevo) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/PlatoView.fxml"));
         Parent root = loader.load();
 

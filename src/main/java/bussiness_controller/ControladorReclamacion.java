@@ -22,7 +22,7 @@ public class ControladorReclamacion {
     }
 
     public void anyadirReclamacion(String titulo, String descripcion, PedidoRestaurante pedidoRestaurante) throws Exception {
-        if(titulo.isEmpty() || descripcion.isEmpty()) throw new Exception("Por favor, rellene los campos de la Reclamación.");
+        if(camposVacios(titulo, descripcion)) throw new Exception("Por favor, rellene los campos de la Reclamación.");
 
         Reclamacion reclamacion = new Reclamacion();
         reclamacionService.add(reclamacion);
@@ -35,4 +35,9 @@ public class ControladorReclamacion {
 
         reclamacionService.update(reclamacion);
     }
+
+    private boolean camposVacios(String titulo, String descripcion) {
+        return titulo.isEmpty() || descripcion.isEmpty();
+    }
 }
+

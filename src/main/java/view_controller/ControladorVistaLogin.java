@@ -48,7 +48,7 @@ public class ControladorVistaLogin implements Initializable {
 
     @FXML
     void pressContinue(ActionEvent event) {
-        if(txtNombre.getText().isEmpty() || txtContraseña.getText().isEmpty()){
+        if(camposVacios()){
             Alert alerta = new Alert(Alert.AlertType.ERROR,"Por favor, rellena los campos para acceder");
             alerta.showAndWait();
         }
@@ -61,6 +61,10 @@ public class ControladorVistaLogin implements Initializable {
                 alerta.showAndWait();
             }
         }
+    }
+
+    private boolean camposVacios() {
+        return txtNombre.getText().isEmpty() || txtContraseña.getText().isEmpty();
     }
 
     private void irASiguienteVentana(Persona p) throws Exception{
