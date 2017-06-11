@@ -5,16 +5,17 @@ import almacen.pedidos.model.*;
 import almacen.persistance.pedidos.PedidoService;
 import persistance.AppContext;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
 public class GestorPedidos {
     private static GestorPedidos gestorPedidos;
-
-    private List<Pedido> listaPedidos;
+    private static PedidoService pedidoService;
 
     private GestorPedidos() {
-        loadPedidoList();
+        this.gestorPedidos = this;
+        this.pedidoService = (PedidoService) AppContext.getBean("pedidoService");
     }
 
     public static GestorPedidos getInstance() {
@@ -31,26 +32,21 @@ public class GestorPedidos {
         }
         Pedido p = new Pedido(listaCompra);
         guardarPedido(p);
-        listaPedidos.add(p);
         return p;
     }
 
-    public void loadPedidoList() {
-        PedidoService pedidoService = (PedidoService) AppContext.getBean("pedidoService");
-        listaPedidos = new ArrayList<>();
-        Iterable<Pedido> pedidos = pedidoService.findAll();
-        for (Pedido p : pedidos) {
-            listaPedidos.add(p);
-        }
+    public void guardarPedido(Pedido p) {
+        pedidoService.add(p);
     }
 
     public Pedido crearPedido(ListaCompra listaCompra) {
-        return new Pedido(listaCompra);
+        Pedido p = new Pedido(listaCompra);
+        guardarPedido(p);
+        return p;
     }
 
     public void addToPedido(Pedido pedido, ListaCompra lista) {
         pedido.addToPedido(lista);
-        guardarPedido(pedido);
     }
 
     public void addToPedido(Pedido pedido, Producto producto) {
@@ -70,20 +66,23 @@ public class GestorPedidos {
 
     public void confirmarPedido(Pedido pedido) throws AlmacenException {
         pedido.confirmarPedido();
+        guardarPedido(pedido);
     }
 
     public void recibirPedido(Pedido pedido) throws AlmacenException {
         pedido.recibirPedido();
+        guardarPedido(pedido);
     }
 
     public void cancelarPedido(Pedido pedido) throws AlmacenException {
         pedido.cancelarPedido();
+        guardarPedido(pedido);
     }
 
-    private void guardarPedido(Pedido pedido) {
-        PedidoService pedidoService = (PedidoService) AppContext.getBean("pedidoService");
-        pedidoService.add(pedido);
-
+    public ArrayList<Pedido> getAllPedidos() {
+        ArrayList<Pedido> pedidos = new ArrayList<>();
+        pedidoService.findAll().forEach(p -> pedidos.add(p));
+        return pedidos;
     }
 
 }
