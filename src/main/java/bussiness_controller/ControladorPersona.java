@@ -4,9 +4,7 @@ import model.PedidoRestaurante;
 import model.Persona;
 import persistance.AppContext;
 import persistance.PersonaService;
-import restaurante.modelo.Patron_Comando.EmisorOrdenes;
-import restaurante.modelo.Patron_Comando.OrdenRepartir;
-import restaurante.modelo.Patron_Comando.Repartidor;
+import restaurante.modelo.Patron_Comando.*;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -48,7 +46,7 @@ public class ControladorPersona{
 
     public List<PedidoRestaurante> obtenerPendientesCocinero() {
         List<PedidoRestaurante> pedidosPorCocinar = new ArrayList<PedidoRestaurante>();
-        Iterator<OrdenRepartir> OrdenesPorCocinar = elEmisor.getOrdenesARepartir().iterator();
+        Iterator<OrdenCocinar> OrdenesPorCocinar = elEmisor.getOrdenesACocinar().iterator();
         while(OrdenesPorCocinar.hasNext()){
             pedidosPorCocinar.add(OrdenesPorCocinar.next().getPedido());
         }
@@ -58,5 +56,11 @@ public class ControladorPersona{
     public void finalizarActualRepartidor(Repartidor repartidor) {
         repartidor.finalizarEnvio();
         personaService.update(repartidor);
+    }
+
+
+    public void finalizarActualCocinero(Cocinero cocinero) {
+        cocinero.finalizarCocinaPedido();
+        personaService.update(cocinero);
     }
 }

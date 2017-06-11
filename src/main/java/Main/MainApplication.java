@@ -20,6 +20,7 @@ import restaurante.modelo.Patron_Comando.Repartidor;
 import restaurante.modelo.Patron_Decorador.*;
 import restaurante.modelo.Patron_Estado.EstadoCocinado;
 import restaurante.modelo.Patron_Estado.EstadoEnCamino;
+import restaurante.modelo.Patron_Estado.EstadoPendiente;
 import view_controller.ControladorVistaLogin;
 
 import java.util.Calendar;
@@ -99,6 +100,18 @@ public class MainApplication extends Application{
         pedidoRestaurante3.setEstado(new EstadoCocinado());
         pedidoRestaurante3.addPlatoPedido(new ComplementoGamba(new BaseArroz()));
         pedidoRestauranteService.update(pedidoRestaurante3);
+
+        PedidoRestaurante pedidoRestaurante4 = new PedidoRestaurante(new Usuario("Paquito",231223,"Calle de AAAA","232"));
+        pedidoRestauranteService.add(pedidoRestaurante4);
+        pedidoRestaurante4.setEstado(new EstadoPendiente());
+        pedidoRestaurante4.addPlatoPedido(new ComplementoGamba(new BaseArroz()));
+        pedidoRestauranteService.update(pedidoRestaurante4);
+
+        PedidoRestaurante pedidoRestaurante5 = new PedidoRestaurante(new Usuario("Manoli",232233,"Calle de QQQQ","232"));
+        pedidoRestauranteService.add(pedidoRestaurante5);
+        pedidoRestaurante5.setEstado(new EstadoPendiente());
+        pedidoRestaurante5.addPlatoPedido(new ComplementoGamba(new BaseArroz()));
+        pedidoRestauranteService.update(pedidoRestaurante5);
 
         PersonaService personaService = (PersonaService) AppContext.getBean("personaService");
         personaService.add(new Cocinero("Pedro",221212,"hola"));

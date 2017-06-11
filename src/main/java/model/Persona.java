@@ -30,7 +30,7 @@ public abstract class Persona {
         return dni;
     }
 
-    public String getContraseña() {
+public String getContraseña() {
         return contraseña;
     }
 }

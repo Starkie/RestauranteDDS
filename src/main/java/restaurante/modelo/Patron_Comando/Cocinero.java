@@ -42,9 +42,18 @@ public class Cocinero extends Persona {
     }
 
     public void finalizarCocinaPedido(){
-        if(pedidoAtendiendo != null) this.pedidoAtendiendo.setEstado(new EstadoCocinado());
-        EmisorOrdenes.getEmisorOrdenes().anyadirOrden(new OrdenRepartir(pedidoAtendiendo));
+        if(pedidoAtendiendo != null){ this.pedidoAtendiendo.setEstado(new EstadoCocinado());
+        EmisorOrdenes.getEmisorOrdenes().anyadirOrden(new OrdenRepartir(pedidoAtendiendo));}
         this.pedidoAtendiendo = null;
         this.disponible=true;
+        EmisorOrdenes.getEmisorOrdenes().registrarCocinero(this);
+    }
+
+    public PedidoRestaurante getPedidoAtendiendo() {
+        return pedidoAtendiendo;
+    }
+
+    public void setPedidoAtendiendo(PedidoRestaurante pedidoAtendiendo) {
+        this.pedidoAtendiendo = pedidoAtendiendo;
     }
 }
