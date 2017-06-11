@@ -8,7 +8,7 @@ import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 import model.Usuario;
 
-public class ControladorVistaPedido {
+public class ControladorVistaPedido{
 
     private Stage stage;
     private Usuario usuario;
@@ -46,6 +46,8 @@ public class ControladorVistaPedido {
     public void initStage(Stage stage, Usuario usuario) {
         this.stage = stage;
         this.usuario = usuario;
+        lblAcceso.setText("Usuario: "+ usuario.getNombre());
     }
+
 }
 

@@ -13,6 +13,8 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import persistance.AppContext;
 import persistance.PersonaService;
+import restaurante.modelo.Patron_Comando.Cocinero;
+import restaurante.modelo.Patron_Comando.Repartidor;
 import view_controller.ControladorVistaLogin;
 
 @SpringBootApplication
@@ -79,6 +81,8 @@ public class MainApplication extends Application{
 
         PersonaService personaService = (PersonaService) AppContext.getBean("personaService");
         personaService.add(new Usuario("Paco",26755185,"Direccion","dd"));
+        personaService.add(new Cocinero("Pedro",221212,"hola"));
+        personaService.add(new Repartidor("Manu",221,"adios"));
         launch(args);
     }
 
