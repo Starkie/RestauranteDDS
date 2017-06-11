@@ -19,6 +19,7 @@ public class ListaElemento extends ListaCompra {
     public ListaElemento() {}
 
     public ListaElemento(Producto producto, int unidades) {
+        this.producto = producto;
         this.nombre = producto.getNombre();
         this.descripcion = "";
         this.precio = producto.getPrecio();
