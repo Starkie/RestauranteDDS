@@ -8,12 +8,11 @@ import javax.persistence.Entity;
 public class ComplementoTernera extends DecoradorComplemento{
 
     public ComplementoTernera() {
+        super(1.50,120,"Ternera asada",0,0,1);
     }
 
     public ComplementoTernera(Plato p) {
         super(p,1.50,120,"Ternera asada",0,0,1);
-        precio= 1.50;
-        calorias = 120;
     }
 
     @Override

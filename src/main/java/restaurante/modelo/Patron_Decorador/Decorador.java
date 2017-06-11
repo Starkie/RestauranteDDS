@@ -20,6 +20,10 @@ public abstract class Decorador extends Plato {
         this.plato=plato;
     }
 
+    public Decorador(double precio, double calorias, String descripcion, int numeroComplementosGamba, int numeroComplementosPollo, int numeroComplementosTernera) {
+        super(precio,calorias,descripcion,numeroComplementosGamba,numeroComplementosPollo,numeroComplementosTernera);
+    }
+
     @Override
     public double getPrecio() {
         return precio + plato.getPrecio();
@@ -82,4 +86,7 @@ public abstract class Decorador extends Plato {
         return (getNumeroComplementosGamba() + getNumeroComplementosPollo() + getNumeroComplementosTernera())>0;
     }
 
+    public Plato getPlato() {
+        return plato;
+    }
 }

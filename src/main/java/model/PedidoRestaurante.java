@@ -41,13 +41,13 @@ public class PedidoRestaurante {
     }
 
     public PedidoRestaurante() {
+        this.estado = new EstadoPorConfirmar();
+        this.platosPedido = new ArrayList<Plato>();
     }
 
     public  void confirmarPedido() throws Exception {
         if(platosPedido.size()<1) throw new Exception("Un pedido debe contener almenos 1 plato");
         estado.confirmarPedido(this);
-        setHoraConfirmacion(new Date()); //La hora de confirmación es la actual
-        usuario.addPedidoUsuario(this);
     }
 
     public  void cancelarPedido() throws Exception {
@@ -120,6 +120,14 @@ public class PedidoRestaurante {
         double result = 0;
         for (Plato plato:platosPedido) {
            result+= plato.getPrecio();
+        }
+        return result;
+    }
+
+    public double getCalorias(){
+        double result = 0;
+        for (Plato plato:platosPedido) {
+            result+= plato.getCalorias();
         }
         return result;
     }

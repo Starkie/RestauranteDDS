@@ -5,6 +5,7 @@ import model.Reclamacion;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import java.util.Date;
 
 @Entity
 @DiscriminatorValue("PorConfirmar")
@@ -17,6 +18,7 @@ public class EstadoPorConfirmar extends EstadoPedido {
     @Override
     public void confirmarPedido(PedidoRestaurante pedido) throws Exception {
         pedido.setEstado(new EstadoPendiente());
+        pedido.setHoraConfirmacion(new Date()); //La hora de confirmación es la actual
     }
 
     @Override

@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 public class ComplementoPollo extends DecoradorComplemento{
 
     public ComplementoPollo() {
+        super(1.0,100,"Pollo Crujiente",0,1,0);
     }
 
     public ComplementoPollo(Plato p) {

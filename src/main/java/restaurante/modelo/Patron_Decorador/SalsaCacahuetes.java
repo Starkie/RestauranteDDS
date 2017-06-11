@@ -12,6 +12,7 @@ import javax.persistence.Entity;
 public class SalsaCacahuetes extends DecoradorSalsa {
 
     public SalsaCacahuetes() {
+        super(0,60,"Salsa de Cacahuetes",0,0,0);
     }
 
     public SalsaCacahuetes(Plato plato) throws Exception {

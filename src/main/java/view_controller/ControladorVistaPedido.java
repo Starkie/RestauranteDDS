@@ -5,6 +5,7 @@ import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleLongProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -14,6 +15,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import model.PedidoRestaurante;
 import model.Usuario;
 
@@ -88,8 +90,20 @@ public class ControladorVistaPedido{
         DateFormat df = new SimpleDateFormat("dd/MM/yyy HH:mm");
         colID.setCellValueFactory(o-> new SimpleLongProperty(o.getValue().getId()).asObject());
         colPlatos.setCellValueFactory(o-> new SimpleStringProperty(o.getValue().toString()));
-        colHoraConf.setCellValueFactory(o-> new SimpleStringProperty(df.format(o.getValue().getHoraConfirmacion())));
-        colHoraRec.setCellValueFactory(o-> new SimpleStringProperty(df.format(o.getValue().getHoraRecibido())));
+        colHoraConf.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<PedidoRestaurante, String>, ObservableValue<String>>() {
+            @Override
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<PedidoRestaurante, String> param) {
+                if(param.getValue().getHoraConfirmacion() == null) return null;
+                else return new SimpleStringProperty(df.format(param.getValue().getHoraConfirmacion()));
+            }
+        });
+        colHoraRec.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<PedidoRestaurante, String>, ObservableValue<String>>() {
+            @Override
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<PedidoRestaurante, String> param) {
+                if(param.getValue().getHoraConfirmacion() == null) return null;
+                else return new SimpleStringProperty(df.format(param.getValue().getHoraRecibido()));
+            }
+        });
         colPrecio.setCellValueFactory(o-> new SimpleDoubleProperty(o.getValue().getPrecio()).asObject());
         colEstado.setCellValueFactory(o-> new SimpleStringProperty(o.getValue().getEstado().getDescripcion()));
     }

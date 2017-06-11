@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 public class ComplementoGamba extends DecoradorComplemento{
 
     public ComplementoGamba() {
+        super(1.50,90,"Gambas crujientes",1,0,0);
     }
 
     public ComplementoGamba(Plato p) {
