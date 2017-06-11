@@ -1,18 +1,26 @@
 package almacen.pedidos.MainScreen;
 
 
+import almacen.pedidos.MainScreen.CrearPedidos.CrearPedidosController;
 import almacen.pedidos.controllers.GestorPedidos;
 import almacen.pedidos.model.AlmacenException;
 import almacen.pedidos.model.Pedido;
+import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleLongProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Optional;
@@ -23,6 +31,8 @@ public class PedidosController implements Initializable {
     @FXML
     private TableView  tablaPedidos;
 
+    @FXML
+    private TableColumn<Pedido, Number> idColumn;
     @FXML
     private TableColumn<Pedido, String> fechaColumn;
 
@@ -57,6 +67,7 @@ public class PedidosController implements Initializable {
 
         dt = new SimpleDateFormat("dd/MM/yyyy");
 
+        idColumn.setCellValueFactory(p -> new SimpleLongProperty(p.getValue().getId()));
         fechaColumn.setCellValueFactory(p -> new SimpleStringProperty(dt.format(p.getValue().getFecha())));
         estadoColumn.setCellValueFactory(p -> new SimpleStringProperty(p.getValue().getEstado().toString()));
         precioColumn.setCellValueFactory(p -> new SimpleDoubleProperty(p.getValue().getPrecio()));
@@ -70,7 +81,7 @@ public class PedidosController implements Initializable {
     }
 
     @FXML
-    private void OnNuevoPedidoClick() {
+    private void OnNuevoPedidoClick() throws IOException {
 
     }
 

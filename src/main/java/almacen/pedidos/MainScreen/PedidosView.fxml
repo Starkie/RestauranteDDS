@@ -32,6 +32,7 @@
                     <children>
                         <TableView fx:id="tablaPedidos" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="467.0" prefWidth="500.0" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
                             <columns>
+                        <TableColumn id="c2" fx:id="idColumn" prefWidth="75.0" text="Id" />
                                 <TableColumn id="c2" fx:id="fechaColumn" prefWidth="75.0" text="Fecha" />
                                 <TableColumn id="c2" fx:id="estadoColumn" prefWidth="75.0" text="Estado" />
                                 <TableColumn id="c2" fx:id="precioColumn" prefWidth="75.0" text="Precio (€)" />
