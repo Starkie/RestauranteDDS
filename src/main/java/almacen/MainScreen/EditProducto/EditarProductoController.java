@@ -1,7 +1,7 @@
 package almacen.MainScreen.EditProducto;
 
 import Main.AlimentoController;
-import almacen.ProductoAlmacenController;
+import almacen.controllers.ProductoAlmacenController;
 import almacen.model.Producto;
 import almacen.model.ProductoAlmacen;
 import almacen.model.UnidadesCantidad;

@@ -1,13 +1,10 @@
-package almacen;
+package almacen.controllers;
 
 
-import Main.AlimentoController;
 import almacen.model.Producto;
 import almacen.persistance.ProductoService;
-import model.Alimento;
 import persistance.AppContext;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 

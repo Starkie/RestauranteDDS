@@ -1,4 +1,4 @@
-package almacen;
+package almacen.controllers;
 
 import almacen.model.ProductoAlmacen;
 import almacen.persistance.ProductoAlmacenService;

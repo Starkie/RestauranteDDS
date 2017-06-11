@@ -2,7 +2,7 @@ package almacen.MainScreen;
 
 
 import almacen.MainScreen.EditProducto.EditarProductoController;
-import almacen.ProductoAlmacenController;
+import almacen.controllers.ProductoAlmacenController;
 import almacen.model.ProductoAlmacen;
 import javafx.beans.binding.Bindings;
 
