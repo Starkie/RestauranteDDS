@@ -40,6 +40,10 @@ public class ListaElemento extends ListaCompra {
         throw new UnsupportedOperationException("El objeto no soporta esta operación");
     }
 
+    public Producto getProducto() {
+        return producto;
+    }
+
     @Override
     public Iterator<ListaCompra> createIterator() {
         return Collections.emptyIterator();
