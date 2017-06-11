@@ -26,7 +26,7 @@ public class GestorPedidos {
     public Pedido crearPedido(List<Producto> productos) {
         ListaCompra listaCompra = new ListaCompuesto("Pedido", "Lista Productos");
         for(Producto p : productos) {
-            listaCompra.add(new ListaElemento(p.getNombre(), p.getDescripcion(), 1, p.getPrecio()));
+            listaCompra.add(new ListaElemento(p.getNombre(), "", 1, p.getPrecio()));
         }
         Pedido p = new Pedido(listaCompra);
         guardarPedido(p);
@@ -53,7 +53,7 @@ public class GestorPedidos {
     }
 
     public void addToPedido(Pedido pedido, Producto producto) {
-        pedido.addToPedido(new ListaElemento(producto.getNombre(), producto.getDescripcion(), 1, producto.getPrecio()));
+        pedido.addToPedido(new ListaElemento(producto.getNombre(), "", 1, producto.getPrecio()));
     }
 
     public void addToPedido(Pedido pedido, List<Producto> productos) {
@@ -63,7 +63,7 @@ public class GestorPedidos {
     }
 
     public void addProductoToPedido(Pedido pedido, Producto producto) {
-        ListaElemento listaElemento = new ListaElemento(producto.getNombre(), producto.getDescripcion(), 1, producto.getPrecio());
+        ListaElemento listaElemento = new ListaElemento(producto.getNombre(), "", 1, producto.getPrecio());
         addToPedido(pedido, listaElemento);
     }
 
