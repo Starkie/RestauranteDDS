@@ -22,6 +22,10 @@ public class AlimentoController {
         return alimentoController;
     }
 
+    public void guardarAlimento(Alimento alimento) {
+        alimentoService.add(alimento);
+    }
+
     public ArrayList<Alimento> getAllAlimentos() {
         ArrayList<Alimento> alimentos = new ArrayList<>();
         alimentoService.findAll().forEach(a -> alimentos.add(a));
