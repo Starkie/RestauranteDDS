@@ -59,6 +59,8 @@ public class Pedido {
         return estado;
     }
 
+    public long getId() { return id;}
+
     public double getPrecio() {
         return this.lista.getPrecio();
     }
