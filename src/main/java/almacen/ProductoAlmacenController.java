@@ -30,4 +30,8 @@ public class ProductoAlmacenController {
         productoAlmacenService.findAll().forEach(p -> lista.add(p));
         return lista;
     }
+
+    public void eliminarProducto(ProductoAlmacen productoAlmacen) {
+        productoAlmacenService.remove(productoAlmacen);
+    }
 }
