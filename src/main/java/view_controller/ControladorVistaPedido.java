@@ -129,7 +129,10 @@ public class ControladorVistaPedido{
     @FXML
     void pressNuevoPedido(ActionEvent event) throws Exception{
         //La excepción no se captura, ya que quien la produciría es el load.
+        irAVistaPlato();
+    }
 
+    private void irAVistaPlato() throws IOException {
         PedidoRestaurante pedidoNuevo = controladorPedido.NuevoPedido(usuario);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/PlatoView.fxml"));
         Parent root = loader.load();
@@ -148,20 +151,24 @@ public class ControladorVistaPedido{
         PedidoRestaurante pedidoSeleccionado = tablaPedidos.getSelectionModel().getSelectedItem();
         try{
             Reclamacion reclamacion = controladorPedido.reclamarRetraso(pedidoSeleccionado);
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/ReclamacionView.fxml"));
-            Parent root = loader.load();
-
-            ControladorVistaReclamacion controladorVistaReclamacion = loader.getController();
-            controladorVistaReclamacion.initStage(stage, usuario, pedidoSeleccionado, reclamacion);
-
-            stage.setTitle("Reclamacion");
-            stage.setScene(new Scene(root));
-            stage.setResizable(false);
-            stage.show();
+            irAVistaReclamacion(pedidoSeleccionado, reclamacion);
         }catch (Exception e){ //Excepción cuando no ha pasado el tiempo necesario
             Alert alerta = new Alert(Alert.AlertType.ERROR, e.getMessage());
             alerta.showAndWait();
         }
+    }
+
+    private void irAVistaReclamacion(PedidoRestaurante pedidoSeleccionado, Reclamacion reclamacion) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/ReclamacionView.fxml"));
+        Parent root = loader.load();
+
+        ControladorVistaReclamacion controladorVistaReclamacion = loader.getController();
+        controladorVistaReclamacion.initStage(stage, usuario, pedidoSeleccionado, reclamacion);
+
+        stage.setTitle("Reclamacion");
+        stage.setScene(new Scene(root));
+        stage.setResizable(false);
+        stage.show();
     }
 
 }

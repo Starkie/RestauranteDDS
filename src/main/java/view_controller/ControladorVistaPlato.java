@@ -80,6 +80,23 @@ public class ControladorVistaPlato {
         //Aparece como que lanza excepción, pero solo lo lanza en caso de que el pedido no se pueda cancelar.
         //Un pedido nuevo SI se puede cancelar.
         controladorPlato.cancelarPedido(pedido);
+        irAPedidos();
+    }
+
+    @FXML
+    void pressConfirmar(ActionEvent event){
+        //Aparece como que lanza excepción, pero solo lo lanza en caso de que el pedido no se pueda confirmar.
+        //Un pedido nuevo no se puede confirmar si no tiene platos.
+        try {
+            controladorPlato.confirmarPedido(pedido);
+            irAPedidos();
+        }catch (Exception e){
+            Alert alerta = new Alert(Alert.AlertType.ERROR, e.getMessage());
+            alerta.showAndWait();
+        }
+    }
+
+    private void irAPedidos() throws java.io.IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/PedidosView.fxml"));
         Parent root = loader.load();
 
@@ -90,28 +107,6 @@ public class ControladorVistaPlato {
         stage.setScene(new Scene(root));
         stage.setResizable(false);
         stage.show();
-    }
-
-    @FXML
-    void pressConfirmar(ActionEvent event){
-        //Aparece como que lanza excepción, pero solo lo lanza en caso de que el pedido no se pueda confirmar.
-        //Un pedido nuevo no se puede confirmar si no tiene platos.
-        try {
-            controladorPlato.confirmarPedido(pedido);
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/PedidosView.fxml"));
-            Parent root = loader.load();
-
-            ControladorVistaPedido controladorVistaPedido = loader.getController();
-            controladorVistaPedido.initStage(stage, usuario);
-
-            stage.setTitle("Pedidos");
-            stage.setScene(new Scene(root));
-            stage.setResizable(false);
-            stage.show();
-        }catch (Exception e){
-            Alert alerta = new Alert(Alert.AlertType.ERROR, e.getMessage());
-            alerta.showAndWait();
-        }
     }
 
     @FXML
