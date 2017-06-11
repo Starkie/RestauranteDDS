@@ -14,8 +14,8 @@ public class PedidoRestaurante {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="usuario_fk")
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "usuario_fk")
     private Usuario usuario;
 
     @OneToOne(cascade =  CascadeType.ALL)
@@ -33,7 +33,7 @@ public class PedidoRestaurante {
     private Reclamacion reclamacion;
 
     public PedidoRestaurante(Usuario usuario) {
-        this.usuario = usuario;
+        this.setUsuario(usuario);
         this.estado = new EstadoPorConfirmar();
         this.platosPedido = new ArrayList<Plato>();
         this.horaConfirmacion = null;
@@ -122,6 +122,15 @@ public class PedidoRestaurante {
            result+= plato.getPrecio();
         }
         return result;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+        usuario.addPedidoUsuario(this);
     }
 
 }

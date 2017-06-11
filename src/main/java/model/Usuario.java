@@ -26,6 +26,10 @@ public class Usuario extends Persona{
         return pedidosDelUsuario;
     }
 
+    public void setPedidosDelUsuario(List<PedidoRestaurante> pedidosDelUsuario) {
+        this.pedidosDelUsuario = pedidosDelUsuario;
+    }
+
     public void addPedidoUsuario(PedidoRestaurante pedido){
         this.pedidosDelUsuario.add(pedido);
     }

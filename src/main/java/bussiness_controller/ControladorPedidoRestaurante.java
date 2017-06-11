@@ -25,8 +25,10 @@ public class ControladorPedidoRestaurante {
     }
 
     public PedidoRestaurante NuevoPedido(Usuario elUsuario){
-        PedidoRestaurante elPedido = new PedidoRestaurante(elUsuario);
+        PedidoRestaurante elPedido = new PedidoRestaurante();
         pedidoRestauranteService.add(elPedido);
+        elPedido.setUsuario(elUsuario);
+        pedidoRestauranteService.update(elPedido);
         return elPedido;
     }
 

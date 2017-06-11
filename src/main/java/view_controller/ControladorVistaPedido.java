@@ -81,6 +81,7 @@ public class ControladorVistaPedido{
     private void poblarTablaPedidos() {
         ObservableList<PedidoRestaurante> datos = FXCollections.observableArrayList(usuario.getPedidosDelUsuario());
         tablaPedidos.setItems(datos);
+        tablaPedidos.refresh();
     }
 
     private void iniciarColumnasTablaPedidos() {
