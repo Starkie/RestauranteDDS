@@ -17,10 +17,8 @@ import persistance.PedidoRestauranteService;
 import persistance.PersonaService;
 import restaurante.modelo.Patron_Comando.Cocinero;
 import restaurante.modelo.Patron_Comando.Repartidor;
-import restaurante.modelo.Patron_Decorador.BaseArroz;
-import restaurante.modelo.Patron_Decorador.BaseTallarines;
-import restaurante.modelo.Patron_Decorador.SalsaCacahuetes;
-import restaurante.modelo.Patron_Decorador.SalsaOstras;
+import restaurante.modelo.Patron_Decorador.*;
+import restaurante.modelo.Patron_Estado.EstadoCocinado;
 import restaurante.modelo.Patron_Estado.EstadoEnCamino;
 import view_controller.ControladorVistaLogin;
 
@@ -89,10 +87,22 @@ public class MainApplication extends Application{
         reclamacionService.add(reclamacion);
         Reclamacion reclamacion1 = reclamacionService.findAll().iterator().next();*/
 
+        PedidoRestauranteService pedidoRestauranteService = (PedidoRestauranteService) AppContext.getBean("pedidoRestauranteService");
+        PedidoRestaurante pedidoRestaurante2 = new PedidoRestaurante(new Usuario("Pepe",232,"Calle falsa","1212"));
+        pedidoRestauranteService.add(pedidoRestaurante2);
+        pedidoRestaurante2.setEstado(new EstadoCocinado());
+        pedidoRestaurante2.addPlatoPedido(new BaseArroz());
+        pedidoRestauranteService.update(pedidoRestaurante2);
+
+        PedidoRestaurante pedidoRestaurante3 = new PedidoRestaurante(new Usuario("Manolo",2323,"Calle de Manolo","232"));
+        pedidoRestauranteService.add(pedidoRestaurante3);
+        pedidoRestaurante3.setEstado(new EstadoCocinado());
+        pedidoRestaurante3.addPlatoPedido(new ComplementoGamba(new BaseArroz()));
+        pedidoRestauranteService.update(pedidoRestaurante3);
+
         PersonaService personaService = (PersonaService) AppContext.getBean("personaService");
         personaService.add(new Cocinero("Pedro",221212,"hola"));
         personaService.add(new Repartidor("Manu",221,"adios"));
-        PedidoRestauranteService pedidoRestauranteService = (PedidoRestauranteService) AppContext.getBean("pedidoRestauranteService");
         PedidoRestaurante p = new PedidoRestaurante(new Usuario("Paco",2675585,"Direccion","dd"));
         p.addPlatoPedido(new BaseArroz());
         p.addPlatoPedido(new SalsaCacahuetes(new BaseTallarines()));
@@ -103,6 +113,7 @@ public class MainApplication extends Application{
         p.setEstado(new EstadoEnCamino());
         p.setHoraRecibido(new Date());
         pedidoRestauranteService.add(p);
+
         launch(args);
     }
 

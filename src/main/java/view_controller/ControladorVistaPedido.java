@@ -102,7 +102,7 @@ public class ControladorVistaPedido{
         colHoraRec.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<PedidoRestaurante, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TableColumn.CellDataFeatures<PedidoRestaurante, String> param) {
-                if(param.getValue().getHoraConfirmacion() == null) return null;
+                if(param.getValue().getHoraRecibido() == null) return null;
                 else return new SimpleStringProperty(df.format(param.getValue().getHoraRecibido()));
             }
         });

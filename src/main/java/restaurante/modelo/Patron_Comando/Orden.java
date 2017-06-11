@@ -4,12 +4,16 @@ import model.PedidoRestaurante;
 import model.Persona;
 
 public abstract class Orden {
-    public PedidoRestaurante pedido;
+    protected PedidoRestaurante pedido;
 
     public Orden(PedidoRestaurante pedido) {
         this.pedido = pedido;
     }
 
     public abstract void ejecutar(Persona receptor);
+
+    public PedidoRestaurante getPedido() {
+        return pedido;
+    }
 }
 

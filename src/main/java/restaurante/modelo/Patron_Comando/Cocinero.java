@@ -42,7 +42,7 @@ public class Cocinero extends Persona {
     }
 
     public void finalizarCocinaPedido(){
-        this.pedidoAtendiendo.setEstado(new EstadoCocinado());
+        if(pedidoAtendiendo != null) this.pedidoAtendiendo.setEstado(new EstadoCocinado());
         EmisorOrdenes.getEmisorOrdenes().anyadirOrden(new OrdenRepartir(pedidoAtendiendo));
         this.pedidoAtendiendo = null;
         this.disponible=true;

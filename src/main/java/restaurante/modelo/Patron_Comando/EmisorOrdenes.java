@@ -1,11 +1,12 @@
 package restaurante.modelo.Patron_Comando;
 
 import model.PedidoRestaurante;
+import persistance.AppContext;
+import persistance.PedidoRestauranteService;
+import restaurante.modelo.Patron_Estado.EstadoCocinado;
+import restaurante.modelo.Patron_Estado.EstadoPendiente;
 
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 public class EmisorOrdenes {
     private Queue<OrdenRepartir> ordenesARepartir;
@@ -20,7 +21,18 @@ public class EmisorOrdenes {
         ordenesACocinar = new ArrayDeque<OrdenCocinar>();
         cocineros = new ArrayList<Cocinero>();
         repartidores = new ArrayList<Repartidor>();
+        recuperarOrdenesDB();
         getThreadDisponibilidad().start();
+    }
+
+    private void recuperarOrdenesDB() {
+        PedidoRestauranteService pedidoRestauranteService = (PedidoRestauranteService) AppContext.getBean("pedidoRestauranteService");
+        Iterator<PedidoRestaurante> iterator = pedidoRestauranteService.findAll().iterator();
+        while (iterator.hasNext()){
+            PedidoRestaurante p = iterator.next();
+            if(p.getEstado() instanceof EstadoPendiente) ordenesACocinar.add(new OrdenCocinar(p));
+            if(p.getEstado() instanceof EstadoCocinado) ordenesARepartir.add(new OrdenRepartir(p));
+        }
     }
 
     public static EmisorOrdenes getEmisorOrdenes() {
@@ -45,6 +57,13 @@ public class EmisorOrdenes {
         }
     }
 
+    public Queue<OrdenRepartir> getOrdenesARepartir() {
+        return ordenesARepartir;
+    }
+
+    public Queue<OrdenCocinar> getOrdenesACocinar() {
+        return ordenesACocinar;
+    }
 
     public void registrarRepartidor(Repartidor repartidor) {
         repartidores.add(repartidor);
@@ -64,6 +83,7 @@ public class EmisorOrdenes {
                         for (Cocinero c : cocineros) {
                             if (c.isDisponible()) {
                                 c.setDisponible(false);
+                                cocineros.remove(c);
                                 ordenesACocinar.remove(); //Eliminamos la 1ºorden
                                 ordCocina.ejecutar(c);
                                 break;
@@ -75,6 +95,7 @@ public class EmisorOrdenes {
                         for (Repartidor r : repartidores) {
                             if (r.isDisponible()) {
                                 r.setDisponible(false);
+                                repartidores.remove(r);
                                 ordenesARepartir.remove(); //Eliminamos la 1ºorden
                                 ordReparto.ejecutar(r);
                                 break;

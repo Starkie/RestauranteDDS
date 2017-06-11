@@ -33,4 +33,8 @@ public class Usuario extends Persona{
     public void addPedidoUsuario(PedidoRestaurante pedido){
         this.pedidosDelUsuario.add(pedido);
     }
+
+    public String getDireccion() {
+        return direccion;
+    }
 }

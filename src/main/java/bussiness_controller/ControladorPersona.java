@@ -1,16 +1,26 @@
 package bussiness_controller;
 
+import model.PedidoRestaurante;
 import model.Persona;
 import persistance.AppContext;
 import persistance.PersonaService;
+import restaurante.modelo.Patron_Comando.EmisorOrdenes;
+import restaurante.modelo.Patron_Comando.OrdenRepartir;
+import restaurante.modelo.Patron_Comando.Repartidor;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 public class ControladorPersona{
 
     private static ControladorPersona controladorPersona;
     private PersonaService personaService;
+    private EmisorOrdenes elEmisor;
 
     private ControladorPersona() {
         personaService = (PersonaService) AppContext.getBean("personaService");
+        elEmisor = EmisorOrdenes.getEmisorOrdenes();
     }
 
     public static ControladorPersona getControladorPersona(){
@@ -27,4 +37,26 @@ public class ControladorPersona{
         }
     }
 
+    public List<PedidoRestaurante> obtenerPendientesRepartidor() {
+        List<PedidoRestaurante> pedidosPorRepartir = new ArrayList<PedidoRestaurante>();
+        Iterator<OrdenRepartir> OrdenesPorRepartir = elEmisor.getOrdenesARepartir().iterator();
+        while(OrdenesPorRepartir.hasNext()){
+            pedidosPorRepartir.add(OrdenesPorRepartir.next().getPedido());
+        }
+        return pedidosPorRepartir;
+    }
+
+    public List<PedidoRestaurante> obtenerPendientesCocinero() {
+        List<PedidoRestaurante> pedidosPorCocinar = new ArrayList<PedidoRestaurante>();
+        Iterator<OrdenRepartir> OrdenesPorCocinar = elEmisor.getOrdenesARepartir().iterator();
+        while(OrdenesPorCocinar.hasNext()){
+            pedidosPorCocinar.add(OrdenesPorCocinar.next().getPedido());
+        }
+        return pedidosPorCocinar;
+    }
+
+    public void finalizarActualRepartidor(Repartidor repartidor) {
+        repartidor.finalizarEnvio();
+        personaService.update(repartidor);
+    }
 }

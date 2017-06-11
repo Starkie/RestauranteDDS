@@ -39,8 +39,17 @@ public class Repartidor extends Persona {
     }
 
     public void finalizarEnvio(){
-        this.pedidoAtendiendo.setEstado(new EstadoEntregado());
+        if(pedidoAtendiendo != null) this.pedidoAtendiendo.setEstado(new EstadoEntregado());
         this.pedidoAtendiendo = null;
         this.disponible=true;
+        EmisorOrdenes.getEmisorOrdenes().registrarRepartidor(this);
+    }
+
+    public PedidoRestaurante getPedidoAtendiendo() {
+        return pedidoAtendiendo;
+    }
+
+    public void setPedidoAtendiendo(PedidoRestaurante pedidoAtendiendo) {
+        this.pedidoAtendiendo = pedidoAtendiendo;
     }
 }
