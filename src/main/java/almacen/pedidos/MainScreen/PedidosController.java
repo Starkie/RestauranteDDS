@@ -2,10 +2,10 @@ package almacen.pedidos.MainScreen;
 
 
 import almacen.pedidos.MainScreen.CrearPedidos.CrearPedidosController;
+import almacen.pedidos.MainScreen.InfoPedidos.ResumenPedidoController;
 import almacen.pedidos.controllers.GestorPedidos;
 import almacen.pedidos.model.AlmacenException;
 import almacen.pedidos.model.Pedido;
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleLongProperty;
@@ -82,12 +82,30 @@ public class PedidosController implements Initializable {
 
     @FXML
     private void OnNuevoPedidoClick() throws IOException {
-
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("CrearPedidos/CrearPedidosView.fxml"));
+        BorderPane root = fxmlLoader.load();
+        CrearPedidosController crearPedidosController = fxmlLoader.getController();
+        Stage stage = (Stage) nuevoPedidoButton.getScene().getWindow();
+        stage.setTitle("Creacion de Pedido");
+        stage.setScene(new Scene(root, 600, 400));
+        gestorPedidos = GestorPedidos.getInstance();
+        Pedido p = gestorPedidos.crearPedido();
+        crearPedidosController.setPedido(p);
+        stage.show();
     }
 
     @FXML
-    private void OnAbrirPedidoClick() {
-
+    private void OnAbrirPedidoClick() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("InfoPedidos/ResumenPedidoView.fxml"));
+        BorderPane root = fxmlLoader.load();
+        ResumenPedidoController resumenPedidoController = fxmlLoader.getController();
+        Stage stage = (Stage) nuevoPedidoButton.getScene().getWindow();
+        stage.setTitle("Resumen de Pedido");
+        stage.setScene(new Scene(root, 600, 400));
+        gestorPedidos = GestorPedidos.getInstance();
+        Pedido p = (Pedido) tablaPedidos.getSelectionModel().getSelectedItem();
+        resumenPedidoController.setPedido(p);
+        stage.show();
     }
 
     @FXML
