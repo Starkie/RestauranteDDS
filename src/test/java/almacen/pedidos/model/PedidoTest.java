@@ -17,13 +17,27 @@ public class PedidoTest {
         Pedido p = new Pedido(base);
     }
 
-   /* @Test
-    public void Should_Update_Stock_When_Receiving_Pedido() throws Exception{
+    @Test
+    public void Should_Not_Throw_EstadoPedidoInvalido_When_Confirming_Pendiente_Order() throws Exception {
+        ListaCompra listaCompra = new ListaElemento("Elemento 1", "Elemento 1", 1, 300);
+        Pedido pedido = new Pedido(listaCompra);
+        pedido.confirmarPedido();
+    }
+
+    @Test
+    public void Should_Not_Throw_EstadoPedidoInvalido_When_Receiving_Order() throws Exception {
         ListaCompra listaCompra = new ListaElemento("Elemento 1", "Elemento 1", 1, 300);
         Pedido pedido = new Pedido(listaCompra);
         pedido.confirmarPedido();
         pedido.recibirPedido();
-    }*/
+    }
+
+    @Test
+    public void Should_Not_Throw_EstadoPedidoInvalido_When_Canceling_Not_Completed_Order() throws Exception {
+        ListaCompra listaCompra = new ListaElemento("Elemento 1", "Elemento 1", 1, 300);
+        Pedido pedido = new Pedido(listaCompra);
+        pedido.cancelarPedido();
+    }
 
     @Test(expected = EstadoPedidoInvalidoException.class)
     public void Should_Throw_EstadoPedidoInvalidoException_When_Confirming_Canceled_Order() throws Exception {
@@ -33,13 +47,16 @@ public class PedidoTest {
         pedido.confirmarPedido();
     }
 
-    /*@Test(expected = EstadoPedidoInvalidoException.class)
+    @Test(expected = EstadoPedidoInvalidoException.class)
     public void Should_Throw_EstadoPedidoInvalidoException_When_Canceling_Completed_Order() throws Exception {
         ListaCompra listaCompra = new ListaElemento("Elemento 1", "Elemento 1", 1, 300);
         Pedido pedido = new Pedido(listaCompra);
         pedido.confirmarPedido();
         pedido.recibirPedido();
         pedido.cancelarPedido();
-    }*/
+    }
+
+
+
 
 }
