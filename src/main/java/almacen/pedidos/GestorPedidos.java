@@ -1,6 +1,7 @@
-package almacen.pedidos.model;
+package almacen.pedidos;
 
 import almacen.model.Producto;
+import almacen.pedidos.model.*;
 import almacen.persistance.pedidos.PedidoService;
 import persistance.AppContext;
 
@@ -67,7 +68,7 @@ public class GestorPedidos {
         addToPedido(pedido, listaElemento);
     }
 
-    public void confirmarPedido(Pedido pedido) throws AlmacenException{
+    public void confirmarPedido(Pedido pedido) throws AlmacenException {
         pedido.confirmarPedido();
     }
 
