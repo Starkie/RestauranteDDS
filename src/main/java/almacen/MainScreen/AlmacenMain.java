@@ -18,6 +18,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 
+import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -138,6 +140,20 @@ public class AlmacenMain implements Initializable {
 
         productos = FXCollections.observableArrayList(productoAlmacenController.getAllProductos());
         tablaProductos.setItems(productos);
+    }
+
+    @FXML
+    public void OnPedidoButtonClick() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/almacen/pedidos/MainScreen/PedidosView.fxml"));
+        BorderPane root = loader.load();
+
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root, 600, 400));
+        stage.setTitle("Pedidos");
+        stage.setMinWidth(600);
+        stage.setMinHeight(400);
+        stage.show();
+
     }
 
 }

@@ -14,7 +14,7 @@
          <children>
             <ToolBar prefHeight="40.0" prefWidth="200.0">
               <items>
-                <Button fx:id="pedidosButton" mnemonicParsing="false" text="Pedidos" />
+                <Button fx:id="pedidosButton" mnemonicParsing="false" onAction="#OnPedidoButtonClick" text="Pedidos" />
               </items>
             </ToolBar>
             <Label text="Productos">
@@ -77,25 +77,4 @@
          </children>
       </VBox>
    </center>
-   <top>
-      <MenuBar BorderPane.alignment="CENTER">
-        <menus>
-          <Menu mnemonicParsing="false" text="File">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
-            </items>
-          </Menu>
-        </menus>
-      </MenuBar>
-   </top>
 </BorderPane>
