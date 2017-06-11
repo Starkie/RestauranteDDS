@@ -17,8 +17,10 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import model.PedidoRestaurante;
+import model.Reclamacion;
 import model.Usuario;
 
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
@@ -142,11 +144,21 @@ public class ControladorVistaPedido{
     }
 
     @FXML
-    void pressRetraso(ActionEvent event) {
+    void pressRetraso(ActionEvent event) throws IOException {
         PedidoRestaurante pedidoSeleccionado = tablaPedidos.getSelectionModel().getSelectedItem();
         try{
-            controladorPedido.reclamarRetraso(pedidoSeleccionado);
-        }catch (Exception e){
+            Reclamacion reclamacion = controladorPedido.reclamarRetraso(pedidoSeleccionado);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/ReclamacionView.fxml"));
+            Parent root = loader.load();
+
+            ControladorVistaReclamacion controladorVistaReclamacion = loader.getController();
+            controladorVistaReclamacion.initStage(stage, usuario, pedidoSeleccionado, reclamacion);
+
+            stage.setTitle("Reclamacion");
+            stage.setScene(new Scene(root));
+            stage.setResizable(false);
+            stage.show();
+        }catch (Exception e){ //Excepción cuando no ha pasado el tiempo necesario
             Alert alerta = new Alert(Alert.AlertType.ERROR, e.getMessage());
             alerta.showAndWait();
         }

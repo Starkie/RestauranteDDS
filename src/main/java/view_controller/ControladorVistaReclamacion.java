@@ -1,13 +1,26 @@
 package view_controller;
 
+import bussiness_controller.ControladorReclamacion;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.stage.Stage;
+import model.PedidoRestaurante;
+import model.Reclamacion;
+import model.Usuario;
+
+import java.io.IOException;
 
 public class ControladorVistaReclamacion {
+
+    private Stage stage;
+    private Usuario usuario;
+    private PedidoRestaurante pedidoRestaurante;
+    private Reclamacion reclamacion;
+    private ControladorReclamacion controladorReclamacion;
 
     @FXML
     private Label lblPedidoReclamado;
@@ -25,13 +38,47 @@ public class ControladorVistaReclamacion {
     private Button btnContinuar;
 
     @FXML
-    void pressContinuar(ActionEvent event) {
-
+    void pressContinuar(ActionEvent event){
+        try {
+            controladorReclamacion.anyadirReclamacion(txtTitulo.getText(), txtDescripcion.getText(), pedidoRestaurante);
+            volverAPedidos();
+        }catch (Exception e){ //Obligatorio rellenar los campos
+            Alert alerta = new Alert(Alert.AlertType.ERROR, e.getMessage());
+            alerta.showAndWait();
+        }
     }
 
     @FXML
-    void pressVolver(ActionEvent event) {
-
+    void pressVolver(ActionEvent event) throws IOException {
+        volverAPedidos();
     }
 
+    private void volverAPedidos() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/PedidosView.fxml"));
+        Parent root = loader.load();
+
+        ControladorVistaPedido controladorVistaPedido = loader.getController();
+        controladorVistaPedido.initStage(stage, usuario);
+
+        stage.setTitle("Pedidos");
+        stage.setScene(new Scene(root));
+        stage.setResizable(false);
+        stage.show();
+    }
+
+    public void initStage(Stage stage, Usuario usuario, PedidoRestaurante pedido, Reclamacion reclamacion) {
+        this.pedidoRestaurante = pedido;
+        this.usuario = usuario;
+        this.stage = stage;
+        this.reclamacion = reclamacion;
+        this.controladorReclamacion = ControladorReclamacion.getControladorReclamacion();
+
+        rellenarCampos();
+    }
+
+    private void rellenarCampos() {
+        if(reclamacion.getTitulo() != null) txtTitulo.setText(reclamacion.getTitulo());
+        if(reclamacion.getDescripcion() != null) txtDescripcion.setText(reclamacion.getDescripcion());
+        lblPedidoReclamado.setText("Incidencia en el pedido: " + pedidoRestaurante.getId());
+    }
 }

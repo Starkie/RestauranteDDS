@@ -23,6 +23,13 @@ public class Reclamacion {
         this.pedidoRestaurante = pedidoRestaurante;
     }
 
+    public Reclamacion(String titulo, String descripcion, Date horaReclamacion, PedidoRestaurante pedidoRestaurante) {
+        this.titulo = titulo;
+        this.descripcion = descripcion;
+        this.horaReclamacion = horaReclamacion;
+        this.pedidoRestaurante = pedidoRestaurante;
+    }
+
     public long getId() {
         return id;
     }
@@ -45,5 +52,17 @@ public class Reclamacion {
 
     public PedidoRestaurante getPedidoRestaurante() {
         return pedidoRestaurante;
+    }
+
+    public Date getHoraReclamacion() {
+        return horaReclamacion;
+    }
+
+    public void setHoraReclamacion(Date horaReclamacion) {
+        this.horaReclamacion = horaReclamacion;
+    }
+
+    public void setPedidoRestaurante(PedidoRestaurante pedidoRestaurante) {
+        this.pedidoRestaurante = pedidoRestaurante;
     }
 }

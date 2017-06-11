@@ -21,8 +21,10 @@ import restaurante.modelo.Patron_Decorador.BaseArroz;
 import restaurante.modelo.Patron_Decorador.BaseTallarines;
 import restaurante.modelo.Patron_Decorador.SalsaCacahuetes;
 import restaurante.modelo.Patron_Decorador.SalsaOstras;
+import restaurante.modelo.Patron_Estado.EstadoEnCamino;
 import view_controller.ControladorVistaLogin;
 
+import java.util.Calendar;
 import java.util.Date;
 
 @SpringBootApplication
@@ -95,7 +97,10 @@ public class MainApplication extends Application{
         p.addPlatoPedido(new BaseArroz());
         p.addPlatoPedido(new SalsaCacahuetes(new BaseTallarines()));
         p.addPlatoPedido(new SalsaOstras(new BaseTallarines()));
-        p.setHoraConfirmacion(new Date());
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(1996,12,11);
+        p.setHoraConfirmacion(calendar.getTime());
+        p.setEstado(new EstadoEnCamino());
         p.setHoraRecibido(new Date());
         pedidoRestauranteService.add(p);
         launch(args);
