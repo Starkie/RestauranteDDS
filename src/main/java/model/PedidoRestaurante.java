@@ -54,8 +54,10 @@ public class PedidoRestaurante {
         estado.cancelarPedido(this);
     }
 
-    public void reclamarRetraso() throws Exception {
-        setReclamacion(estado.reclamarRetraso(this));
+    public Reclamacion reclamarRetraso() throws Exception {
+        Reclamacion result = estado.reclamarRetraso(this);
+        setReclamacion(result);
+        return result;
     }
 
     public long getId() {
@@ -112,6 +114,14 @@ public class PedidoRestaurante {
             s+= plato.getDescripcion() + '\n';
         }
         return s;
+    }
+
+    public double getPrecio(){
+        double result = 0;
+        for (Plato plato:platosPedido) {
+           result+= plato.getPrecio();
+        }
+        return result;
     }
 
 }

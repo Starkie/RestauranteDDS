@@ -26,4 +26,5 @@ public class ControladorPersona{
             else throw new Exception("Contraseña incorrecta");
         }
     }
+
 }

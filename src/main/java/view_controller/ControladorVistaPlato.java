@@ -5,8 +5,15 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.stage.Stage;
+import model.PedidoRestaurante;
+import model.Usuario;
 
 public class ControladorVistaPlato {
+
+    private Usuario usuario;
+    private Stage stage;
+    private PedidoRestaurante pedido;
 
     @FXML
     private TableView<?> tablaPlatos;
@@ -81,4 +88,9 @@ public class ControladorVistaPlato {
 
     }
 
+    public void initStage(Stage stage, Usuario usuario, PedidoRestaurante pedido) {
+        this.stage = stage;
+        this.usuario = usuario;
+        this.pedido = pedido;
+    }
 }

@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import model.PedidoRestaurante;
 import model.Usuario;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -12,10 +13,17 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import persistance.AppContext;
+import persistance.PedidoRestauranteService;
 import persistance.PersonaService;
 import restaurante.modelo.Patron_Comando.Cocinero;
 import restaurante.modelo.Patron_Comando.Repartidor;
+import restaurante.modelo.Patron_Decorador.BaseArroz;
+import restaurante.modelo.Patron_Decorador.BaseTallarines;
+import restaurante.modelo.Patron_Decorador.SalsaCacahuetes;
+import restaurante.modelo.Patron_Decorador.SalsaOstras;
 import view_controller.ControladorVistaLogin;
+
+import java.util.Date;
 
 @SpringBootApplication
 @ComponentScan({"persistance"})
@@ -80,9 +88,16 @@ public class MainApplication extends Application{
         Reclamacion reclamacion1 = reclamacionService.findAll().iterator().next();*/
 
         PersonaService personaService = (PersonaService) AppContext.getBean("personaService");
-        personaService.add(new Usuario("Paco",26755185,"Direccion","dd"));
         personaService.add(new Cocinero("Pedro",221212,"hola"));
         personaService.add(new Repartidor("Manu",221,"adios"));
+        PedidoRestauranteService pedidoRestauranteService = (PedidoRestauranteService) AppContext.getBean("pedidoRestauranteService");
+        PedidoRestaurante p = new PedidoRestaurante(new Usuario("Paco",2675585,"Direccion","dd"));
+        p.addPlatoPedido(new BaseArroz());
+        p.addPlatoPedido(new SalsaCacahuetes(new BaseTallarines()));
+        p.addPlatoPedido(new SalsaOstras(new BaseTallarines()));
+        p.setHoraConfirmacion(new Date());
+        p.setHoraRecibido(new Date());
+        pedidoRestauranteService.add(p);
         launch(args);
     }
 
