@@ -24,6 +24,13 @@ public class GestorPedidos {
         return gestorPedidos;
     }
 
+    public Pedido crearPedido() {
+        ListaCompra listaCompra = new ListaCompuesto("Pedido", "Lista Productos");
+        Pedido p = new Pedido(listaCompra);
+        guardarPedido(p);
+        return p;
+    }
+
     public Pedido crearPedido(List<Producto> productos) {
         ListaCompra listaCompra = new ListaCompuesto("Pedido", "Lista Productos");
         for(Producto p : productos) {
