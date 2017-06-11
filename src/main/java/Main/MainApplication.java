@@ -2,12 +2,11 @@ package Main;
 
 import almacen.model.Producto;
 import almacen.model.UnidadesCantidad;
-import almacen.pedidos.GestorPedidos;
+import almacen.pedidos.controllers.GestorPedidos;
 import almacen.pedidos.model.Pedido;
 import almacen.persistance.ProductoService;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -63,7 +62,7 @@ public class MainApplication extends Application{
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        BorderPane root = FXMLLoader.load(getClass().getResource("/almacen/AlmacenMain.fxml"));
+        BorderPane root = FXMLLoader.load(getClass().getResource("/almacen/MainScreen/AlmacenMain.fxml"));
         primaryStage.setTitle("Almacen");
         primaryStage.setScene(new Scene(root, 600, 400));
         primaryStage.show();
