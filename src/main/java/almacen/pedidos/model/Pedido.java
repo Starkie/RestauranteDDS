@@ -44,8 +44,6 @@ public class Pedido {
         {
             estado = EstadoPedido.COMPLETO;
         }
-        //Si estado == EN_CAMINO Debe modificar las cantidades del producto en almacen
-        throw new UnsupportedOperationException("No implementado");
     }
 
     public void cancelarPedido() throws EstadoPedidoInvalidoException {
