@@ -1,16 +1,16 @@
 @startuml
 skinparam groupInheritance 3
 
-class PedidoRestaurante{
-    - horaConfirmacion : Date
-    - horaRecibido : Date
-    - platosPedido : List<Plato>
-     void addPlatosPedido(Plato platoPedido)
-     void deletePlatoPedido(Plato platoPedido)
-     void confirmarPedido()
-     void cancelarPedido()
-     void reclamarRetraso()
-}
+ class PedidoRestaurante{
+     - horaConfirmacion : Date
+     - horaRecibido : Date
+     - platosPedido : List<Plato>
+      void addPlatosPedido(Plato platoPedido)
+      void deletePlatoPedido(Plato platoPedido)
+      void confirmarPedido()
+      void cancelarPedido()
+      void reclamarRetraso()
+ }
 
 abstract class EstadoPedido{
     - descripcion : String

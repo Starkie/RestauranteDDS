@@ -24,7 +24,6 @@ import restaurante.modelo.Patron_Estado.EstadoPendiente;
 import view_controller.ControladorVistaLogin;
 
 import java.util.Calendar;
-import java.util.Date;
 
 @SpringBootApplication
 @ComponentScan({"persistance"})
@@ -124,7 +123,7 @@ public class MainApplication extends Application{
         calendar.set(1996,12,11);
         p.setHoraConfirmacion(calendar.getTime());
         p.setEstado(new EstadoEnCamino());
-        p.setHoraRecibido(new Date());
+        //p.setHoraRecibido(new Date());
         pedidoRestauranteService.add(p);
 
         launch(args);
@@ -142,5 +141,6 @@ public class MainApplication extends Application{
         primaryStage.setScene(new Scene(root));
         primaryStage.setResizable(false);
         primaryStage.show();
+
     }
 }

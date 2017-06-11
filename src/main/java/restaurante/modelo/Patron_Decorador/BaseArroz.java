@@ -11,3 +11,4 @@ public class BaseArroz extends Plato {
         super(2.5,200,"Delicioso arroz tres delicias",0,0,0);
     }
 }
+

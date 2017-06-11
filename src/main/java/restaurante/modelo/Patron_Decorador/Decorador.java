@@ -86,7 +86,7 @@ public abstract class Decorador extends Plato {
         return (getNumeroComplementosGamba() + getNumeroComplementosPollo() + getNumeroComplementosTernera())>0;
     }
 
-    public Plato getPlato() {
+    public Plato getPlato(){
         return plato;
     }
 }

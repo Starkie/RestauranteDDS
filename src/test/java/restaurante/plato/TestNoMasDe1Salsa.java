@@ -16,3 +16,4 @@ public class TestNoMasDe1Salsa {
         plato = new SalsaCacahuetes(plato);
     }
 }
+

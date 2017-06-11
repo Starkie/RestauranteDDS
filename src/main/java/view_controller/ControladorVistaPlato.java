@@ -178,12 +178,12 @@ public class ControladorVistaPlato {
 
     }
 
-    private void actualizarTablaPlatos() {
+    private void actualizarTablaPlatos(){
         ObservableList<Plato> datos = FXCollections.observableArrayList(pedido.getPlatosPedido());
         tablaPlatos.setItems(datos);
         tablaPlatos.refresh();
         precioTotal.setText(pedido.getPrecio()+" €");
-        CaloriasTotal.setText(pedido.getCalorias() + " cal.");
+        CaloriasTotal.setText(pedido.getCalorias() + " kcal.");
     }
 
     private void iniciarColumnasTablaPedidos() {
