@@ -2,6 +2,7 @@ package almacen.pedidos;
 
 
 import almacen.pedidos.model.AlmacenException;
+import almacen.pedidos.model.EstadoPedido;
 import almacen.pedidos.model.Pedido;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleDoubleProperty;
@@ -10,12 +11,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 
 import java.net.URL;
 import java.text.SimpleDateFormat;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class PedidosController implements Initializable {
@@ -36,6 +36,9 @@ public class PedidosController implements Initializable {
     private Button nuevoPedidoButton;
 
     @FXML
+    private Button abrirPedidoButton;
+
+    @FXML
     private Button editarPedidoButton;
 
     @FXML
@@ -46,27 +49,33 @@ public class PedidosController implements Initializable {
 
     private ObservableList<Pedido> listaPedidos;
 
+    private SimpleDateFormat dt;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         gestorPedidos = GestorPedidos.getInstance();
 
-        listaPedidos = FXCollections.observableArrayList(gestorPedidos.getAllPedidos());
-
-        SimpleDateFormat dt = new SimpleDateFormat("dd/MM/yyyy");
+        dt = new SimpleDateFormat("dd/MM/yyyy");
 
         fechaColumn.setCellValueFactory(p -> new SimpleStringProperty(dt.format(p.getValue().getFecha())));
         estadoColumn.setCellValueFactory(p -> new SimpleStringProperty(p.getValue().getEstado().toString()));
         precioColumn.setCellValueFactory(p -> new SimpleDoubleProperty(p.getValue().getPrecio()));
 
+        abrirPedidoButton.disableProperty().bind(Bindings.isEmpty(tablaPedidos.getSelectionModel().getSelectedItems()));
         editarPedidoButton.disableProperty().bind(Bindings.isEmpty(tablaPedidos.getSelectionModel().getSelectedItems()));
         cancelarPedidoButton.disableProperty().bind(Bindings.isEmpty(tablaPedidos.getSelectionModel().getSelectedItems()));
 
-        tablaPedidos.setItems(listaPedidos);
+        refreshTable();
 
     }
 
     @FXML
     private void OnNuevoPedidoClick() {
+
+    }
+
+    @FXML
+    private void OnAbrirPedidoClick() {
 
     }
 
@@ -77,6 +86,36 @@ public class PedidosController implements Initializable {
 
     @FXML
     public void OnCancelarPedidoClick() {
+        Pedido pedido = (Pedido) tablaPedidos.getSelectionModel().getSelectedItem();
 
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Cancelar Pedido");
+        alert.setHeaderText("Cancelar Pedido: " + dt.format(pedido.getFecha()));
+        alert.setContentText("¿Desea cancelar el pedido?");
+        Optional<ButtonType> resultado = alert.showAndWait();
+
+        if(resultado.get() == ButtonType.OK) {
+            try {
+                gestorPedidos.cancelarPedido(pedido);
+
+                Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
+                alert2.setTitle("Pedido Cancelado");
+                alert2.setHeaderText("Pedido Cancelado Correctamente");
+                alert2.showAndWait();
+
+                refreshTable();
+            } catch (AlmacenException e) {
+                Alert alert2 = new Alert(Alert.AlertType.ERROR);
+                alert2.setTitle("Error al Cancelar Pedido");
+                alert2.setHeaderText("Error cancelando el pedido");
+                alert2.setContentText(e.getMessage());
+                alert2.showAndWait();
+            }
+        }
+    }
+
+    public void refreshTable() {
+        listaPedidos = FXCollections.observableArrayList(gestorPedidos.getAllPedidos());
+        tablaPedidos.setItems(listaPedidos);
     }
 }
