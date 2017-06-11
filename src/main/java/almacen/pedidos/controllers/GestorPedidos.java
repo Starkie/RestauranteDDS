@@ -1,11 +1,10 @@
-package almacen.pedidos;
+package almacen.pedidos.controllers;
 
 import almacen.model.Producto;
 import almacen.pedidos.model.*;
 import almacen.persistance.pedidos.PedidoService;
 import persistance.AppContext;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -72,6 +71,9 @@ public class GestorPedidos {
     public void recibirPedido(Pedido pedido) throws AlmacenException {
         pedido.recibirPedido();
         guardarPedido(pedido);
+
+        //Si estado == EN_CAMINO Debe modificar las cantidades del producto en almacen
+        throw new UnsupportedOperationException("No implementado");
     }
 
     public void cancelarPedido(Pedido pedido) throws AlmacenException {

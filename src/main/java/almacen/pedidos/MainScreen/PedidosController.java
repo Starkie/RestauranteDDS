@@ -1,9 +1,8 @@
 package almacen.pedidos.MainScreen;
 
 
-import almacen.pedidos.GestorPedidos;
+import almacen.pedidos.controllers.GestorPedidos;
 import almacen.pedidos.model.AlmacenException;
-import almacen.pedidos.model.EstadoPedido;
 import almacen.pedidos.model.Pedido;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleDoubleProperty;
