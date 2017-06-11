@@ -70,6 +70,11 @@ public class GestorPedidos {
         addToPedido(pedido, listaElemento);
     }
 
+    public void addProductoToPedido(Pedido pedido, Producto producto, int unidades) {
+        ListaElemento listaElemento = new ListaElemento(producto.getNombre(), "", unidades, producto.getPrecio());
+        addToPedido(pedido, listaElemento);
+    }
+
     public void confirmarPedido(Pedido pedido) throws AlmacenException {
         pedido.confirmarPedido();
         guardarPedido(pedido);
