@@ -1,6 +1,7 @@
-package almacen.pedidos;
+package almacen.pedidos.MainScreen;
 
 
+import almacen.pedidos.GestorPedidos;
 import almacen.pedidos.model.AlmacenException;
 import almacen.pedidos.model.EstadoPedido;
 import almacen.pedidos.model.Pedido;
