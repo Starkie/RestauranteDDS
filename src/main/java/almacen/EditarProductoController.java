@@ -1,9 +1,9 @@
 package almacen;
 
+import Main.AlimentoController;
 import almacen.model.Producto;
 import almacen.model.ProductoAlmacen;
 import almacen.model.UnidadesCantidad;
-import almacen.persistance.ProductoAlmacenService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -11,8 +11,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import model.Alimento;
-import persistance.AlimentoService;
-import persistance.AppContext;
 
 
 import java.net.URL;
@@ -54,15 +52,15 @@ public class EditarProductoController implements Initializable {
 
     private boolean editarProducto = false;
 
+    private ProductoAlmacenController productoAlmacenController;
+
 
     private ObservableList<Alimento> alimentoObservableList;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        AlimentoService alimentoService = (AlimentoService) AppContext.getBean("alimentoService");
-        ArrayList<Alimento> alimentosList = new ArrayList<>();
-        alimentoService.findAll().forEach(a -> alimentosList.add(a));
-        alimentoObservableList = FXCollections.observableList(alimentosList);
+        AlimentoController alimentoController = AlimentoController.getInstance();
+        alimentoObservableList = FXCollections.observableList(alimentoController.getAllAlimentos());
         alimentoCombo.setItems(alimentoObservableList);
 
         ArrayList<UnidadesCantidad> unidadesCantidadList = new ArrayList<>();
@@ -136,6 +134,10 @@ public class EditarProductoController implements Initializable {
         precioText.setText("0.0");
         cantidadText.setText("0");
         cantidadText.setText("0");
+
+        productoAlmacen = new ProductoAlmacen(new Producto(), 0);
+
+        productoAlmacenController = ProductoAlmacenController.getInstance();
     }
 
     public void setProductoAlmacen(ProductoAlmacen productoAlmacen) {
@@ -155,26 +157,8 @@ public class EditarProductoController implements Initializable {
     @FXML
     public void OnClickAceptarButton() {
         if(noHayCamposVacios()) {
-            ProductoAlmacenService almacenService = (ProductoAlmacenService) AppContext.getBean("productoAlmacenService");
-
-            if (editarProducto) {
-                productoAlmacen.getProducto().setNombre(precioText.getText());
-                productoAlmacen.getProducto().setAlimento(alimentoCombo.getSelectionModel().getSelectedItem());
-                productoAlmacen.getProducto().setCantidad(Double.parseDouble(cantidadText.getText()));
-
-                almacenService.update(productoAlmacen);
-            }
-            else {
-                productoAlmacen = new ProductoAlmacen(new Producto(
-                        nombreText.getText(),
-                        alimentoCombo.getSelectionModel().getSelectedItem(),
-                        Double.parseDouble(precioText.getText()),
-                        Double.parseDouble(cantidadText.getText()),
-                        unidadesCombo.getSelectionModel().getSelectedItem()),
-                        (int) Double.parseDouble(stockText.getText())
-                );
-                almacenService.add(productoAlmacen);
-            }
+            obtenerDatosCampos();
+            productoAlmacenController.guardarProducto(productoAlmacen);
             Stage stage = (Stage) cancelarButton.getScene().getWindow();
             stage.close();
         }
@@ -186,6 +170,15 @@ public class EditarProductoController implements Initializable {
             alert.setContentText("Debe rellenar todos los campos para continuar.");
             alert.showAndWait();
         }
+    }
+
+    private void obtenerDatosCampos() {
+        productoAlmacen.getProducto().setNombre(nombreText.getText());
+        productoAlmacen.getProducto().setAlimento(alimentoCombo.getSelectionModel().getSelectedItem());
+        productoAlmacen.getProducto().setPrecio( Double.parseDouble(precioText.getText()));
+        productoAlmacen.getProducto().setCantidad(Double.parseDouble(cantidadText.getText()));
+        productoAlmacen.getProducto().setUnidades(unidadesCombo.getSelectionModel().getSelectedItem());
+        productoAlmacen.setSock((int) Double.parseDouble(stockText.getText()));
     }
 
     private boolean noHayCamposVacios() {
