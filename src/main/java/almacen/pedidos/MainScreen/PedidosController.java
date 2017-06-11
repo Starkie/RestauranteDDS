@@ -18,6 +18,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -85,13 +86,16 @@ public class PedidosController implements Initializable {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("CrearPedidos/CrearPedidosView.fxml"));
         BorderPane root = fxmlLoader.load();
         CrearPedidosController crearPedidosController = fxmlLoader.getController();
-        Stage stage = (Stage) nuevoPedidoButton.getScene().getWindow();
+        Stage stage = new Stage();
         stage.setTitle("Creacion de Pedido");
         stage.setScene(new Scene(root, 600, 400));
         gestorPedidos = GestorPedidos.getInstance();
         Pedido p = gestorPedidos.crearPedido();
         crearPedidosController.setPedido(p);
-        stage.show();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.showAndWait();
+
+        refreshTable();
     }
 
     @FXML
@@ -99,7 +103,7 @@ public class PedidosController implements Initializable {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("InfoPedidos/ResumenPedidoView.fxml"));
         BorderPane root = fxmlLoader.load();
         ResumenPedidoController resumenPedidoController = fxmlLoader.getController();
-        Stage stage = (Stage) nuevoPedidoButton.getScene().getWindow();
+        Stage stage = new Stage();
         stage.setTitle("Resumen de Pedido");
         stage.setScene(new Scene(root, 600, 400));
         gestorPedidos = GestorPedidos.getInstance();
