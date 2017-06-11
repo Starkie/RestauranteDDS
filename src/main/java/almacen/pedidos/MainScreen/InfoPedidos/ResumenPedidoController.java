@@ -36,7 +36,10 @@ public class ResumenPedidoController implements Initializable {
     @FXML
     private Label tituloLabel;
     @FXML
+    private Label estadoLabel;
+    @FXML
     private Label precioLabel;
+
 
     private ObservableList<FilaTabla> listaProductos;
 
@@ -62,6 +65,7 @@ public class ResumenPedidoController implements Initializable {
     public void setPedido(Pedido pedido) {
         this.pedido = pedido;
         this.tituloLabel.setText("Resumen de Pedido #" + pedido.getId());
+        this.estadoLabel.setText(pedido.getEstado().toString());
         this.precioLabel.setText("" + pedido.getPrecio());
         refreshTable(pedido);
     }

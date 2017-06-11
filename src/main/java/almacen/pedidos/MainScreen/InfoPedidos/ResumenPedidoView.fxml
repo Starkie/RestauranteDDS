@@ -22,6 +22,26 @@
                   <Insets left="10.0" />
                </padding>
             </Label>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label text="Estado:">
+                     <HBox.margin>
+                        <Insets left="10.0" top="5.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="estadoLabel" text="EstadoActual">
+                     <HBox.margin>
+                        <Insets top="5.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
             <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
                <children>
                   <TableView fx:id="tablaProductos" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="467.0" prefWidth="500.0" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
@@ -38,7 +58,7 @@
                         <TableColumn id="c2" fx:id="precioColumn" prefWidth="75.0" text="Precio (€)" />
                     </columns>
                      <HBox.margin>
-                        <Insets bottom="10.0" right="10.0" top="5.0" />
+                        <Insets bottom="10.0" right="10.0" top="10.0" />
                      </HBox.margin>
                      <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
