@@ -5,6 +5,7 @@ import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 
@@ -42,7 +43,12 @@ public class ListaCompuesto extends ListaCompra {
         hijos.remove(p);
     }
 
+    @Override
+    public Iterator<ListaCompra> createIterator() {
+        return new ListaCompraIterator(hijos.iterator());
+    }
+
     public String toString() {
-        return "Lista: " + nombre + " - " + descripcion + " - " + getPrecio();
+        return "Lista: " + nombre + " - " + descripcion + " - " + getPrecio() +"€";
     }
 }

@@ -1,6 +1,7 @@
 package almacen.pedidos.model;
 
 import javax.persistence.*;
+import java.util.Iterator;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -29,10 +30,13 @@ public abstract class ListaCompra {
         this.descripcion = descripcion;
     }
 
-    public  abstract double getPrecio();
+    public int getUnidades() { return unidades; }
+
+    public abstract double getPrecio();
 
     public abstract void add(ListaCompra p);
 
     public abstract void remove(ListaCompra p);
 
+    public abstract Iterator<ListaCompra> createIterator();
 }
