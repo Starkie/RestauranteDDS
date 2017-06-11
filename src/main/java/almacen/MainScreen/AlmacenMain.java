@@ -108,7 +108,7 @@ public class AlmacenMain implements Initializable {
     }
     @FXML
     private void OnNuevoProductoClick() throws IOException{
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("EditarProducto.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("EditProducto/EditarProducto.fxml"));
         VBox root = loader.load();
         Stage stage = new Stage();
         stage.setScene(new Scene(root, 280, 440));
@@ -123,7 +123,7 @@ public class AlmacenMain implements Initializable {
 
     @FXML
     private void OnEditarProductoClick() throws IOException{
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("EditarProducto.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("EditProducto/EditarProducto.fxml"));
         VBox root = loader.load();
         EditarProductoController controller = loader.getController();
 
