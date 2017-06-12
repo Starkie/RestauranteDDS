@@ -16,12 +16,12 @@ public class EmisorOrdenes {
 
     private static EmisorOrdenes elEmisor;
 
-    private EmisorOrdenes() {
+    private EmisorOrdenes( boolean recuperarDatosDB) {
         ordenesARepartir = new ArrayDeque<OrdenRepartir>();
         ordenesACocinar = new ArrayDeque<OrdenCocinar>();
         cocineros = new ArrayList<Cocinero>();
         repartidores = new ArrayList<Repartidor>();
-        recuperarOrdenesDB();
+        if(recuperarDatosDB) recuperarOrdenesDB();
         getThreadDisponibilidad().start();
     }
 
@@ -36,8 +36,18 @@ public class EmisorOrdenes {
     }
 
     public static EmisorOrdenes getEmisorOrdenes() {
-        if (elEmisor == null) elEmisor = new EmisorOrdenes();
+        if (elEmisor == null) elEmisor = new EmisorOrdenes(true);
         return elEmisor;
+    }
+
+    public static EmisorOrdenes getEmisorOrdenes(boolean recuperarDatosDB) {
+        if(recuperarDatosDB){
+            return getEmisorOrdenes();
+        }
+        else{
+            if (elEmisor == null) elEmisor = new EmisorOrdenes(false);
+            return elEmisor;
+        }
     }
 
     public void anyadirOrden(Orden orden) {
@@ -71,6 +81,14 @@ public class EmisorOrdenes {
 
     public void registrarCocinero(Cocinero cocinero) {
         cocineros.add(cocinero);
+    }
+
+    public List<Repartidor> getRepartidores() {
+        return repartidores;
+    }
+
+    public List<Cocinero> getCocineros() {
+        return cocineros;
     }
 
     public Thread getThreadDisponibilidad() {
