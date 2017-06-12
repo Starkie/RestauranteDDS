@@ -1,5 +1,7 @@
 package restaurante.business.bussiness_controller;
 
+import persistance.AlimentoService;
+import persistance.AppContext;
 import persistance.ServiceLocator;
 import restaurante.business.modelo.Patron_Decorador.*;
 import restaurante.domain.PedidoRestaurante;
@@ -12,17 +14,20 @@ public class ControladorPlato {
     private static ControladorPlato controladorPlato;
     private PlatoService platoService;
     private PedidoRestauranteService pedidoRestauranteService;
+    private AlimentoService alimentoService;
 
-    private ControladorPlato(PlatoService platoService, PedidoRestauranteService pedidoRestauranteService) {
+    private ControladorPlato(AlimentoService alimentoService, PlatoService platoService, PedidoRestauranteService pedidoRestauranteService) {
+        this.alimentoService = alimentoService;
         this.platoService = platoService;
         this.pedidoRestauranteService = pedidoRestauranteService;
     }
 
     public static ControladorPlato getControladorPlato(){
         if(controladorPlato == null) {
+            AlimentoService alimentoService = ServiceLocator.getAlimentoService();
             PlatoService platoService = ServiceLocator.getPlatoService();
             PedidoRestauranteService pedidoRestauranteService = ServiceLocator.getPedidoRestauranteService();
-            controladorPlato = new ControladorPlato(platoService, pedidoRestauranteService);
+            controladorPlato = new ControladorPlato(alimentoService, platoService, pedidoRestauranteService);
         }
         return controladorPlato;
     }
@@ -30,6 +35,7 @@ public class ControladorPlato {
     public void crearPlatoArroz(PedidoRestaurante pedido) {
         Plato p = new BaseArroz();
         platoService.add(p);
+        p.setAlimento(alimentoService.findByName("Arroz"));
         pedido.addPlatoPedido(p);
         pedidoRestauranteService.update(pedido);
     }
@@ -37,6 +43,7 @@ public class ControladorPlato {
     public void crearPlatoTallarines(PedidoRestaurante pedido) {
         Plato p = new BaseTallarines();
         platoService.add(p);
+        p.setAlimento(alimentoService.findByName("Tallarines"));
         pedido.addPlatoPedido(p);
         pedidoRestauranteService.update(pedido);
     }
@@ -62,6 +69,7 @@ public class ControladorPlato {
 
         Plato nuevo = new ComplementoPollo();
         platoService.add(nuevo);
+        nuevo.setAlimento(alimentoService.findByName("Pollo"));
         ((DecoradorComplemento) nuevo).setPlato(seleccionado);
         pedido.addPlatoPedido(nuevo);
         pedidoRestauranteService.update(pedido);
@@ -72,6 +80,7 @@ public class ControladorPlato {
 
         Plato nuevo = new ComplementoTernera();
         platoService.add(nuevo);
+        nuevo.setAlimento(alimentoService.findByName("Ternera"));
         ((DecoradorComplemento) nuevo).setPlato(seleccionado);
         pedido.addPlatoPedido(nuevo);
         pedidoRestauranteService.update(pedido);
@@ -82,6 +91,7 @@ public class ControladorPlato {
 
         Plato nuevo = new ComplementoGamba();
         platoService.add(nuevo);
+        nuevo.setAlimento(alimentoService.findByName("Gambas"));
         ((DecoradorComplemento) nuevo).setPlato(seleccionado);
         pedido.addPlatoPedido(nuevo);
         pedidoRestauranteService.update(pedido);
@@ -93,6 +103,7 @@ public class ControladorPlato {
 
         Plato nuevo = new SalsaCacahuetes();
         platoService.add(nuevo);
+        nuevo.setAlimento(alimentoService.findByName("Cacahuetes"));
         ((DecoradorSalsa) nuevo).setPlato(seleccionado);
         pedido.addPlatoPedido(nuevo);
         pedidoRestauranteService.update(pedido);
@@ -105,6 +116,7 @@ public class ControladorPlato {
 
         Plato nuevo = new SalsaOstras();
         platoService.add(nuevo);
+        nuevo.setAlimento(alimentoService.findByName("Ostras"));
         ((DecoradorSalsa) nuevo).setPlato(seleccionado);
         pedido.addPlatoPedido(nuevo);
         pedidoRestauranteService.update(pedido);

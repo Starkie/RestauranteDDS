@@ -21,6 +21,10 @@ public class ProductoAlmacen {
 
     public Producto getProducto() { return  producto; }
 
+    public void setProducto(Producto producto) {
+        this.producto = producto;
+    }
+
     public int getStock() { return  stock; }
 
     public void setSock(int stock) { this.stock = stock; }

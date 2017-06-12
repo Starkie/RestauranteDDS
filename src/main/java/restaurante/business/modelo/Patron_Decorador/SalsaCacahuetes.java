@@ -4,6 +4,7 @@ package restaurante.business.modelo.Patron_Decorador;/*
  * and open the template in the editor.
  */
 
+import domain.Alimento;
 import restaurante.domain.Plato;
 
 import javax.persistence.Entity;
@@ -12,11 +13,13 @@ import javax.persistence.Entity;
 public class SalsaCacahuetes extends DecoradorSalsa {
 
     public SalsaCacahuetes() {
-        super(0,60,"Salsa de Cacahuetes",0,0,0);
+        super(0,60,"Salsa de Cacahuetes",0,
+                0,0);
     }
 
     public SalsaCacahuetes(Plato plato) throws Exception {
-        super(plato,0,60,"Salsa de Cacahuetes",0,0,0);
+        super(plato,0,60,"Salsa de Cacahuetes",0,
+                0,0,new Alimento("Cacahuetes"));
     }
 
     @Override

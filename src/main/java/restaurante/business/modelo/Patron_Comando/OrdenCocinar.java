@@ -11,7 +11,7 @@ public class OrdenCocinar extends Orden {
     }
 
     @Override
-    public void ejecutar(Persona receptor) {
+    public void ejecutar(Persona receptor){
         ((Cocinero)receptor).cocinarPedido(pedido);
     }
 }

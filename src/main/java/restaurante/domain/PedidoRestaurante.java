@@ -24,6 +24,7 @@ public class PedidoRestaurante {
 
     private Date horaConfirmacion;
     private Date horaRecibido;
+    private boolean estaCocinado;
 
     @OneToMany (mappedBy = "pedidoRestaurante",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Plato> platosPedido;
@@ -38,11 +39,13 @@ public class PedidoRestaurante {
         this.platosPedido = new ArrayList<Plato>();
         this.horaConfirmacion = null;
         this.horaRecibido = null;
+        this.estaCocinado = false;
     }
 
     public PedidoRestaurante() {
         this.estado = new EstadoPorConfirmar();
         this.platosPedido = new ArrayList<Plato>();
+        this.estaCocinado = false;
     }
 
     public  void confirmarPedido() throws Exception {
@@ -141,4 +144,11 @@ public class PedidoRestaurante {
         usuario.addPedidoUsuario(this);
     }
 
+    public boolean isCocinado() {
+        return estaCocinado;
+    }
+
+    public void setEstaCocinado(boolean estaCocinado) {
+        this.estaCocinado = estaCocinado;
+    }
 }

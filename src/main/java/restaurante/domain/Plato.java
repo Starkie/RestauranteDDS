@@ -1,6 +1,10 @@
 package restaurante.domain;
 
+import domain.Alimento;
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -13,6 +17,9 @@ public abstract class Plato {
      @JoinColumn(name = "pedidoRestaurante_fk")
      private PedidoRestaurante pedidoRestaurante;
 
+     @ManyToOne
+     private Alimento alimento;
+
      protected double precio;
      protected double calorias;
      protected String descripcion;
@@ -21,6 +28,16 @@ public abstract class Plato {
      protected int numeroComplementosTernera;
 
      public Plato() {
+     }
+
+     public Plato(double precio, double calorias, String descripcion, int numeroComplementosGamba, int numeroComplementosPollo, int numeroComplementosTernera, Alimento alimento) {
+          this.precio = precio;
+          this.calorias = calorias;
+          this.descripcion = descripcion;
+          this.numeroComplementosGamba = numeroComplementosGamba;
+          this.numeroComplementosPollo = numeroComplementosPollo;
+          this.numeroComplementosTernera = numeroComplementosTernera;
+          this.alimento = alimento;
      }
 
      public Plato(double precio, double calorias, String descripcion, int numeroComplementosGamba, int numeroComplementosPollo, int numeroComplementosTernera) {
@@ -70,5 +87,19 @@ public abstract class Plato {
 
      public void setPedidoRestaurante(PedidoRestaurante pedidoRestaurante) {
           this.pedidoRestaurante = pedidoRestaurante;
+     }
+
+     public Alimento getAlimento(){
+          return alimento;
+     }
+
+     public List<Alimento> getAlimentosPlato() {
+          List<Alimento> alimentos = new ArrayList<Alimento>();
+          alimentos.add(alimento);
+          return alimentos;
+     }
+
+     public void setAlimento(Alimento alimento) {
+          this.alimento = alimento;
      }
 }

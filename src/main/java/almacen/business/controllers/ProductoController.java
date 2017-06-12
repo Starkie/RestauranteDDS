@@ -4,6 +4,8 @@ package almacen.business.controllers;
 import almacen.domain.Producto;
 import almacen.persistance.ProductoService;
 import persistance.ServiceLocator;
+import domain.Alimento;
+import persistance.AppContext;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,5 +31,11 @@ public class ProductoController {
         ArrayList<Producto> productos = new ArrayList<>();
         productoService.findAll().forEach(p -> productos.add(p));
         return productos;
+    }
+
+    public List<Producto> getProductosDeAlimento(Alimento alimento){
+        ArrayList<Producto> productos = new ArrayList<>();
+        productoService.findAllByAlimento(alimento).forEach(p-> productos.add(p));
+        return  productos;
     }
 }
