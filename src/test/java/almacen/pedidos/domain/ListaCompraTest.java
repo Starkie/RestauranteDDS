@@ -99,4 +99,28 @@ public class ListaCompraTest {
 
     }
 
+    @Test
+    public void ShouldCloneListaCompra() throws Exception {
+
+        Alimento alimento = new Alimento();
+        Producto p = new Producto("Prod1", alimento, 3.0, 2, UnidadesCantidad.KG);
+        Producto p2 = new Producto("Prod2", alimento, 8.0, 1, UnidadesCantidad.LITRO);
+
+        ListaCompra base = new ListaCompuesto("Lista 1", "Ejemplo");
+
+        ListaCompra elemento = new ListaElemento(p, 1);
+
+        ListaCompra elemento2 = new ListaElemento(p2, 2);
+
+        base.add(elemento);
+        base.add(elemento2);
+
+        ListaCompra baseClon = base.clone();
+
+        baseClon.add(elemento);
+
+        Assert.assertEquals("El precio de la lista base es de 19", 19.0, base.getPrecio(), 0.1);
+        Assert.assertEquals("El precio de la lista clon es de 22", 22.0, baseClon.getPrecio(), 0.1);
+    }
+
 }

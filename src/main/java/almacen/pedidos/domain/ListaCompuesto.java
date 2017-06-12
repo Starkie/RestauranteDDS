@@ -49,6 +49,24 @@ public class ListaCompuesto extends ListaCompra {
         return new ListaCompraIterator(hijos.iterator());
     }
 
+    private void setHijos(List<ListaCompra> hijos) {
+        this.hijos = hijos;
+    }
+
+    private List<ListaCompra> clonarHijos() throws CloneNotSupportedException {
+        List<ListaCompra> clon = new ArrayList<>();
+        for(ListaCompra elem : hijos){
+            clon.add(elem.clone());
+        }
+        return clon;
+    }
+
+    public ListaCompra clone() throws CloneNotSupportedException {
+        ListaCompuesto listaCompuesto = new ListaCompuesto(this.nombre, this.descripcion);
+        listaCompuesto.setHijos(clonarHijos());
+        return listaCompuesto;
+    }
+
     public String toString() {
         return "Lista: " + nombre + " - " + descripcion + " - " + getPrecio() +"€";
     }
