@@ -1,4 +1,6 @@
-package almacen.pedidos.model;
+package almacen.pedidos.util;
+
+import almacen.pedidos.model.ListaCompra;
 
 import java.util.Iterator;
 import java.util.Stack;
