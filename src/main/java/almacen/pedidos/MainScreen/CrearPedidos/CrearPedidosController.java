@@ -81,8 +81,6 @@ public class CrearPedidosController implements Initializable{
 
         addProductoButton.disableProperty().bind(Bindings.isEmpty(tablaProductos.getSelectionModel().getSelectedItems()));
 
-        removePedidoButton.disableProperty().bind(Bindings.isEmpty(tablaPedido.getSelectionModel().getSelectedItems()));
-
         productos = FXCollections.observableArrayList(productoController.getAllProductos());
 
         nombreColumn.setCellValueFactory(p -> new SimpleStringProperty(p.getValue().getNombre()));
