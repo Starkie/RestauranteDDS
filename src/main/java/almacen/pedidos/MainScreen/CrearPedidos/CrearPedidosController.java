@@ -3,6 +3,7 @@ package almacen.pedidos.MainScreen.CrearPedidos;
 
 import almacen.controllers.ProductoController;
 import almacen.model.Producto;
+import almacen.pedidos.model.AlmacenException;
 import almacen.pedidos.util.AdaptadorListaCompra;
 import almacen.pedidos.util.FilaTabla;
 import almacen.pedidos.controllers.GestorPedidos;
@@ -168,7 +169,7 @@ public class CrearPedidosController implements Initializable{
     }
 
     @FXML
-    public void OnConfirmarPedidoClick() {
+    public void OnConfirmarPedidoClick() throws AlmacenException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmar Pedido");
         alert.setHeaderText("Confirmar Pedido");
@@ -176,7 +177,7 @@ public class CrearPedidosController implements Initializable{
         Optional<ButtonType> resultado = alert.showAndWait();
 
         if(resultado.get() == ButtonType.OK) {
-            gestorPedidos.guardarPedido(pedido);
+            gestorPedidos.confirmarPedido(pedido);
             Stage stage = (Stage) confirmarPedidoButton.getScene().getWindow();
             stage.close();
         }
