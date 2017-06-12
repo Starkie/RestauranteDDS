@@ -6,15 +6,13 @@ import almacen.domain.Producto;
 import almacen.domain.ProductoAlmacen;
 import almacen.domain.UnidadesCantidad;
 import almacen.pedidos.controllers.GestorPedidos;
-import almacen.pedidos.domain.ListaCompra;
-import almacen.pedidos.domain.ListaCompuesto;
-import almacen.pedidos.domain.ListaElemento;
-import almacen.pedidos.domain.Pedido;
+import almacen.pedidos.domain.*;
 import almacen.persistance.pedidos.PedidoService;
 import almacen.persistance.pedidos.PedidoServiceMock;
 import domain.Alimento;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +20,7 @@ import java.util.List;
 public class GestorPedidosTest {
 
     @Test
-    public void crearPedido() throws Exception {
+    public void Should_Create_Pedido_From_Product_List() throws Exception {
         GestorPedidos gestorPedidos = GestorPedidoMock.getInstance();
         Alimento a1 = new Alimento("Manzana");
         Producto p1 = new Producto("Producto 1", a1, 3, 1, UnidadesCantidad.KG);
@@ -34,41 +32,103 @@ public class GestorPedidosTest {
 
         Pedido pedido = gestorPedidos.crearPedido(listaProductos);
 
-        Producto p3 = new Producto("Producto 3", a1, 8, 1, UnidadesCantidad.Unidades);
-
-        gestorPedidos.addToPedido(pedido, p3);
-
-        Producto p4 = new Producto("Producto 4", a1, 8, 1, UnidadesCantidad.Unidades);
-
-        List<Producto> listaProductos2 = new ArrayList<>();
-        listaProductos2.add(p4);
-        Pedido pedido2 = gestorPedidos.crearPedido(listaProductos2);
-
-        //Aquí reutilizamos la ListaCompra que contiene pedido, para demostrar el funcionamiento del patrón compuesto.
-        gestorPedidos.addToPedido(pedido2, pedido.getLista());
-
-        Assert.assertEquals("El precio total de la lista de la compra debe ser ", 24, pedido2.getPrecio(), 0.01);
-
+        Assert.assertEquals("El precio total de la lista de la compra debe ser ", 8.0,
+                pedido.getPrecio(), 0.01);
     }
 
-     @Test
+    @Test
+    public void Should_Create_Pedido_From_Existing_Pedido() throws Exception {
+
+        GestorPedidos gestorPedidos = GestorPedidoMock.getInstance();
+        Alimento a1 = new Alimento("Manzana");
+        Producto p1 = new Producto("Producto 1", a1, 3, 1, UnidadesCantidad.KG);
+        Producto p2 = new Producto("Producto 2", a1, 5, 2, UnidadesCantidad.LITRO);
+        List<Producto> listaProductos = new ArrayList<>();
+
+        listaProductos.add(p1);
+        listaProductos.add(p2);
+
+        Pedido pedido = gestorPedidos.crearPedido(listaProductos);
+
+        Pedido pedido1 = gestorPedidos.crearPedido(pedido.getLista());
+
+        Assert.assertEquals("El precio total del pedido1 de debe ser ", 8.0,
+                pedido1.getPrecio(), 0.01);
+    }
+
+    @Test
+    public void Should_Confirm_Pedido() throws Exception {
+        GestorPedidos gestorPedidos = GestorPedidoMock.getInstance();
+        Alimento a1 = new Alimento("Manzana");
+        Producto p1 = new Producto("Producto 1", a1, 3, 1, UnidadesCantidad.KG);
+        Producto p2 = new Producto("Producto 2", a1, 5, 2, UnidadesCantidad.LITRO);
+        List<Producto> listaProductos = new ArrayList<>();
+
+        listaProductos.add(p1);
+        listaProductos.add(p2);
+
+        Pedido pedido = gestorPedidos.crearPedido(listaProductos);
+        gestorPedidos.confirmarPedido(pedido);
+    }
+
+    @Test(expected = AlmacenException.class)
+    public void Should_Not_Confirm_Pedido() throws Exception {
+        GestorPedidos gestorPedidos = GestorPedidoMock.getInstance();
+        Alimento a1 = new Alimento("Manzana");
+        Producto p1 = new Producto("Producto 1", a1, 3, 1, UnidadesCantidad.KG);
+        Producto p2 = new Producto("Producto 2", a1, 5, 2, UnidadesCantidad.LITRO);
+        List<Producto> listaProductos = new ArrayList<>();
+
+        listaProductos.add(p1);
+        listaProductos.add(p2);
+
+        Pedido pedido = gestorPedidos.crearPedido(listaProductos);
+        gestorPedidos.cancelarPedido(pedido);
+        gestorPedidos.confirmarPedido(pedido);
+    }
+
+
+    @Test
     public void Should_Update_Stock_When_Receiving_Pedido() throws Exception{
-        Producto producto = new Producto("Prod1", new Alimento("Ali"), 2, 1, UnidadesCantidad.KG);
+        Producto producto = new Producto("Prod1", new Alimento("Ali"),
+                2, 1, UnidadesCantidad.KG);
         ProductoAlmacen productoAlmacen = new ProductoAlmacen(producto, 2);
 
-        ListaCompra listaCompra = new ListaCompuesto("asdf", "fdas");
+        ListaCompra listaCompra = new ListaCompuesto("Lista", "Descripcion");
         listaCompra.add(new ListaElemento(producto, 2));
         GestorPedidos gestorPedidos = GestorPedidoMock.getInstance();
         Pedido pedido = gestorPedidos.crearPedido(listaCompra);
         gestorPedidos.confirmarPedido(pedido);
         gestorPedidos.recibirPedido(pedido);
 
-         ProductoAlmacenController productoAlmacenController = ProductoAlmacenController.getInstance();
-         ProductoAlmacen p2 = productoAlmacenController.buscarPorProducto(producto);
+        ProductoAlmacenController productoAlmacenController = ProductoAlmacenController.getInstance();
+        ProductoAlmacen p2 = productoAlmacenController.buscarPorProducto(producto);
 
-         Assert.assertEquals("Comprobamos que el stock es 4", 4, p2.getStock());
+        Assert.assertEquals("Comprobamos que el stock es 4", 4, p2.getStock());
     }
 
+    @Test
+    public void Should_Not_Update_Stock_When_Receiving_Pedido() throws Exception{
+        Producto producto = new Producto("Prod1", new Alimento("Ali"),
+                2, 1, UnidadesCantidad.KG);
+        ProductoAlmacen productoAlmacen = new ProductoAlmacen(producto, 2);
+
+        ListaCompra listaCompra = new ListaCompuesto("Lista", "Descripcion");
+        listaCompra.add(new ListaElemento(producto, 2));
+        GestorPedidos gestorPedidos = GestorPedidoMock.getInstance();
+        Pedido pedido = gestorPedidos.crearPedido(listaCompra);
+        gestorPedidos.cancelarPedido(pedido);
+
+        try {
+            gestorPedidos.recibirPedido(pedido);
+        } catch (AlmacenException e) {
+            System.out.println(e.getMessage());
+        }
+        ProductoAlmacenController productoAlmacenController = ProductoAlmacenController.getInstance();
+        ProductoAlmacen p2 = productoAlmacenController.buscarPorProducto(producto);
+
+        Assert.assertEquals("Comprobamos que el stock es 4", 2, p2.getStock());
+    }
 }
 
 class GestorPedidoMock extends GestorPedidos {
