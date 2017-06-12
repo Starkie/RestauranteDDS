@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="almacen.pedidos.MainScreen.CrearPedidos.CrearPedidosController">
+   <center>
+      <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="Creacion de Pedido">
+               <font>
+                  <Font name="System Bold" size="31.0" />
+               </font>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </Label>
+            <Label text="Seleccione los productos de la lista y añadalos al pedido:">
+               <VBox.margin>
+                  <Insets left="10.0" />
+               </VBox.margin>
+            </Label>
+            <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
+            <children>
+                  <TableView fx:id="tablaProductos" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="467.0" prefWidth="500.0" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+                    <columns>
+                      <TableColumn id="c1" fx:id="nombreColumn" prefWidth="75.0" text="Nombre" />
+                      <TableColumn id="c2" fx:id="alimentoColumn" prefWidth="75.0" text="Alimento" />
+                        <TableColumn id="c2" fx:id="contenidoColumn" prefWidth="75.0" text="Contenido">
+                           <columns>
+                              <TableColumn id="c2" fx:id="cantidadColumn" prefWidth="75.0" text="Cant." />
+                              <TableColumn id="c2" fx:id="unidadColumn" prefWidth="75.0" text="Ud." />
+                           </columns>
+                        </TableColumn>
+                        <TableColumn id="c2" fx:id="precioColumn" prefWidth="75.0" text="Precio (€)" />
+                    </columns>
+                     <HBox.margin>
+                        <Insets bottom="10.0" right="10.0" top="10.0" />
+                     </HBox.margin>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
+                     <VBox.margin>
+                        <Insets bottom="10.0" top="10.0" />
+                     </VBox.margin>
+                  </TableView>
+               <TableView fx:id="tablaPedido" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="467.0" prefWidth="500.0" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+                  <columns>
+                     <TableColumn id="c1" fx:id="unidadesProductoColumn" prefWidth="75.0" text="Nº Ud" />
+                     <TableColumn id="c1" fx:id="nombrePedidoColumn" prefWidth="75.0" text="Nombre" />
+                     <TableColumn id="c2" fx:id="alimentoPedidoColumn" prefWidth="75.0" text="Alimento" />
+                     <TableColumn id="c2" fx:id="contenidoPedidoColumn" prefWidth="75.0" text="Contenido Producto">
+                        <columns>
+                           <TableColumn id="c2" fx:id="cantidadPedidoColumn" prefWidth="75.0" text="Cant." />
+                           <TableColumn id="c2" fx:id="unidadPedidoColumn" prefWidth="75.0" text="Ud." />
+                        </columns>
+                     </TableColumn>
+                     <TableColumn id="c2" fx:id="precioPedidoColumn" prefWidth="75.0" text="Precio (€)" />
+                  </columns>
+                  <HBox.margin>
+                     <Insets bottom="10.0" right="10.0" top="10.0" />
+                  </HBox.margin>
+                  <columnResizePolicy>
+                     <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                  </columnResizePolicy>
+               </TableView>
+               </children>
+               <VBox.margin>
+                  <Insets left="10.0" />
+               </VBox.margin>
+            </HBox>
+            <Separator prefWidth="200.0" />
+            <HBox spacing="10.0">
+               <children>
+                  <Button fx:id="addProductoButton" mnemonicParsing="false" onAction="#OnAddProductoClick" prefHeight="25.0" prefWidth="84.0" text="Añadir" />
+                  <Pane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                  <Button fx:id="removeProductoButton" disable="true" layoutX="15.0" layoutY="45.0" mnemonicParsing="false" onAction="#OnBorrarProductoClick" prefHeight="25.0" prefWidth="82.0" text="Borrar">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="confirmarPedidoButton" disable="true" mnemonicParsing="false" onAction="#OnConfirmarPedidoClick" prefHeight="25.0" prefWidth="137.0" text="Confirmar Pedido">
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+               <VBox.margin>
+                  <Insets left="10.0" />
+               </VBox.margin>
+            </HBox>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>
