@@ -8,14 +8,14 @@ import java.util.Iterator;
 import java.util.List;
 
 public class AdaptadorListaCompra {
-    public static List<FilaTabla> adaptarListaCompra(ListaCompra listaCompra) {
-        ArrayList<FilaTabla> listaFilas = new ArrayList<>();
+    public static List<ElementoAdaptado> adaptarListaCompra(ListaCompra listaCompra) {
+        ArrayList<ElementoAdaptado> listaFilas = new ArrayList<>();
         Iterator<ListaCompra> listaCompraIterator = listaCompra.createIterator();
         listaCompraIterator.forEachRemaining(el ->
                 {
                     if (el instanceof ListaElemento) {
                         listaFilas.add(
-                                new FilaTabla(
+                                new ElementoAdaptado(
                                         ((ListaElemento) el).getProducto(),
                                         ((ListaElemento) el).getUnidades()
                                 )

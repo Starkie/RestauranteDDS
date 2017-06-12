@@ -2,11 +2,11 @@ package almacen.pedidos.util;
 
 import almacen.model.Producto;
 
-public class FilaTabla {
+public class ElementoAdaptado {
     Producto producto;
     int unidades;
 
-    public FilaTabla(Producto producto, int unidades) {
+    public ElementoAdaptado(Producto producto, int unidades) {
         this.producto = producto;
         this.unidades = unidades;
     }
@@ -20,8 +20,8 @@ public class FilaTabla {
     }
 
     public boolean equals(Object o) {
-        return o instanceof FilaTabla
-                &&  ((FilaTabla) o).getProducto().equals(producto)
-                &&  ((FilaTabla) o).getUnidades() == unidades;
+        return o instanceof ElementoAdaptado
+                &&  ((ElementoAdaptado) o).getProducto().equals(producto)
+                &&  ((ElementoAdaptado) o).getUnidades() == unidades;
     }
 }

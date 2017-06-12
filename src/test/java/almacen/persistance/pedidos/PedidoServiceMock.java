@@ -5,8 +5,7 @@ import almacen.model.ProductoAlmacen;
 import almacen.controllers.ProductoAlmacenControllerMock;
 import almacen.pedidos.model.Pedido;
 import almacen.pedidos.util.AdaptadorListaCompra;
-import almacen.pedidos.util.FilaTabla;
-import almacen.persistance.pedidos.PedidoService;
+import almacen.pedidos.util.ElementoAdaptado;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,8 +17,8 @@ public class PedidoServiceMock extends PedidoService {
     @Override
     public void add(Pedido p) {
         listaPedidos.add(p);
-        List<FilaTabla> filaTablas = AdaptadorListaCompra.adaptarListaCompra(p.getLista());
-        filaTablas.forEach(fila -> productoAlmacenController.guardarProducto(new ProductoAlmacen(fila.getProducto(), fila.getUnidades())));
+        List<ElementoAdaptado> listaElementos = AdaptadorListaCompra.adaptarListaCompra(p.getLista());
+        listaElementos.forEach(fila -> productoAlmacenController.guardarProducto(new ProductoAlmacen(fila.getProducto(), fila.getUnidades())));
     }
 
 }

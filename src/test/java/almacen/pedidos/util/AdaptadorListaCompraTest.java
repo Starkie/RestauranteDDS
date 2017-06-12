@@ -42,12 +42,12 @@ public class AdaptadorListaCompraTest {
 
     @Test
     public void ShouldReturnAllElements() throws Exception {
-        List<FilaTabla> listExpected = new ArrayList<>();
-        listExpected.add(new FilaTabla(p, 5));
-        listExpected.add(new FilaTabla(p2, 8));
-        listExpected.add(new FilaTabla(p, 2));
+        List<ElementoAdaptado> listExpected = new ArrayList<>();
+        listExpected.add(new ElementoAdaptado(p, 5));
+        listExpected.add(new ElementoAdaptado(p2, 8));
+        listExpected.add(new ElementoAdaptado(p, 2));
 
-        List<FilaTabla> listActual = AdaptadorListaCompra.adaptarListaCompra(base);
+        List<ElementoAdaptado> listActual = AdaptadorListaCompra.adaptarListaCompra(base);
 
         for(int i = 0; i < listExpected.size(); i++) {
             Assert.assertEquals("ListaActual coincide con listExpeced", listExpected.get(i), listActual.get(i));
