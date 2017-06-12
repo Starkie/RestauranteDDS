@@ -27,9 +27,10 @@ public class AlimentoController {
         return alimentoController;
     }
 
-    public void crearAlimento(String nombre) {
+    public Alimento crearAlimento(String nombre) {
         Alimento alimento = new Alimento(nombre);
         guardarAlimento(alimento);
+        return alimento;
     }
 
     public void guardarAlimento(Alimento alimento) {

@@ -17,6 +17,7 @@ import java.net.URL;
 import java.text.DecimalFormat;
 import java.text.ParsePosition;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class EditarProductoController implements Initializable {
@@ -46,6 +47,9 @@ public class EditarProductoController implements Initializable {
     private Button aceptarButton;
 
     @FXML
+    private Button crearAlimentoButton;
+
+    @FXML
     private Label tituloLabel;
 
     private ProductoAlmacen productoAlmacen;
@@ -54,14 +58,14 @@ public class EditarProductoController implements Initializable {
 
     private ProductoAlmacenController productoAlmacenController;
 
+    private AlimentoController alimentoController;
 
     private ObservableList<Alimento> alimentoObservableList;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        AlimentoController alimentoController = AlimentoController.getInstance();
-        alimentoObservableList = FXCollections.observableList(alimentoController.getAllAlimentos());
-        alimentoCombo.setItems(alimentoObservableList);
+        alimentoController = AlimentoController.getInstance();
+        refreshComboAlimento();
 
         ArrayList<UnidadesCantidad> unidadesCantidadList = new ArrayList<>();
         unidadesCantidadList.add(UnidadesCantidad.KG);
@@ -140,6 +144,11 @@ public class EditarProductoController implements Initializable {
         productoAlmacenController = ProductoAlmacenController.getInstance();
     }
 
+    public void refreshComboAlimento() {
+        alimentoObservableList = FXCollections.observableList(alimentoController.getAllAlimentos());
+        alimentoCombo.setItems(alimentoObservableList);
+    }
+
     public void setProductoAlmacen(ProductoAlmacen productoAlmacen) {
         this.productoAlmacen = productoAlmacen;
         editarProducto = true;
@@ -186,9 +195,39 @@ public class EditarProductoController implements Initializable {
     }
 
     @FXML
+    public void OnCrearAlimentoClick() {
+        Optional<String> result = promptNombreAlimento();
+        if(result.isPresent()) {
+            String nombreAlimento = result.get();
+
+            Optional<ButtonType> crearAlimento = confirmarCrearAlimento(nombreAlimento);
+            if(crearAlimento.get() == ButtonType.OK) {
+                Alimento nuevoAlimento = alimentoController.crearAlimento(nombreAlimento);
+                refreshComboAlimento();
+                alimentoCombo.getSelectionModel().select(nuevoAlimento);
+            }
+        }
+    }
+
+    public Optional<ButtonType> confirmarCrearAlimento(String nombreAlimento) {
+        Alert confirmar = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmar.setTitle("Crear Alimento");
+        confirmar.setHeaderText("Confirme creación Alimento");
+        confirmar.setContentText("¿Desea crear el alimento \"" + nombreAlimento + "\"?");
+        return confirmar.showAndWait();
+    }
+
+    public Optional<String> promptNombreAlimento() {
+        TextInputDialog dialog = new TextInputDialog("");
+        dialog.setTitle("Crear Alimento");
+        dialog.setHeaderText("Crear Nuevo Alimento");
+        dialog.setContentText("Nombre:");
+        return dialog.showAndWait();
+    }
+
+    @FXML
     public void OnCancelarClickButton() {
         Stage stage = (Stage) cancelarButton.getScene().getWindow();
-
         stage.close();
     }
 }
