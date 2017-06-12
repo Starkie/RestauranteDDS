@@ -62,7 +62,7 @@ public class AlimentoController {
     public void consumirSiSePuedeAlimentos(List<Alimento> alimentosDelPedido) throws AlmacenException {
         comprobarDisponibilidad(alimentosDelPedido);
         for (Alimento alimentoPedido:alimentosDelPedido ) {
-            consumirAlimento(alimentoPedido,1);
+            consumirAlimento(alimentoPedido,-1);
         }
     }
 

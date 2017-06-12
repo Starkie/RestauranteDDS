@@ -11,7 +11,6 @@ import persistance.AlimentoService;
 import persistance.AppContext;
 import restaurante.business.modelo.Patron_Decorador.BaseArroz;
 import restaurante.business.modelo.Patron_Decorador.BaseTallarines;
-import restaurante.business.modelo.Patron_Decorador.ComplementoGamba;
 import restaurante.domain.PedidoRestaurante;
 import restaurante.domain.Plato;
 import restaurante.domain.Usuario;
@@ -32,7 +31,7 @@ public class TestPlatoService {
 
     @Test
     public void TestAdd() {
-        Plato objetoInicio = new ComplementoGamba(new BaseTallarines());
+        Plato objetoInicio = new BaseTallarines();
         Alimento a = new Alimento("Tallarines");
         alimentoService.add(a);
         crudService.add(objetoInicio);
@@ -53,7 +52,7 @@ public class TestPlatoService {
     @Test
     public void TestUpdate() {
         boolean encontrado = false;
-        Plato objetoInicio = new ComplementoGamba(new BaseTallarines());
+        Plato objetoInicio = new BaseTallarines();
         crudService.add(objetoInicio);
         Alimento a = new Alimento("TALLARINES");
         alimentoService.add(a);

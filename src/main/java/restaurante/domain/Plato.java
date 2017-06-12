@@ -17,7 +17,7 @@ public abstract class Plato {
      @JoinColumn(name = "pedidoRestaurante_fk")
      private PedidoRestaurante pedidoRestaurante;
 
-     @ManyToOne(cascade = CascadeType.ALL)
+     @ManyToOne
      private Alimento alimento;
 
      protected double precio;

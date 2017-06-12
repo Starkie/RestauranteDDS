@@ -8,22 +8,24 @@ import org.junit.Test;
 import org.springframework.boot.SpringApplication;
 import persistance.AppContext;
 import restaurante.business.modelo.Patron_Decorador.BaseArroz;
-import restaurante.business.modelo.Patron_Decorador.ComplementoGamba;
 import restaurante.domain.PedidoRestaurante;
 import restaurante.domain.Plato;
 import restaurante.domain.Usuario;
 import restaurante.persistance.PedidoRestauranteService;
+import restaurante.persistance.PlatoService;
 
 import java.util.Iterator;
 
 public class TestPedidoRestauranteService {
 
     private static PedidoRestauranteService crudService;
+    private static PlatoService platoService;
 
     @BeforeClass
     public static void setUp(){
         SpringApplication.run(MainApplication.class);
         crudService = (PedidoRestauranteService) AppContext.getBean("pedidoRestauranteService");
+        platoService = (PlatoService) AppContext.getBean("platoService");
     }
 
     @Test
@@ -46,16 +48,17 @@ public class TestPedidoRestauranteService {
     public void TestUpdate() {
         boolean encontrado = false;
         PedidoRestaurante objetoInicio = new PedidoRestaurante(new Usuario("Paco",23232,"Mi casa","sds"));
-        crudService.add(objetoInicio);
-        Plato p = new ComplementoGamba(new BaseArroz());
+        Plato p = new BaseArroz();
         objetoInicio.addPlatoPedido(p);
-
+        crudService.add(objetoInicio);
+        objetoInicio.setEstaCocinado(true);
         crudService.update(objetoInicio);
 
         PedidoRestaurante recuperado = crudService.findById(objetoInicio.getId());
 
-        Assert.assertEquals(objetoInicio.toString(),recuperado.toString());
+        Assert.assertEquals(objetoInicio.isCocinado(),recuperado.isCocinado());
     }
+
 
     @Test
     public void TestRemove() {

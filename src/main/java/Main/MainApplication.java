@@ -59,6 +59,7 @@ public class MainApplication extends Application{
             productoAlmacenService.add(prodAlm);
             prodAlm.setProducto(p);
             prodAlm.setSock(20);
+            productoAlmacenService.update(prodAlm);
         }
 
 

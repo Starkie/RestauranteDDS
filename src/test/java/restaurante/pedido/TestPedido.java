@@ -1,39 +1,59 @@
 package restaurante.pedido;
 
+import Main.MainApplication;
+import almacen.domain.Producto;
+import almacen.domain.ProductoAlmacen;
+import almacen.domain.UnidadesCantidad;
+import almacen.persistance.ProductoAlmacenService;
+import almacen.persistance.ProductoService;
 import domain.Alimento;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.springframework.boot.SpringApplication;
 import persistance.AlimentoService;
 import persistance.AppContext;
 import restaurante.business.modelo.Patron_Decorador.BaseArroz;
 import restaurante.business.modelo.Patron_Estado.EstadoCocinandose;
 import restaurante.domain.PedidoRestaurante;
+import restaurante.domain.Plato;
 import restaurante.domain.Reclamacion;
 import restaurante.domain.Usuario;
+import restaurante.persistance.PlatoService;
 
 import java.util.Calendar;
 
 public class TestPedido {
 
     private static AlimentoService alimentoService;
+    private static PlatoService platoService;
 
     @BeforeClass
     public static void prepararAlmacen(){
+        SpringApplication.run(MainApplication.class);
+        platoService = (PlatoService) AppContext.getBean("platoService");
         alimentoService = (AlimentoService) AppContext.getBean("alimentoService");
-        alimentoService.add(new Alimento("Arroz"));
-        alimentoService.add(new Alimento("Tallarines"));
-        alimentoService.add(new Alimento("Pollo"));
-        alimentoService.add(new Alimento("Ternera"));
-        alimentoService.add(new Alimento("Gambas"));
-        alimentoService.add(new Alimento("Cacahuetes"));
-        alimentoService.add(new Alimento("Ostras"));
+        ProductoService productoService = (ProductoService) AppContext.getBean("productoService");
+        ProductoAlmacenService productoAlmacenService = (ProductoAlmacenService) AppContext.getBean("productoAlmacenService");
+        String[] alimentos = new String[]{"Arroz","Tallarines","Pollo","Ternera","Gambas","Cacahuetes","Ostras"};
+        for(int i=0; i<alimentos.length;i++){
+            Alimento a = new Alimento(alimentos[i]);
+            alimentoService.add(a);
+            Producto p = new Producto(alimentos[i],a,5,6, UnidadesCantidad.Unidades);
+            productoService.add(p);
+            ProductoAlmacen prodAlm = new ProductoAlmacen();
+            productoAlmacenService.add(prodAlm);
+            prodAlm.setProducto(p);
+            prodAlm.setSock(20);
+            productoAlmacenService.update(prodAlm);
+        }
     }
 
     @Test
     public void testConfirmarPedidoNuevo() throws Exception {
         PedidoRestaurante pedido = new PedidoRestaurante(new Usuario("Paco",232,"Hola","12"));
-        pedido.addPlatoPedido(new BaseArroz());
+        Plato p = crearPlato();
+        pedido.addPlatoPedido(p);
         pedido.confirmarPedido();
         Assert.assertEquals("Pendiente de Cocina",pedido.getEstado().getDescripcion());
     }
@@ -50,16 +70,25 @@ public class TestPedido {
     public void testReclamarPedidoExcepcion(){
         try {
             PedidoRestaurante pedido = new PedidoRestaurante(new Usuario("Paco", 232, "Hola", "12"));
-            pedido.addPlatoPedido(new BaseArroz());
+            Plato p = crearPlato();
+            pedido.addPlatoPedido(p);
             pedido.confirmarPedido();
             pedido.reclamarRetraso();
         } catch(Exception e){Assert.assertEquals("No puede reclamar hasta que no pasen 30 minutos desde la confirmación de su pedido.",e.getMessage());}
     }
 
+    private Plato crearPlato() {
+        Plato p = new BaseArroz();
+        platoService.add(p);
+        p.setAlimento(alimentoService.findByName("Arroz"));
+        return p;
+    }
+
     @Test
     public void testReclamarPedidoNoExcepcion() throws Exception {
             PedidoRestaurante pedido = new PedidoRestaurante(new Usuario("Paco", 232, "Hola", "12"));
-            pedido.addPlatoPedido(new BaseArroz());
+            Plato p = crearPlato();
+            pedido.addPlatoPedido(p);
             pedido.confirmarPedido();
             Calendar calendar = Calendar.getInstance();
             calendar.set(1996,12,11);
@@ -72,7 +101,8 @@ public class TestPedido {
     public void testCancelarException(){
         try {
             PedidoRestaurante pedido = new PedidoRestaurante(new Usuario("Paco", 232, "Hola", "12"));
-            pedido.addPlatoPedido(new BaseArroz());
+            Plato p = crearPlato();
+            pedido.addPlatoPedido(p);
             pedido.confirmarPedido();
             pedido.setEstado(new EstadoCocinandose());
             pedido.cancelarPedido();
@@ -83,7 +113,8 @@ public class TestPedido {
     public void testCofirmarPedidoExcepcion(){
         try {
             PedidoRestaurante pedido = new PedidoRestaurante(new Usuario("Paco", 232, "Hola", "12"));
-            pedido.addPlatoPedido(new BaseArroz());
+            Plato p = crearPlato();
+            pedido.addPlatoPedido(p);
             pedido.confirmarPedido();
             pedido.confirmarPedido();
         } catch(Exception e){Assert.assertEquals("El pedido ya ha sido confirmado.",e.getMessage());}
