@@ -67,6 +67,12 @@ public class AlimentoController {
         }
     }
 
+    public void devolverAlStock(List<Alimento> alimentosDelPedido) throws AlmacenException {
+        for (Alimento alimentoPedido:alimentosDelPedido ) {
+            consumirAlimento(alimentoPedido,1);
+        }
+    }
+
     private void comprobarDisponibilidad(List<Alimento> alimentosDelPedido) throws AlmacenException {
         for (Alimento a: alimentosDelPedido) {
             int ocurrenciasDelAlimento = 0;
