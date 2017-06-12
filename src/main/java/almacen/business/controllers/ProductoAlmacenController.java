@@ -4,7 +4,9 @@ import almacen.domain.Producto;
 import almacen.domain.ProductoAlmacen;
 import almacen.persistance.ProductoAlmacenService;
 import persistance.AppContext;
+import persistance.ServiceLocator;
 
+import javax.xml.ws.Service;
 import java.util.ArrayList;
 
 public class ProductoAlmacenController {
@@ -18,7 +20,7 @@ public class ProductoAlmacenController {
 
     public static ProductoAlmacenController getInstance() {
         if(productosController == null) {
-            ProductoAlmacenService productoAlmacenService = (ProductoAlmacenService) AppContext.getBean("productoAlmacenService");
+            ProductoAlmacenService productoAlmacenService = ServiceLocator.getProductoAlmacenService();
             productosController = new ProductoAlmacenController(productoAlmacenService);
         }
         return productosController;
