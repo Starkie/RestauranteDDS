@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="631.0" prefWidth="944.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view_controller.ControladorVistaRepartidor">
+   <bottom>
+      <HBox BorderPane.alignment="CENTER">
+         <children>
+            <Label id="lblAcceso" fx:id="lblAcceso" text="Label" />
+         </children>
+         <BorderPane.margin>
+            <Insets bottom="10.0" left="10.0" top="10.0" />
+         </BorderPane.margin>
+      </HBox>
+   </bottom>
+   <left>
+      <TableView id="tablaPedidos" fx:id="tablaPedidos" prefHeight="570.0" prefWidth="511.0" BorderPane.alignment="CENTER">
+        <columns>
+          <TableColumn id="colID" fx:id="colID" prefWidth="111.0" text="ID Pedido" />
+            <TableColumn id="colPlatos" fx:id="colPlatos" prefWidth="399.0" text="Platos" />
+        </columns>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <BorderPane.margin>
+            <Insets left="20.0" right="20.0" top="20.0" />
+         </BorderPane.margin>
+      </TableView>
+   </left>
+   <center>
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <VBox spacing="20.0">
+               <children>
+                  <Label text="Pedido actual:" />
+                  <TextArea id="txtPedidoActual" fx:id="txtPedidoActual" prefHeight="200.0" prefWidth="200.0" />
+               </children>
+            </VBox>
+            <Button id="btnSiguientePedido" fx:id="btnSiguientePedido" mnemonicParsing="false" onAction="#pressSiguiente" text="Siguiente Pedido" />
+         </children>
+         <BorderPane.margin>
+            <Insets right="20.0" />
+         </BorderPane.margin>
+      </VBox>
+   </center>
+   <top>
+      <Label alignment="TOP_RIGHT" text="Pedidos pendientes:" BorderPane.alignment="BOTTOM_LEFT">
+         <BorderPane.margin>
+            <Insets left="20.0" top="20.0" />
+         </BorderPane.margin>
+      </Label>
+   </top>
+</BorderPane>

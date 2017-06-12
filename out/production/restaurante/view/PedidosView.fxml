@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="631.0" prefWidth="1255.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view_controller.ControladorVistaPedido">
+   <left>
+      <VBox spacing="20.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button id="btnNuevoPedido" fx:id="btnNuevoPedido" mnemonicParsing="false" onAction="#pressNuevoPedido" prefHeight="31.0" prefWidth="134.0" text="Nuevo Pedido" />
+            <Button id="btnCancelarPedido" fx:id="btnCancelarPedido" mnemonicParsing="false" onAction="#pressCancelarPedido" prefHeight="31.0" prefWidth="135.0" text="Cancelar Pedido" />
+            <Button id="btnReclamarRetraso" fx:id="btnReclamarRetraso" mnemonicParsing="false" onAction="#pressRetraso" text="Reclamar Retraso" />
+         </children>
+         <BorderPane.margin>
+            <Insets left="20.0" right="20.0" top="40.0" />
+         </BorderPane.margin>
+      </VBox>
+   </left>
+   <center>
+      <TableView id="tablaPedidos" fx:id="tablaPedidos" BorderPane.alignment="CENTER">
+        <columns>
+          <TableColumn id="colID" fx:id="colID" prefWidth="27.0" text="ID" />
+            <TableColumn id="colPlatos" fx:id="colPlatos" prefWidth="411.0" text="Platos" />
+            <TableColumn id="colEstado" fx:id="colEstado" prefWidth="203.0" text="Estado" />
+            <TableColumn id="colPrecio" fx:id="colPrecio" prefWidth="71.0" text="Precio" />
+          <TableColumn id="colHoraConf" fx:id="colHoraConf" prefWidth="189.0" text="Hora Confirmación" />
+            <TableColumn id="colHoraRec" fx:id="colHoraRec" prefWidth="158.0" text="Hora Recibido" />
+        </columns>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <BorderPane.margin>
+            <Insets right="20.0" top="20.0" />
+         </BorderPane.margin>
+      </TableView>
+   </center>
+   <bottom>
+      <HBox BorderPane.alignment="CENTER">
+         <children>
+            <Label id="lblAcceso" fx:id="lblAcceso" text="Label" />
+         </children>
+         <BorderPane.margin>
+            <Insets bottom="10.0" left="10.0" />
+         </BorderPane.margin>
+      </HBox>
+   </bottom>
+</BorderPane>
