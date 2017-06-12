@@ -8,17 +8,19 @@ import persistance.AppContext;
 import java.util.ArrayList;
 
 public class ProductoAlmacenController {
-    private static ProductoAlmacenController productosController;
-    private static ProductoAlmacenService productoAlmacenService;
+    protected static ProductoAlmacenController productosController;
+    protected static ProductoAlmacenService productoAlmacenService;
 
-    private ProductoAlmacenController() {
+    protected ProductoAlmacenController(ProductoAlmacenService productoAlmacenService) {
         this.productosController = this;
-        this.productoAlmacenService = (ProductoAlmacenService) AppContext.getBean("productoAlmacenService");
+        this.productoAlmacenService = productoAlmacenService;
     }
 
     public static ProductoAlmacenController getInstance() {
-        if(productosController == null)
-            productosController = new ProductoAlmacenController();
+        if(productosController == null) {
+            ProductoAlmacenService productoAlmacenService = (ProductoAlmacenService) AppContext.getBean("productoAlmacenService");
+            productosController = new ProductoAlmacenController(productoAlmacenService);
+        }
         return productosController;
     }
 
@@ -26,7 +28,7 @@ public class ProductoAlmacenController {
         productoAlmacenService.update(productoAlmacen);
     }
 
-    private ProductoAlmacen buscarPorProducto(Producto producto) {
+    public ProductoAlmacen buscarPorProducto(Producto producto) {
         return productoAlmacenService.findByProducto(producto);
     }
 

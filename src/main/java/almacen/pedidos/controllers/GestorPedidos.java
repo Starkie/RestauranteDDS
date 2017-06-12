@@ -13,17 +13,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GestorPedidos {
-    private static GestorPedidos gestorPedidos;
-    private static PedidoService pedidoService;
+    protected static GestorPedidos gestorPedidos;
+    protected static PedidoService pedidoService;
+    protected static ProductoAlmacenController productoAlmacenController;
 
-    private GestorPedidos() {
+    protected GestorPedidos(PedidoService pedidoService, ProductoAlmacenController productoAlmacenController) {
         this.gestorPedidos = this;
-        this.pedidoService = (PedidoService) AppContext.getBean("pedidoService");
+        this.pedidoService = pedidoService;
+        this.productoAlmacenController = productoAlmacenController;
     }
 
     public static GestorPedidos getInstance() {
         if(gestorPedidos == null) {
-            gestorPedidos = new GestorPedidos();
+            PedidoService pedidoService = (PedidoService) AppContext.getBean("pedidoService");
+            ProductoAlmacenController productoAlmacenController = ProductoAlmacenController.getInstance();
+            gestorPedidos = new GestorPedidos(pedidoService, productoAlmacenController);
         }
         return gestorPedidos;
     }
@@ -86,7 +90,6 @@ public class GestorPedidos {
 
     public void recibirPedido(Pedido pedido) throws AlmacenException {
         pedido.recibirPedido();
-        ProductoAlmacenController productoAlmacenController = ProductoAlmacenController.getInstance();
         List<FilaTabla> filaTablas = AdaptadorListaCompra.adaptarListaCompra(pedido.getLista());
         filaTablas.forEach(fila -> productoAlmacenController.actualizarStock(fila.getProducto(), fila.getUnidades()));
         guardarPedido(pedido);
