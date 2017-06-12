@@ -47,13 +47,10 @@ public class MainApplication extends Application{
         SpringApplication.run(MainApplication.class, args);
 
             AlimentoService alimentoService = (AlimentoService) AppContext.getBean("alimentoService");
+            alimentoService.add(new Alimento("manzana"));
+            alimentoService.add(new Alimento("tallarines"));
         /*
         //Alimento
-
-        AlimentoService alimentoService = (AlimentoService) AppContext.getBean("alimentoService");
-        alimentoService.add(new Alimento("manzana"));
-        Alimento a2 = alimentoService.findByName("manzana");
-        a2.addCategoria(new Categoria("categoria", "cat"));
 
         //Categoria
         CategoriaService categoriaService = (CategoriaService) AppContext.getBean("categoriaService");
@@ -102,7 +99,7 @@ public class MainApplication extends Application{
         reclamacionService.add(reclamacion);
         Reclamacion reclamacion1 = reclamacionService.findAll().iterator().next();*/
 
-        PedidoRestauranteService pedidoRestauranteService = (PedidoRestauranteService) AppContext.getBean("pedidoRestauranteService");
+        /*PedidoRestauranteService pedidoRestauranteService = (PedidoRestauranteService) AppContext.getBean("pedidoRestauranteService");
         PedidoRestaurante pedidoRestaurante2 = new PedidoRestaurante(new Usuario("Pepe",232,"Calle falsa","1212"));
         pedidoRestauranteService.add(pedidoRestaurante2);
         pedidoRestaurante2.setEstado(new EstadoCocinado());
@@ -158,13 +155,13 @@ public class MainApplication extends Application{
         GestorPedidos gestorPedidos = GestorPedidos.getInstance();
 
         Pedido p = gestorPedidos.crearPedido(lista);
-
+*/
         launch(args);
     }
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/LoginView.fxml"));
+        /*FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/LoginView.fxml"));
         Parent root = loader.load();
 
         ControladorVistaLogin controladorVistaLogin = loader.getController();
@@ -172,8 +169,8 @@ public class MainApplication extends Application{
 
         primaryStage.setTitle("Login");
         primaryStage.setScene(new Scene(root));
-        primaryStage.setResizable(false);
-        BorderPane rootAlmacen = FXMLLoader.load(getClass().getResource("/almacen/MainScreen/AlmacenMain.fxml"));
+        primaryStage.setResizable(false);*/
+        BorderPane root = FXMLLoader.load(getClass().getResource("/almacen/MainScreen/AlmacenMain.fxml"));
         primaryStage.setTitle("Almacen");
         primaryStage.setScene(new Scene(root, 600, 400));
         primaryStage.show();
