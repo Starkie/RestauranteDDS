@@ -6,11 +6,17 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.BorderPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import restaurante.business.bussiness_controller.ControladorPersona;
 import restaurante.business.modelo.Patron_Comando.Cocinero;
 import restaurante.domain.PedidoRestaurante;
+
+import java.io.IOException;
 
 public class ControladorVistaCocinero {
 
@@ -41,6 +47,19 @@ public class ControladorVistaCocinero {
         controladorPersona.finalizarActualCocinero(cocinero);
         actualizarPedidoAtendiendo();
         actualizarTabla();
+    }
+
+
+    @FXML
+    void pressAccesoAlmacen(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/almacen/view/AlmacenMain.fxml"));
+        BorderPane root = loader.load();
+
+        Stage ventanaPedidos = new Stage();
+        ventanaPedidos.setTitle("Almacen");
+        ventanaPedidos.setScene(new Scene(root, 600, 400));
+        ventanaPedidos.initModality(Modality.APPLICATION_MODAL);
+        ventanaPedidos.show();
     }
 
     public void initStage(Stage stage, Cocinero cocinero) {

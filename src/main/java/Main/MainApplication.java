@@ -188,12 +188,9 @@ public class MainApplication extends Application{
 
         primaryStage.setTitle("Login");
         primaryStage.setScene(new Scene(root));
+        primaryStage.setResizable(true);
         primaryStage.show();
 
-        //BorderPane root = FXMLLoader.load(getClass().getResource("/almacen/view/AlmacenMain.fxml"));
-//        primaryStage.setTitle("Almacen");
-//        primaryStage.setScene(new Scene(root, 600, 400));
-//        primaryStage.show();
-        EmisorOrdenes.getEmisorOrdenes().getThreadDisponibilidad().interrupt();
+        EmisorOrdenes.getEmisorOrdenes().setContinuarThread(false);
     }
 }

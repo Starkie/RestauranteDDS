@@ -13,6 +13,7 @@ public class EmisorOrdenes {
     private Queue<OrdenCocinar> ordenesACocinar;
     private List<Repartidor> repartidores;
     private List<Cocinero> cocineros;
+    private boolean continuarThread;
 
     private static EmisorOrdenes elEmisor;
 
@@ -23,6 +24,7 @@ public class EmisorOrdenes {
         repartidores = new ArrayList<Repartidor>();
         if(recuperarDatosDB) recuperarOrdenesDB();
         getThreadDisponibilidad().start();
+        this.continuarThread = true;
     }
 
     private void recuperarOrdenesDB() {
@@ -95,7 +97,7 @@ public class EmisorOrdenes {
         return new Thread(new Runnable() {
             @Override
             public void run() {
-                while (true) {
+                while (continuarThread) {
                     if(ordenesACocinar.size()>0) {
                         OrdenCocinar ordCocina = ordenesACocinar.element();
                         for (Cocinero c : cocineros) {
@@ -126,4 +128,11 @@ public class EmisorOrdenes {
         });
     }
 
+    public boolean isContinuarThread() {
+        return continuarThread;
+    }
+
+    public void setContinuarThread(boolean continuarThread) {
+        this.continuarThread = continuarThread;
+    }
 }
