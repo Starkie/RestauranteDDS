@@ -1,17 +1,17 @@
 package Main;
 
 import almacen.model.Producto;
+import almacen.model.ProductoAlmacen;
 import almacen.model.UnidadesCantidad;
 import almacen.pedidos.controllers.GestorPedidos;
 import almacen.pedidos.model.Pedido;
-import almacen.persistance.ProductoService;
+import almacen.persistance.ProductoAlmacenService;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import model.Alimento;
-import model.Categoria;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
@@ -19,7 +19,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import persistance.AlimentoService;
 import persistance.AppContext;
-import persistance.CategoriaService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,24 +33,23 @@ public class MainApplication extends Application{
         SpringApplication.run(MainApplication.class, args);
 
         AlimentoService alimentoService = (AlimentoService) AppContext.getBean("alimentoService");
-        alimentoService.add(new Alimento("manzana", "fruta"));
+        alimentoService.add(new Alimento("manzana"));
         Alimento a2 = alimentoService.findByName("manzana");
-        a2.addCategoria(new Categoria("categoria", "cat"));
-        CategoriaService categoriaService = (CategoriaService) AppContext.getBean("categoriaService");
         alimentoService.update(a2);
-        Categoria cat = categoriaService.findByName("categoria");
-        Alimento a3 = new Alimento("Tallarines", "Pasta");
+        Alimento a3 = new Alimento("Tallarines");
         alimentoService.add(a3);
 
         List<Producto> lista = new ArrayList<>();
         Producto p1 = new Producto("Producto1", a2,500, 2, UnidadesCantidad.KG);
         Producto p2 = new Producto("Tallarines Gallo", a3 , 20, 1, UnidadesCantidad.KG);
-        ProductoService productoService = (ProductoService) AppContext.getBean("productoService");
-        productoService.add(p1);
-        productoService.add(p2);
-        Iterable<Producto> productos = productoService.findAll();
+        ProductoAlmacen pr1 = new ProductoAlmacen(p1, 2);
+        ProductoAlmacen pr2 = new ProductoAlmacen(p2, 3);
+        ProductoAlmacenService productoService = (ProductoAlmacenService) AppContext.getBean("productoAlmacenService");
+        productoService.add(pr1);
+        productoService.add(pr2);
 
         lista.add(p1);
+        lista.add(p2);
 
         GestorPedidos gestorPedidos = GestorPedidos.getInstance();
 
