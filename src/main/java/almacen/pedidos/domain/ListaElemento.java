@@ -49,6 +49,11 @@ public class ListaElemento extends ListaCompra {
         return Collections.emptyIterator();
     }
 
+    @Override
+    public ListaCompra clone() throws CloneNotSupportedException {
+        return new ListaElemento(this.producto, unidades);
+    }
+
     public String toString() {
         return "> " + unidades +"x - " + this.nombre  + " - Ud: " +  precio + "€";
     }

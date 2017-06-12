@@ -40,9 +40,7 @@ public abstract class ListaCompra implements  Cloneable{
 
     public abstract Iterator<ListaCompra> createIterator();
 
-    public ListaCompra clone() throws CloneNotSupportedException {
-        return (ListaCompra) super.clone();
-    }
+    public abstract ListaCompra clone() throws CloneNotSupportedException;
 
 
 }
