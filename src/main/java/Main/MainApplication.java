@@ -1,19 +1,10 @@
 package Main;
 
-import almacen.model.Producto;
-import almacen.model.ProductoAlmacen;
-import almacen.model.UnidadesCantidad;
-import almacen.pedidos.controllers.GestorPedidos;
-import almacen.pedidos.model.Pedido;
-import almacen.persistance.ProductoAlmacenService;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import model.PedidoRestaurante;
-import model.Usuario;
 import model.Alimento;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -22,20 +13,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import persistance.AlimentoService;
 import persistance.AppContext;
-import persistance.PedidoRestauranteService;
-import persistance.PersonaService;
-import restaurante.modelo.Patron_Comando.Cocinero;
-import restaurante.modelo.Patron_Comando.Repartidor;
-import restaurante.modelo.Patron_Decorador.*;
-import restaurante.modelo.Patron_Estado.EstadoCocinado;
-import restaurante.modelo.Patron_Estado.EstadoEnCamino;
-import restaurante.modelo.Patron_Estado.EstadoPendiente;
-import view_controller.ControladorVistaLogin;
-
-import java.util.Calendar;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @SpringBootApplication
 @ComponentScan({"persistance", "almacen.persistance"})
