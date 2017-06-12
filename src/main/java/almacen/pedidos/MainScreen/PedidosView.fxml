@@ -12,11 +12,6 @@
     <center>
         <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
             <children>
-                <ToolBar prefHeight="40.0" prefWidth="200.0">
-                    <items>
-                        <Button fx:id="pedidosButton" mnemonicParsing="false" text="Pedidos" />
-                    </items>
-                </ToolBar>
                 <Label text="Pedidos">
                     <font>
                         <Font name="System Bold" size="31.0" />
@@ -53,11 +48,11 @@
                               <Insets top="10.0" />
                            </VBox.margin>
                         </Button>
-                                <Button fx:id="editarPedidoButton" disable="true" mnemonicParsing="false" onAction="#OnEditarPedidoClick" prefHeight="25.0" prefWidth="76.0" text="Editar">
-                                    <VBox.margin>
-                                        <Insets top="10.0" />
-                                    </VBox.margin>
-                                </Button>
+                        <Button fx:id="recibirPedidoButton" disable="true" layoutX="15.0" layoutY="80.0" mnemonicParsing="false" onAction="#OnRecibirPedidoClick" prefHeight="25.0" prefWidth="76.0" text="Recibir">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Button>
                                 <Button fx:id="cancelarPedidoButton" disable="true" mnemonicParsing="false" onAction="#OnCancelarPedidoClick" prefHeight="25.0" prefWidth="76.0" text="Cancelar" VBox.vgrow="ALWAYS">
                                     <VBox.margin>
                                         <Insets top="10.0" />

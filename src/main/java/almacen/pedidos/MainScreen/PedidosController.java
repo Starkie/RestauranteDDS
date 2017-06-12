@@ -5,6 +5,8 @@ import almacen.pedidos.MainScreen.CrearPedidos.CrearPedidosController;
 import almacen.pedidos.MainScreen.InfoPedidos.ResumenPedidoController;
 import almacen.pedidos.controllers.GestorPedidos;
 import almacen.pedidos.model.AlmacenException;
+import almacen.pedidos.model.EstadoPedido;
+import almacen.pedidos.model.EstadoPedidoInvalidoException;
 import almacen.pedidos.model.Pedido;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleDoubleProperty;
@@ -18,12 +20,15 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -50,7 +55,7 @@ public class PedidosController implements Initializable {
     private Button abrirPedidoButton;
 
     @FXML
-    private Button editarPedidoButton;
+    private Button recibirPedidoButton;
 
     @FXML
     private Button cancelarPedidoButton;
@@ -74,7 +79,7 @@ public class PedidosController implements Initializable {
         precioColumn.setCellValueFactory(p -> new SimpleDoubleProperty(p.getValue().getPrecio()));
 
         abrirPedidoButton.disableProperty().bind(Bindings.isEmpty(tablaPedidos.getSelectionModel().getSelectedItems()));
-        editarPedidoButton.disableProperty().bind(Bindings.isEmpty(tablaPedidos.getSelectionModel().getSelectedItems()));
+        recibirPedidoButton.disableProperty().bind(Bindings.isEmpty(tablaPedidos.getSelectionModel().getSelectedItems()));
         cancelarPedidoButton.disableProperty().bind(Bindings.isEmpty(tablaPedidos.getSelectionModel().getSelectedItems()));
 
         refreshTable();
@@ -113,8 +118,27 @@ public class PedidosController implements Initializable {
     }
 
     @FXML
-    private void OnEditarPedidoClick() {
+    private void OnRecibirPedidoClick() {
+        Pedido p = (Pedido) tablaPedidos.getSelectionModel().getSelectedItem();
+        try {
+            gestorPedidos.recibirPedido(p);
 
+            Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
+            alert2.setTitle("Pedido Recibido");
+            alert2.setHeaderText("Pedido Recibido");
+            alert2.setContentText("Se ha actualizado el stock del almacén");
+            alert2.showAndWait();
+
+            refreshTable();
+        } catch (AlmacenException e) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Recibir pedido");
+            alert.setHeaderText("No se pudo recibir el pedido");
+            Text text = new Text(e.getMessage());
+            text.setWrappingWidth(300);
+            alert.getDialogPane().setContent(text);
+            alert.showAndWait();
+        }
     }
 
     @FXML
@@ -141,8 +165,10 @@ public class PedidosController implements Initializable {
                 Alert alert2 = new Alert(Alert.AlertType.ERROR);
                 alert2.setTitle("Error al Cancelar Pedido");
                 alert2.setHeaderText("Error cancelando el pedido");
-                alert2.setContentText(e.getMessage());
-                alert2.showAndWait();
+                Text text = new Text(e.getMessage());
+                text.setWrappingWidth(300);
+                alert2.getDialogPane().setContent(text);
+               alert2.showAndWait();
             }
         }
     }
