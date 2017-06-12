@@ -24,7 +24,7 @@ public class GestorPedidosTest {
     @Test
     public void crearPedido() throws Exception {
         GestorPedidos gestorPedidos = GestorPedidoMock.getInstance();
-        Alimento a1 = new Alimento("Manzana", "Fruta");
+        Alimento a1 = new Alimento("Manzana");
         Producto p1 = new Producto("Producto 1", a1, 3, 1, UnidadesCantidad.KG);
         Producto p2 = new Producto("Producto 2", a1, 5, 2, UnidadesCantidad.LITRO);
         List<Producto> listaProductos = new ArrayList<>();
