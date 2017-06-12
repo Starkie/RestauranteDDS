@@ -3,6 +3,7 @@ package almacen.business.controllers;
 import domain.Alimento;
 import persistance.AlimentoService;
 import persistance.AppContext;
+import persistance.ServiceLocator;
 
 import java.util.ArrayList;
 
@@ -17,7 +18,7 @@ public class AlimentoController {
 
     public static AlimentoController getInstance() {
         if(alimentoController == null) {
-            AlimentoService alimentoService = (AlimentoService) AppContext.getBean("alimentoService");
+            AlimentoService alimentoService = ServiceLocator.getAlimentoService();
             alimentoController = new AlimentoController(alimentoService);
         }
         return alimentoController;
