@@ -1,10 +1,9 @@
 package almacen.pedidos.MainScreen.InfoPedidos;
 
 
-import almacen.model.Producto;
-import almacen.pedidos.model.ListaCompra;
-import almacen.pedidos.model.ListaElemento;
 import almacen.pedidos.model.Pedido;
+import almacen.pedidos.util.AdaptadorListaCompra;
+import almacen.pedidos.util.FilaTabla;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -48,17 +47,17 @@ public class ResumenPedidoController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        unidadesProductoColumn.setCellValueFactory(p -> new SimpleIntegerProperty(p.getValue().unidades));
+        unidadesProductoColumn.setCellValueFactory(p -> new SimpleIntegerProperty(p.getValue().getUnidades()));
 
-        nombreColumn.setCellValueFactory(p -> new SimpleStringProperty(p.getValue().producto.getNombre()));
+        nombreColumn.setCellValueFactory(p -> new SimpleStringProperty(p.getValue().getProducto().getNombre()));
 
-        alimentoColumn.setCellValueFactory(p -> new SimpleStringProperty(p.getValue().producto.getAlimento().getNombre()));
+        alimentoColumn.setCellValueFactory(p -> new SimpleStringProperty(p.getValue().getProducto().getAlimento().getNombre()));
 
-        cantidadColumn.setCellValueFactory(p -> new SimpleDoubleProperty(p.getValue().producto.getCantidad()));
+        cantidadColumn.setCellValueFactory(p -> new SimpleDoubleProperty(p.getValue().getProducto().getCantidad()));
 
-        unidadColumn.setCellValueFactory(p -> new SimpleStringProperty(p.getValue().producto.getUnidades().toString()));
+        unidadColumn.setCellValueFactory(p -> new SimpleStringProperty(p.getValue().getProducto().getUnidades().toString()));
 
-        precioColumn.setCellValueFactory(p -> new SimpleDoubleProperty(p.getValue().producto.getPrecio()));
+        precioColumn.setCellValueFactory(p -> new SimpleDoubleProperty(p.getValue().getProducto().getPrecio()));
 
     }
 
@@ -77,33 +76,4 @@ public class ResumenPedidoController implements Initializable {
     }
 
 }
-class AdaptadorListaCompra {
-    public static  List<FilaTabla> adaptarListaCompra(ListaCompra listaCompra) {
-        ArrayList<FilaTabla> listaFilas = new ArrayList<>();
-        Iterator<ListaCompra> listaCompraIterator = listaCompra.createIterator();
-        listaCompraIterator.forEachRemaining(el ->
-                {
-                    if (el instanceof ListaElemento) {
-                        listaFilas.add(
-                                new FilaTabla(
-                                        ((ListaElemento) el).getProducto(),
-                                        ((ListaElemento) el).getUnidades()
-                                )
-                        );
-                    }
-                }
-        );
-        return listaFilas;
-    }
 
-}
-
-class FilaTabla {
-    Producto producto;
-    int unidades;
-
-    public FilaTabla(Producto producto, int unidades) {
-        this.producto = producto;
-        this.unidades = unidades;
-    }
-}
