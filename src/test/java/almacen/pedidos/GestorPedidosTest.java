@@ -1,6 +1,7 @@
 package almacen.pedidos;
 
 import almacen.controllers.ProductoAlmacenController;
+import almacen.controllers.ProductoAlmacenControllerMock;
 import almacen.model.Producto;
 import almacen.model.ProductoAlmacen;
 import almacen.model.UnidadesCantidad;
@@ -9,14 +10,11 @@ import almacen.pedidos.model.ListaCompra;
 import almacen.pedidos.model.ListaCompuesto;
 import almacen.pedidos.model.ListaElemento;
 import almacen.pedidos.model.Pedido;
-import almacen.pedidos.util.AdaptadorListaCompra;
-import almacen.pedidos.util.FilaTabla;
-import almacen.persistance.ProductoAlmacenService;
+import almacen.persistance.pedidos.PedidoServiceMock;
 import almacen.persistance.pedidos.PedidoService;
 import model.Alimento;
 import org.junit.Assert;
 import org.junit.Test;
-import sun.security.jca.GetInstance;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -90,47 +88,3 @@ class GestorPedidoMock extends GestorPedidos {
 
 }
 
-class PedidoServiceMock extends PedidoService{
-    List<Pedido> listaPedidos = new ArrayList<>();
-    ProductoAlmacenController productoAlmacenController = ProductoAlmacenControllerMock.getInstance();
-
-    @Override
-    public void add(Pedido p) {
-        listaPedidos.add(p);
-        List<FilaTabla> filaTablas = AdaptadorListaCompra.adaptarListaCompra(p.getLista());
-        filaTablas.forEach(fila -> productoAlmacenController.guardarProducto(new ProductoAlmacen(fila.getProducto(), fila.getUnidades())));
-    }
-
-}
-
-class ProductoAlmacenServiceMock extends ProductoAlmacenService {
-    List<ProductoAlmacen> productos = new ArrayList<>();
-    @Override
-    public void update(ProductoAlmacen productoAlmacen) {
-        productos.add(productoAlmacen);
-    }
-    @Override
-    public ProductoAlmacen findByProducto(Producto producto) {
-        return productos.stream().filter(f -> f.getProducto().equals(producto)).findFirst().get();
-    }
-
-}
-class ProductoAlmacenControllerMock extends ProductoAlmacenController {
-
-    protected ProductoAlmacenControllerMock(ProductoAlmacenService productoAlmacenService) {
-        super(productoAlmacenService);
-    }
-
-    public static ProductoAlmacenController getInstance() {
-        if(productosController == null) {
-            ProductoAlmacenService productoAlmacenService = new ProductoAlmacenServiceMock();
-            productosController = new ProductoAlmacenControllerMock(productoAlmacenService);
-        }
-        return productosController;
-    }
-
-    @Override
-    public ProductoAlmacen buscarPorProducto(Producto producto) {
-        return productoAlmacenService.findByProducto(producto);
-    }
-}
