@@ -1,5 +1,6 @@
 package almacen.persistance;
 
+import almacen.model.Producto;
 import almacen.model.ProductoAlmacen;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,5 +36,9 @@ public class ProductoAlmacenService implements CrudService<ProductoAlmacen,Long>
     @Override
     public Iterable<ProductoAlmacen> findAll() {
         return productoAlmacenRepository.findAll();
+    }
+
+    public ProductoAlmacen findByProducto(Producto producto) {
+        return productoAlmacenRepository.findByProducto(producto);
     }
 }
