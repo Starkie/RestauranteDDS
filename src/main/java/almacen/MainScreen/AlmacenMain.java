@@ -21,6 +21,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 
@@ -152,8 +153,11 @@ public class AlmacenMain implements Initializable {
         stage.setTitle("Pedidos");
         stage.setMinWidth(600);
         stage.setMinHeight(400);
-        stage.show();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.showAndWait();
 
+        productos = FXCollections.observableArrayList(productoAlmacenController.getAllProductos());
+        tablaProductos.setItems(productos);
     }
 
 }
