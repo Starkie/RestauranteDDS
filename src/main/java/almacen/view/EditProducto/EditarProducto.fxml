@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
+
 <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="440.0" prefWidth="280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="almacen.view.EditProducto.EditarProductoController">
    <children>
       <Label fx:id="tituloLabel" text="Nuevo Producto">
@@ -70,7 +73,12 @@
             <TextField fx:id="precioText" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <TextField fx:id="cantidadText" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <ComboBox fx:id="unidadesCombo" prefHeight="25.0" prefWidth="201.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <ComboBox fx:id="alimentoCombo" prefHeight="25.0" prefWidth="194.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <HBox alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <children>
+                  <ComboBox fx:id="alimentoCombo" prefHeight="25.0" prefWidth="194.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Button fx:id="crearAlimentoButton" mnemonicParsing="false" onAction="#OnCrearAlimentoClick" text="+" />
+               </children>
+            </HBox>
             <Button fx:id="cancelarButton" cancelButton="true" mnemonicParsing="false" onAction="#OnCancelarClickButton" prefHeight="25.0" prefWidth="145.0" text="Cancelar" GridPane.columnIndex="1" GridPane.rowIndex="6" />
             <Button fx:id="aceptarButton" mnemonicParsing="false" onAction="#OnClickAceptarButton" prefHeight="25.0" prefWidth="119.0" text="Aceptar" GridPane.rowIndex="6" />
             <Label layoutX="69.0" layoutY="180.0" text="Stock Actual" GridPane.rowIndex="5">
