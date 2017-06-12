@@ -88,7 +88,7 @@ public class PedidosController implements Initializable {
         CrearPedidosController crearPedidosController = fxmlLoader.getController();
         Stage stage = new Stage();
         stage.setTitle("Creacion de Pedido");
-        stage.setScene(new Scene(root, 600, 400));
+        stage.setScene(new Scene(root, 1000, 400));
         gestorPedidos = GestorPedidos.getInstance();
         Pedido p = gestorPedidos.crearPedido();
         crearPedidosController.setPedido(p);
