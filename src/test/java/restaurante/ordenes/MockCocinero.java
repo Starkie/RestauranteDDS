@@ -1,9 +1,9 @@
 package restaurante.ordenes;
 
 
-import restaurante.modelo.Patron_Comando.Cocinero;
-import restaurante.modelo.Patron_Comando.OrdenRepartir;
-import restaurante.modelo.Patron_Estado.EstadoCocinado;
+import restaurante.business.modelo.Patron_Comando.Cocinero;
+import restaurante.business.modelo.Patron_Comando.OrdenRepartir;
+import restaurante.business.modelo.Patron_Estado.EstadoCocinado;
 
 public class MockCocinero extends Cocinero {
     public MockCocinero() {

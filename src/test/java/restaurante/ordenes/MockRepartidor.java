@@ -1,7 +1,7 @@
 package restaurante.ordenes;
 
-import restaurante.modelo.Patron_Comando.Repartidor;
-import restaurante.modelo.Patron_Estado.EstadoEntregado;
+import restaurante.business.modelo.Patron_Comando.Repartidor;
+import restaurante.business.modelo.Patron_Estado.EstadoEntregado;
 
 public class MockRepartidor extends Repartidor{
     public MockRepartidor(){

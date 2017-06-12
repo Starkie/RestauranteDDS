@@ -1,18 +1,18 @@
 package almacen.pedidos;
 
-import almacen.controllers.ProductoAlmacenController;
+import almacen.business.controllers.ProductoAlmacenController;
 import almacen.controllers.ProductoAlmacenControllerMock;
-import almacen.model.Producto;
-import almacen.model.ProductoAlmacen;
-import almacen.model.UnidadesCantidad;
+import almacen.domain.Producto;
+import almacen.domain.ProductoAlmacen;
+import almacen.domain.UnidadesCantidad;
 import almacen.pedidos.controllers.GestorPedidos;
-import almacen.pedidos.model.ListaCompra;
-import almacen.pedidos.model.ListaCompuesto;
-import almacen.pedidos.model.ListaElemento;
-import almacen.pedidos.model.Pedido;
-import almacen.persistance.pedidos.PedidoServiceMock;
+import almacen.pedidos.domain.ListaCompra;
+import almacen.pedidos.domain.ListaCompuesto;
+import almacen.pedidos.domain.ListaElemento;
+import almacen.pedidos.domain.Pedido;
 import almacen.persistance.pedidos.PedidoService;
-import model.Alimento;
+import almacen.persistance.pedidos.PedidoServiceMock;
+import domain.Alimento;
 import org.junit.Assert;
 import org.junit.Test;
 

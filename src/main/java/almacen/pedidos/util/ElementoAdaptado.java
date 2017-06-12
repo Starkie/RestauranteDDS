@@ -1,6 +1,6 @@
 package almacen.pedidos.util;
 
-import almacen.model.Producto;
+import almacen.domain.Producto;
 
 public class ElementoAdaptado {
     Producto producto;

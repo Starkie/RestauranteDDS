@@ -1,11 +1,11 @@
 package restaurante.plato;
 
-import model.Plato;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import restaurante.modelo.Patron_Decorador.*;
+import restaurante.business.modelo.Patron_Decorador.*;
+import restaurante.domain.Plato;
 
 import java.util.Arrays;
 import java.util.Collection;

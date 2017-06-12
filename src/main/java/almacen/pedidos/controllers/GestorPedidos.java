@@ -1,8 +1,8 @@
 package almacen.pedidos.controllers;
 
-import almacen.controllers.ProductoAlmacenController;
-import almacen.model.Producto;
-import almacen.pedidos.model.*;
+import almacen.business.controllers.ProductoAlmacenController;
+import almacen.domain.Producto;
+import almacen.pedidos.domain.*;
 import almacen.pedidos.util.AdaptadorListaCompra;
 import almacen.pedidos.util.ElementoAdaptado;
 import almacen.persistance.pedidos.PedidoService;
@@ -17,9 +17,9 @@ public class GestorPedidos {
     protected static ProductoAlmacenController productoAlmacenController;
 
     protected GestorPedidos(PedidoService pedidoService, ProductoAlmacenController productoAlmacenController) {
-        this.gestorPedidos = this;
-        this.pedidoService = pedidoService;
-        this.productoAlmacenController = productoAlmacenController;
+        gestorPedidos = this;
+        GestorPedidos.pedidoService = pedidoService;
+        GestorPedidos.productoAlmacenController = productoAlmacenController;
     }
 
     public static GestorPedidos getInstance() {

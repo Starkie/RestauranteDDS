@@ -1,9 +1,7 @@
 package restaurante.persistencia;
 
 import Main.MainApplication;
-import model.PedidoRestaurante;
-import model.Persona;
-import model.Usuario;
+import domain.Persona;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.BeforeClass;
@@ -11,8 +9,10 @@ import org.junit.Test;
 import org.springframework.boot.SpringApplication;
 import persistance.AppContext;
 import persistance.PersonaService;
-import restaurante.modelo.Patron_Comando.Cocinero;
-import restaurante.modelo.Patron_Comando.Repartidor;
+import restaurante.business.modelo.Patron_Comando.Cocinero;
+import restaurante.business.modelo.Patron_Comando.Repartidor;
+import restaurante.domain.PedidoRestaurante;
+import restaurante.domain.Usuario;
 
 import java.util.Iterator;
 

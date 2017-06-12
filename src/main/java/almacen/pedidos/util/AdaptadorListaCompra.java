@@ -1,7 +1,7 @@
 package almacen.pedidos.util;
 
-import almacen.pedidos.model.ListaCompra;
-import almacen.pedidos.model.ListaElemento;
+import almacen.pedidos.domain.ListaCompra;
+import almacen.pedidos.domain.ListaElemento;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -17,7 +17,7 @@ public class AdaptadorListaCompra {
                         listaFilas.add(
                                 new ElementoAdaptado(
                                         ((ListaElemento) el).getProducto(),
-                                        ((ListaElemento) el).getUnidades()
+                                        el.getUnidades()
                                 )
                         );
                     }

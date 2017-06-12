@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="570.0" prefWidth="886.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="restaurante.view.view_controller.ControladorVistaPlato">
+   <top>
+      <HBox spacing="20.0" BorderPane.alignment="CENTER" />
+   </top>
+   <center>
+      <VBox prefHeight="459.0" prefWidth="446.0" spacing="10.0" BorderPane.alignment="CENTER">
+         <children>
+            <Separator prefWidth="200.0" />
+            <Label text="Primero: Selecciona una base" />
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#pressArroz" text="Arroz">
+                     <graphic>
+                        <ImageView fitHeight="31.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../../docs/images/Arroz.PNG" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#pressTallarines" text="Tallarines">
+                     <graphic>
+                        <ImageView fitHeight="31.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../../docs/images/Tallarines.PNG" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </HBox>
+            <Separator prefWidth="200.0" />
+            <Label text="Segundo: Añade todos los complementos que quieras" />
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+               <children>
+                  <Button id="btnPollo" fx:id="btnPollo" mnemonicParsing="false" onAction="#pressPollo" text="Pollo">
+                     <graphic>
+                        <ImageView fitHeight="31.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../../docs/images/Pollo.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button id="btnTernera" fx:id="btnTernera" mnemonicParsing="false" onAction="#pressTernera" text="Ternera">
+                     <graphic>
+                        <ImageView fitHeight="31.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../../docs/images/Ternera.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button id="btnGambas" fx:id="btnGambas" mnemonicParsing="false" onAction="#pressGambas" text="Gambas">
+                     <graphic>
+                        <ImageView fitHeight="31.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../../docs/images/Gamba.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </HBox>
+            <Separator prefWidth="200.0" />
+            <Label text="Tercero: Elige, si quieres, una salsa" />
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+               <children>
+                  <Button id="btnCacahuetes" fx:id="btnCacahuetes" mnemonicParsing="false" onAction="#pressCacahuetes" prefHeight="41.0" prefWidth="193.0" text="Salsa de Cacahuetes">
+                     <graphic>
+                        <ImageView fitHeight="31.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../../docs/images/Cacahuete.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button id="btnOstras" fx:id="btnOstras" mnemonicParsing="false" onAction="#pressOstras" prefHeight="41.0" prefWidth="193.0" text="Salsa de Ostras">
+                     <graphic>
+                        <ImageView fitHeight="31.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../../docs/images/Ostra.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+         <BorderPane.margin>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </BorderPane.margin>
+      </VBox>
+   </center>
+   <padding>
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+   </padding>
+   <right>
+      <VBox BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets top="10.0" />
+         </BorderPane.margin>
+         <children>
+            <TableView id="tablaPlatos" fx:id="tablaPlatos" prefHeight="499.0" prefWidth="404.0">
+              <columns>
+                <TableColumn id="colPlato" fx:id="colPlato" prefWidth="257.0" text="Plato" />
+                <TableColumn id="colPrecio" fx:id="colPrecio" minWidth="0.0" prefWidth="64.0" text="Precio" />
+                  <TableColumn id="colCalorias" fx:id="colCalorias" prefWidth="82.0" text="Calorias" />
+              </columns>
+            </TableView>
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+               <children>
+                  <Button id="btnEliminarPlato" fx:id="btnEliminarPlato" mnemonicParsing="false" onAction="#pressEliminarPlato" prefHeight="31.0" prefWidth="129.0" text="Eliminar Plato" />
+                  <Label text="Totales:" />
+                  <Label id="precioTotal" fx:id="precioTotal" text="0" />
+                  <Label id="CaloriasTotal" fx:id="CaloriasTotal" text="0" />
+               </children>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </HBox>
+         </children>
+      </VBox>
+   </right>
+   <bottom>
+      <HBox alignment="CENTER_RIGHT" prefWidth="200.0" spacing="20.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button mnemonicParsing="false" onAction="#pressCancelar" text="Cancelar" />
+            <Button id="btnConfirmar" fx:id="btnConfirmar" mnemonicParsing="false" onAction="#pressConfirmar" text="Confirmar Pedido" />
+         </children>
+         <BorderPane.margin>
+            <Insets top="10.0" />
+         </BorderPane.margin>
+      </HBox>
+   </bottom>
+</BorderPane>

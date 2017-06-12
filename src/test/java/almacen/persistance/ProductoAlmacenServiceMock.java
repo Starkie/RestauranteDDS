@@ -1,7 +1,7 @@
 package almacen.persistance;
 
-import almacen.model.Producto;
-import almacen.model.ProductoAlmacen;
+import almacen.domain.Producto;
+import almacen.domain.ProductoAlmacen;
 
 import java.util.ArrayList;
 import java.util.List;

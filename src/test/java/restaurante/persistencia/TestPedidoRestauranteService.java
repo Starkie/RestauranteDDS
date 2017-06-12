@@ -1,18 +1,18 @@
 package restaurante.persistencia;
 
 import Main.MainApplication;
-import model.PedidoRestaurante;
-import model.Plato;
-import model.Usuario;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.boot.SpringApplication;
 import persistance.AppContext;
-import persistance.PedidoRestauranteService;
-import restaurante.modelo.Patron_Decorador.BaseArroz;
-import restaurante.modelo.Patron_Decorador.ComplementoGamba;
+import restaurante.business.modelo.Patron_Decorador.BaseArroz;
+import restaurante.business.modelo.Patron_Decorador.ComplementoGamba;
+import restaurante.domain.PedidoRestaurante;
+import restaurante.domain.Plato;
+import restaurante.domain.Usuario;
+import restaurante.persistance.PedidoRestauranteService;
 
 import java.util.Iterator;
 

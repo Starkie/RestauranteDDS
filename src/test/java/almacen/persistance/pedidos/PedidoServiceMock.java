@@ -1,9 +1,9 @@
 package almacen.persistance.pedidos;
 
-import almacen.controllers.ProductoAlmacenController;
-import almacen.model.ProductoAlmacen;
+import almacen.business.controllers.ProductoAlmacenController;
 import almacen.controllers.ProductoAlmacenControllerMock;
-import almacen.pedidos.model.Pedido;
+import almacen.domain.ProductoAlmacen;
+import almacen.pedidos.domain.Pedido;
 import almacen.pedidos.util.AdaptadorListaCompra;
 import almacen.pedidos.util.ElementoAdaptado;
 

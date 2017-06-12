@@ -1,16 +1,16 @@
 package restaurante.ordenes;
 
-import model.PedidoRestaurante;
-import model.Usuario;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import restaurante.modelo.Patron_Comando.OrdenCocinar;
-import restaurante.modelo.Patron_Decorador.BaseArroz;
-import restaurante.modelo.Patron_Decorador.BaseTallarines;
-import restaurante.modelo.Patron_Estado.EstadoCancelado;
-import restaurante.modelo.Patron_Estado.EstadoPendiente;
+import restaurante.business.modelo.Patron_Comando.OrdenCocinar;
+import restaurante.business.modelo.Patron_Decorador.BaseArroz;
+import restaurante.business.modelo.Patron_Decorador.BaseTallarines;
+import restaurante.business.modelo.Patron_Estado.EstadoCancelado;
+import restaurante.business.modelo.Patron_Estado.EstadoPendiente;
+import restaurante.domain.PedidoRestaurante;
+import restaurante.domain.Usuario;
 
 import java.util.Iterator;
 

@@ -1,9 +1,10 @@
 package almacen.controllers;
 
-import almacen.model.Producto;
-import almacen.model.ProductoAlmacen;
-import almacen.persistance.ProductoAlmacenServiceMock;
+import almacen.business.controllers.ProductoAlmacenController;
+import almacen.domain.Producto;
+import almacen.domain.ProductoAlmacen;
 import almacen.persistance.ProductoAlmacenService;
+import almacen.persistance.ProductoAlmacenServiceMock;
 
 public class ProductoAlmacenControllerMock extends ProductoAlmacenController {
 

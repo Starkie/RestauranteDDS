@@ -1,13 +1,13 @@
 package restaurante.ordenes;
 
-import model.PedidoRestaurante;
 import persistance.AppContext;
-import persistance.PedidoRestauranteService;
-import restaurante.modelo.Patron_Comando.Orden;
-import restaurante.modelo.Patron_Comando.OrdenCocinar;
-import restaurante.modelo.Patron_Comando.OrdenRepartir;
-import restaurante.modelo.Patron_Estado.EstadoCocinado;
-import restaurante.modelo.Patron_Estado.EstadoPendiente;
+import restaurante.business.modelo.Patron_Comando.Orden;
+import restaurante.business.modelo.Patron_Comando.OrdenCocinar;
+import restaurante.business.modelo.Patron_Comando.OrdenRepartir;
+import restaurante.business.modelo.Patron_Estado.EstadoCocinado;
+import restaurante.business.modelo.Patron_Estado.EstadoPendiente;
+import restaurante.domain.PedidoRestaurante;
+import restaurante.persistance.PedidoRestauranteService;
 
 import java.util.*;
 

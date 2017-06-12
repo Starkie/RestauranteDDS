@@ -2,38 +2,53 @@ package Main;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import model.Alimento;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import persistance.AlimentoService;
 import persistance.AppContext;
+import persistance.PersonaService;
+import restaurante.business.modelo.Patron_Comando.Cocinero;
+import restaurante.business.modelo.Patron_Comando.EmisorOrdenes;
+import restaurante.business.modelo.Patron_Comando.Repartidor;
+import restaurante.domain.Usuario;
+import restaurante.view.view_controller.ControladorVistaLogin;
 
 @SpringBootApplication
-@ComponentScan({"persistance", "almacen.persistance"})
-@EntityScan({"model", "almacen.model", "almacen.pedidos.model", "restaurante"})
-@EnableJpaRepositories({"persistance", "almacen.persistance"})
+@ComponentScan({"persistance", "almacen.persistance", "restaurante.persistance"})
+@EntityScan({"domain", "almacen.domain", "almacen.pedidos.domain", "restaurante.domain", "restaurante.business"})
+@EnableJpaRepositories({"persistance", "almacen.persistance", "restaurante.persistance"})
 public class MainApplication extends Application{
 
     public static void main(String[] args) throws Exception {
         SpringApplication.run(MainApplication.class, args);
 
-            AlimentoService alimentoService = (AlimentoService) AppContext.getBean("alimentoService");
+        PersonaService personaService = (PersonaService) AppContext.getBean("personaService");
+
+        //Usuario
+        personaService.add(new Usuario("Paco",26755185,"Direccion","123"));
+
+        //Cocinero
+        personaService.add(new Cocinero("Pedro",23232112,"123"));
+
+        //Repartidor
+        personaService.add(new Repartidor("Manu",22344545,"123"));
+
+/*            AlimentoService alimentoService = (AlimentoService) AppContext.getBean("alimentoService");
             alimentoService.add(new Alimento("manzana"));
             alimentoService.add(new Alimento("tallarines"));
-        /*
+
         //Alimento
 
         //Categoria
-        CategoriaService categoriaService = (CategoriaService) AppContext.getBean("categoriaService");
-        alimentoService.update(a2);
-        Categoria cat = categoriaService.findByName("categoria");
-        categoriaService.update(cat);
+//        CategoriaService categoriaService = (CategoriaService) AppContext.getBean("categoriaService");
+//        alimentoService.update(a2);
+//        Categoria cat = categoriaService.findByName("categoria");
+//        categoriaService.update(cat);
 
         //Usuario
         PersonaService personaService = (PersonaService) AppContext.getBean("personaService");
@@ -74,9 +89,9 @@ public class MainApplication extends Application{
         Reclamacion reclamacion = new Reclamacion(new Date(),pedido);
         ReclamacionService reclamacionService = (ReclamacionService) AppContext.getBean("reclamacionService");
         reclamacionService.add(reclamacion);
-        Reclamacion reclamacion1 = reclamacionService.findAll().iterator().next();*/
+        Reclamacion reclamacion1 = reclamacionService.findAll().iterator().next();
 
-        /*PedidoRestauranteService pedidoRestauranteService = (PedidoRestauranteService) AppContext.getBean("pedidoRestauranteService");
+        PedidoRestauranteService pedidoRestauranteService = (PedidoRestauranteService) AppContext.getBean("pedidoRestauranteService");
         PedidoRestaurante pedidoRestaurante2 = new PedidoRestaurante(new Usuario("Pepe",232,"Calle falsa","1212"));
         pedidoRestauranteService.add(pedidoRestaurante2);
         pedidoRestaurante2.setEstado(new EstadoCocinado());
@@ -131,14 +146,14 @@ public class MainApplication extends Application{
 
         GestorPedidos gestorPedidos = GestorPedidos.getInstance();
 
-        Pedido p = gestorPedidos.crearPedido(lista);
-*/
+        Pedido p = gestorPedidos.crearPedido(lista);*/
+
         launch(args);
     }
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        /*FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/LoginView.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/restaurante/view/view_files/LoginView.fxml"));
         Parent root = loader.load();
 
         ControladorVistaLogin controladorVistaLogin = loader.getController();
@@ -146,11 +161,12 @@ public class MainApplication extends Application{
 
         primaryStage.setTitle("Login");
         primaryStage.setScene(new Scene(root));
-        primaryStage.setResizable(false);*/
-        BorderPane root = FXMLLoader.load(getClass().getResource("/almacen/MainScreen/AlmacenMain.fxml"));
-        primaryStage.setTitle("Almacen");
-        primaryStage.setScene(new Scene(root, 600, 400));
         primaryStage.show();
 
+        //BorderPane root = FXMLLoader.load(getClass().getResource("/almacen/view/AlmacenMain.fxml"));
+//        primaryStage.setTitle("Almacen");
+//        primaryStage.setScene(new Scene(root, 600, 400));
+//        primaryStage.show();
+        EmisorOrdenes.getEmisorOrdenes().getThreadDisponibilidad().interrupt();
     }
 }

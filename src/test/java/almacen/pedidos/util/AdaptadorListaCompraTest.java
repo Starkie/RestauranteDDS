@@ -1,11 +1,11 @@
 package almacen.pedidos.util;
 
-import almacen.model.Producto;
-import almacen.model.UnidadesCantidad;
-import almacen.pedidos.model.ListaCompra;
-import almacen.pedidos.model.ListaCompuesto;
-import almacen.pedidos.model.ListaElemento;
-import model.Alimento;
+import almacen.domain.Producto;
+import almacen.domain.UnidadesCantidad;
+import almacen.pedidos.domain.ListaCompra;
+import almacen.pedidos.domain.ListaCompuesto;
+import almacen.pedidos.domain.ListaElemento;
+import domain.Alimento;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

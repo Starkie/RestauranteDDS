@@ -1,12 +1,12 @@
 package restaurante.pedido;
 
-import model.PedidoRestaurante;
-import model.Reclamacion;
-import model.Usuario;
 import org.junit.Assert;
 import org.junit.Test;
-import restaurante.modelo.Patron_Decorador.BaseArroz;
-import restaurante.modelo.Patron_Estado.EstadoCocinandose;
+import restaurante.business.modelo.Patron_Decorador.BaseArroz;
+import restaurante.business.modelo.Patron_Estado.EstadoCocinandose;
+import restaurante.domain.PedidoRestaurante;
+import restaurante.domain.Reclamacion;
+import restaurante.domain.Usuario;
 
 import java.util.Calendar;
 

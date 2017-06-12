@@ -1,6 +1,6 @@
 package persistance;
 
-import model.Persona;
+import domain.Persona;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
