@@ -6,7 +6,7 @@ import almacen.pedidos.domain.*;
 import almacen.pedidos.util.AdaptadorListaCompra;
 import almacen.pedidos.util.ElementoAdaptado;
 import almacen.persistance.pedidos.PedidoService;
-import persistance.AppContext;
+import persistance.ServiceLocator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +24,7 @@ public class GestorPedidos {
 
     public static GestorPedidos getInstance() {
         if(gestorPedidos == null) {
-            PedidoService pedidoService = (PedidoService) AppContext.getBean("pedidoService");
+            PedidoService pedidoService = ServiceLocator.getPedidoService();
             ProductoAlmacenController productoAlmacenController = ProductoAlmacenController.getInstance();
             gestorPedidos = new GestorPedidos(pedidoService, productoAlmacenController);
         }
@@ -52,8 +52,11 @@ public class GestorPedidos {
         pedidoService.add(p);
     }
 
-    public Pedido crearPedido(ListaCompra listaCompra) {
-        Pedido p = new Pedido(listaCompra);
+    public Pedido crearPedido(ListaCompra listaCompra) throws CloneNotSupportedException {
+        ListaCompra lista = new ListaCompuesto("Pedido", "Lista Productos");
+        Pedido p = new Pedido(lista);
+        //Necesario guardar antes de añadir la otra lista porque si no quedará en estado detached y fallará
+        lista.add(listaCompra.clone());
         guardarPedido(p);
         return p;
     }

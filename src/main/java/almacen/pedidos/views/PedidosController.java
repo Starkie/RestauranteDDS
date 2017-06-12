@@ -56,6 +56,9 @@ public class PedidosController implements Initializable {
     @FXML
     private Button cancelarPedidoButton;
 
+    @FXML
+    private Button reutilizarPedidoButton;
+
 
     private GestorPedidos gestorPedidos;
 
@@ -77,7 +80,7 @@ public class PedidosController implements Initializable {
         abrirPedidoButton.disableProperty().bind(Bindings.isEmpty(tablaPedidos.getSelectionModel().getSelectedItems()));
         recibirPedidoButton.disableProperty().bind(Bindings.isEmpty(tablaPedidos.getSelectionModel().getSelectedItems()));
         cancelarPedidoButton.disableProperty().bind(Bindings.isEmpty(tablaPedidos.getSelectionModel().getSelectedItems()));
-
+        reutilizarPedidoButton.disableProperty().bind(Bindings.isEmpty(tablaPedidos.getSelectionModel().getSelectedItems()));
         refreshTable();
 
     }
@@ -92,6 +95,23 @@ public class PedidosController implements Initializable {
         stage.setScene(new Scene(root, 1000, 400));
         gestorPedidos = GestorPedidos.getInstance();
         Pedido p = gestorPedidos.crearPedido();
+        crearPedidosController.setPedido(p);
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.showAndWait();
+        refreshTable();
+    }
+
+    @FXML
+    private void OnReutilizarPedidoClick() throws IOException, CloneNotSupportedException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("CrearPedidos/CrearPedidosView.fxml"));
+        BorderPane root = fxmlLoader.load();
+        CrearPedidosController crearPedidosController = fxmlLoader.getController();
+        Stage stage = new Stage();
+        stage.setTitle("Creacion de Pedido");
+        stage.setScene(new Scene(root, 1000, 400));
+        gestorPedidos = GestorPedidos.getInstance();
+        Pedido seleccionado = (Pedido) tablaPedidos.getSelectionModel().getSelectedItem();
+        Pedido p = gestorPedidos.crearPedido(seleccionado.getLista());
         crearPedidosController.setPedido(p);
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();

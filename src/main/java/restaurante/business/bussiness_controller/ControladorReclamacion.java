@@ -1,6 +1,6 @@
 package restaurante.business.bussiness_controller;
 
-import persistance.AppContext;
+import persistance.ServiceLocator;
 import restaurante.domain.PedidoRestaurante;
 import restaurante.domain.Reclamacion;
 import restaurante.persistance.ReclamacionService;
@@ -12,12 +12,15 @@ public class ControladorReclamacion {
     private static ControladorReclamacion controladorReclamacion;
     private ReclamacionService reclamacionService;
 
-    private ControladorReclamacion() {
-        reclamacionService = (ReclamacionService) AppContext.getBean("reclamacionService");
+    private ControladorReclamacion(ReclamacionService reclamacionService) {
+        this.reclamacionService = reclamacionService;
     }
 
     public static ControladorReclamacion getControladorReclamacion() {
-        if(controladorReclamacion == null) controladorReclamacion = new ControladorReclamacion();
+        if(controladorReclamacion == null) {
+            ReclamacionService reclamacionService = ServiceLocator.getReclamacionService();
+            controladorReclamacion = new ControladorReclamacion(reclamacionService);
+        }
         return controladorReclamacion;
     }
 

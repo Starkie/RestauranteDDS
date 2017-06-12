@@ -108,10 +108,13 @@ public class CrearPedidosController implements Initializable{
 
         precioPedidoColumn.setCellValueFactory(p -> new SimpleDoubleProperty(p.getValue().getProducto().getPrecio()));
 
+
     }
 
     public void setPedido(Pedido pedido) {
         this.pedido = pedido;
+        refreshPedidoTable();
+
     }
 
 

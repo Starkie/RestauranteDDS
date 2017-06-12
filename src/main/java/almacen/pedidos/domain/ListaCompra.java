@@ -5,7 +5,7 @@ import java.util.Iterator;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class ListaCompra {
+public abstract class ListaCompra implements  Cloneable{
     protected String nombre;
     protected String descripcion;
     protected double precio;
@@ -39,4 +39,8 @@ public abstract class ListaCompra {
     public abstract void remove(ListaCompra p);
 
     public abstract Iterator<ListaCompra> createIterator();
+
+    public abstract ListaCompra clone() throws CloneNotSupportedException;
+
+
 }

@@ -143,9 +143,9 @@ public class AlmacenMain implements Initializable {
         BorderPane root = loader.load();
 
         Stage stage = new Stage();
-        stage.setScene(new Scene(root, 600, 400));
+        stage.setScene(new Scene(root, 700, 400));
         stage.setTitle("Pedidos");
-        stage.setMinWidth(600);
+        stage.setMinWidth(700);
         stage.setMinHeight(400);
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();

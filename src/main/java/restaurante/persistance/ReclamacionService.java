@@ -2,10 +2,11 @@ package restaurante.persistance;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 import persistance.CrudService;
 import restaurante.domain.Reclamacion;
 
-@Repository
+@Service("reclamacionService")
 public class ReclamacionService implements CrudService<Reclamacion,Long> {
     @Autowired
     private ReclamacionRepository repository;
