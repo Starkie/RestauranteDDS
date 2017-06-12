@@ -1,0 +1,42 @@
+@startuml
+skinparam groupInheritance 3
+
+ class PedidoRestaurante{
+     - horaConfirmacion : Date
+     - horaRecibido : Date
+     - platosPedido : List<Plato>
+      void addPlatosPedido(Plato platoPedido)
+      void deletePlatoPedido(Plato platoPedido)
+      void confirmarPedido()
+      void cancelarPedido()
+      void reclamarRetraso()
+ }
+
+abstract class EstadoPedido{
+    - descripcion : String
+    void confirmarPedido(PedidoRestaurante pedido)
+    void cancelarPedido(PedidoRestaurante pedido)
+    Reclamacion reclamarRetraso(PedidoRestaurante pedido
+}
+
+class EstadoPorConfirmar
+class EstadoPendiente
+class EstadoCocinandose
+class EstadoCocinado
+class EstadoEnCamino
+class EstadoEntregado
+class EstadoCancelado
+
+EstadoPedido <|-- EstadoPorConfirmar
+EstadoPedido <|-- EstadoPendiente
+EstadoPedido <|-- EstadoCocinandose
+EstadoPedido <|-- EstadoCocinado
+EstadoPedido <|-- EstadoEnCamino
+EstadoPedido <|-- EstadoEntregado
+EstadoPedido <|-- EstadoCancelado
+
+PedidoRestaurante o--> "estado  1" EstadoPedido
+
+
+
+@enduml
