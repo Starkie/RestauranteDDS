@@ -3,7 +3,7 @@ package almacen.pedidos.MainScreen.InfoPedidos;
 
 import almacen.pedidos.model.Pedido;
 import almacen.pedidos.util.AdaptadorListaCompra;
-import almacen.pedidos.util.FilaTabla;
+import almacen.pedidos.util.ElementoAdaptado;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -21,17 +21,17 @@ public class ResumenPedidoController implements Initializable {
     @FXML
     private TableView tablaProductos;
     @FXML
-    private TableColumn<FilaTabla, Number> unidadesProductoColumn;
+    private TableColumn<ElementoAdaptado, Number> unidadesProductoColumn;
     @FXML
-    private TableColumn<FilaTabla, String> nombreColumn;
+    private TableColumn<ElementoAdaptado, String> nombreColumn;
     @FXML
-    private TableColumn<FilaTabla, String> alimentoColumn;
+    private TableColumn<ElementoAdaptado, String> alimentoColumn;
     @FXML
-    private TableColumn<FilaTabla, Number> cantidadColumn;
+    private TableColumn<ElementoAdaptado, Number> cantidadColumn;
     @FXML
-    private TableColumn<FilaTabla, String> unidadColumn;
+    private TableColumn<ElementoAdaptado, String> unidadColumn;
     @FXML
-    private TableColumn<FilaTabla, Number> precioColumn;
+    private TableColumn<ElementoAdaptado, Number> precioColumn;
     @FXML
     private Label tituloLabel;
     @FXML
@@ -40,7 +40,7 @@ public class ResumenPedidoController implements Initializable {
     private Label precioLabel;
 
 
-    private ObservableList<FilaTabla> listaProductos;
+    private ObservableList<ElementoAdaptado> listaProductos;
 
     private Pedido pedido;
 
@@ -70,7 +70,7 @@ public class ResumenPedidoController implements Initializable {
     }
 
     public void refreshTable(Pedido pedido) {
-        List<FilaTabla> lista = AdaptadorListaCompra.adaptarListaCompra(pedido.getLista());
+        List<ElementoAdaptado> lista = AdaptadorListaCompra.adaptarListaCompra(pedido.getLista());
         listaProductos = FXCollections.observableArrayList(lista);
         tablaProductos.setItems(listaProductos);
     }

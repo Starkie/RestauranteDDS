@@ -5,7 +5,7 @@ import almacen.controllers.ProductoController;
 import almacen.model.Producto;
 import almacen.pedidos.model.AlmacenException;
 import almacen.pedidos.util.AdaptadorListaCompra;
-import almacen.pedidos.util.FilaTabla;
+import almacen.pedidos.util.ElementoAdaptado;
 import almacen.pedidos.controllers.GestorPedidos;
 import almacen.pedidos.model.Pedido;
 import javafx.beans.binding.Bindings;
@@ -45,17 +45,17 @@ public class CrearPedidosController implements Initializable{
     @FXML
     private TableView tablaPedido;
     @FXML
-    private TableColumn<FilaTabla, Number> unidadesProductoColumn;
+    private TableColumn<ElementoAdaptado, Number> unidadesProductoColumn;
     @FXML
-    private TableColumn<FilaTabla, String> nombrePedidoColumn;
+    private TableColumn<ElementoAdaptado, String> nombrePedidoColumn;
     @FXML
-    private TableColumn<FilaTabla, String> alimentoPedidoColumn;
+    private TableColumn<ElementoAdaptado, String> alimentoPedidoColumn;
     @FXML
-    private TableColumn<FilaTabla, Number> cantidadPedidoColumn;
+    private TableColumn<ElementoAdaptado, Number> cantidadPedidoColumn;
     @FXML
-    private TableColumn<FilaTabla, String> unidadPedidoColumn;
+    private TableColumn<ElementoAdaptado, String> unidadPedidoColumn;
     @FXML
-    private TableColumn<FilaTabla, Number> precioPedidoColumn;
+    private TableColumn<ElementoAdaptado, Number> precioPedidoColumn;
 
     @FXML
     private Button addProductoButton;
@@ -66,7 +66,7 @@ public class CrearPedidosController implements Initializable{
 
     private ObservableList<Producto> productos;
 
-    private ObservableList<FilaTabla> listaPedido;
+    private ObservableList<ElementoAdaptado> listaPedido;
 
     private ProductoController productoController;
 
@@ -116,7 +116,7 @@ public class CrearPedidosController implements Initializable{
 
 
     private void refreshPedidoTable() {
-        List<FilaTabla> list = AdaptadorListaCompra.adaptarListaCompra(pedido.getLista());
+        List<ElementoAdaptado> list = AdaptadorListaCompra.adaptarListaCompra(pedido.getLista());
         listaPedido = FXCollections.observableArrayList(list);
         tablaPedido.setItems(listaPedido);
     }

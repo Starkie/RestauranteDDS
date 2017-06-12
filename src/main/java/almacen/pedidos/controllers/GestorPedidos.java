@@ -2,10 +2,9 @@ package almacen.pedidos.controllers;
 
 import almacen.controllers.ProductoAlmacenController;
 import almacen.model.Producto;
-import almacen.model.ProductoAlmacen;
 import almacen.pedidos.model.*;
 import almacen.pedidos.util.AdaptadorListaCompra;
-import almacen.pedidos.util.FilaTabla;
+import almacen.pedidos.util.ElementoAdaptado;
 import almacen.persistance.pedidos.PedidoService;
 import persistance.AppContext;
 
@@ -90,8 +89,8 @@ public class GestorPedidos {
 
     public void recibirPedido(Pedido pedido) throws AlmacenException {
         pedido.recibirPedido();
-        List<FilaTabla> filaTablas = AdaptadorListaCompra.adaptarListaCompra(pedido.getLista());
-        filaTablas.forEach(fila -> productoAlmacenController.actualizarStock(fila.getProducto(), fila.getUnidades()));
+        List<ElementoAdaptado> listaElementos = AdaptadorListaCompra.adaptarListaCompra(pedido.getLista());
+        listaElementos.forEach(fila -> productoAlmacenController.actualizarStock(fila.getProducto(), fila.getUnidades()));
         guardarPedido(pedido);
 
     }
