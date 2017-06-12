@@ -2,7 +2,6 @@ package almacen.pedidos.util;
 
 import almacen.pedidos.model.ListaCompra;
 import almacen.pedidos.model.ListaElemento;
-import almacen.pedidos.util.FilaTabla;
 
 import java.util.ArrayList;
 import java.util.Iterator;

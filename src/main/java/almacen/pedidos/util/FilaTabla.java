@@ -18,4 +18,10 @@ public class FilaTabla {
     public int getUnidades() {
         return unidades;
     }
+
+    public boolean equals(Object o) {
+        return o instanceof FilaTabla
+                &&  ((FilaTabla) o).getProducto().equals(producto)
+                &&  ((FilaTabla) o).getUnidades() == unidades;
+    }
 }
