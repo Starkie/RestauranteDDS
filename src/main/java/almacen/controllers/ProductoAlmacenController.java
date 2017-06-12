@@ -1,5 +1,6 @@
 package almacen.controllers;
 
+import almacen.model.Producto;
 import almacen.model.ProductoAlmacen;
 import almacen.persistance.ProductoAlmacenService;
 import persistance.AppContext;
@@ -24,6 +25,17 @@ public class ProductoAlmacenController {
     public void guardarProducto(ProductoAlmacen productoAlmacen) {
         productoAlmacenService.update(productoAlmacen);
     }
+
+    private ProductoAlmacen buscarPorProducto(Producto producto) {
+        return productoAlmacenService.findByProducto(producto);
+    }
+
+    public void actualizarStock(Producto producto, int unidades) {
+        ProductoAlmacen productoAlmacen = buscarPorProducto(producto);
+        productoAlmacen.setSock(productoAlmacen.getStock() + unidades);
+        guardarProducto(productoAlmacen);
+    }
+
 
     public ArrayList<ProductoAlmacen> getAllProductos() {
         ArrayList<ProductoAlmacen> lista = new ArrayList<>();
