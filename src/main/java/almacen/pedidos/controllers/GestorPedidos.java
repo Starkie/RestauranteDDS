@@ -1,7 +1,11 @@
 package almacen.pedidos.controllers;
 
+import almacen.controllers.ProductoAlmacenController;
 import almacen.model.Producto;
+import almacen.model.ProductoAlmacen;
 import almacen.pedidos.model.*;
+import almacen.pedidos.util.AdaptadorListaCompra;
+import almacen.pedidos.util.FilaTabla;
 import almacen.persistance.pedidos.PedidoService;
 import persistance.AppContext;
 
@@ -82,10 +86,11 @@ public class GestorPedidos {
 
     public void recibirPedido(Pedido pedido) throws AlmacenException {
         pedido.recibirPedido();
+        ProductoAlmacenController productoAlmacenController = ProductoAlmacenController.getInstance();
+        List<FilaTabla> filaTablas = AdaptadorListaCompra.adaptarListaCompra(pedido.getLista());
+        filaTablas.forEach(fila -> productoAlmacenController.actualizarStock(fila.getProducto(), fila.getUnidades()));
         guardarPedido(pedido);
 
-        //Si estado == EN_CAMINO Debe modificar las cantidades del producto en almacen
-        throw new UnsupportedOperationException("No implementado");
     }
 
     public void cancelarPedido(Pedido pedido) throws AlmacenException {
