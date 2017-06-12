@@ -52,8 +52,11 @@ public class GestorPedidos {
         pedidoService.add(p);
     }
 
-    public Pedido crearPedido(ListaCompra listaCompra) {
-        Pedido p = new Pedido(listaCompra);
+    public Pedido crearPedido(ListaCompra listaCompra) throws CloneNotSupportedException {
+        ListaCompra lista = new ListaCompuesto("Pedido", "Lista Productos");
+        Pedido p = new Pedido(lista);
+        //Necesario guardar antes de añadir la otra lista porque si no quedará en estado detached y fallará
+        lista.add(listaCompra.clone());
         guardarPedido(p);
         return p;
     }
