@@ -39,19 +39,22 @@ public class Pedido {
         }
     }
 
-    public void recibirPedido() {
+    public void recibirPedido() throws EstadoPedidoInvalidoException {
         if(estado == EstadoPedido.EN_CAMINO)
         {
             estado = EstadoPedido.COMPLETO;
         }
+        else {
+            throw new EstadoPedidoInvalidoException("Solo se pueden recibir pedidos que estén En Camino.");
+        }
     }
 
     public void cancelarPedido() throws EstadoPedidoInvalidoException {
-        if(estado != EstadoPedido.COMPLETO && estado != EstadoPedido.EN_CAMINO) {
+        if(estado != EstadoPedido.COMPLETO && estado != EstadoPedido.CANCELADO) {
             estado = EstadoPedido.CANCELADO;
         }
         else {
-            throw new EstadoPedidoInvalidoException("El pedido ya estaba en camino o completado, no se puede cancelar");
+            throw new EstadoPedidoInvalidoException("El pedido ya estaba completado o cancelado, no se puede cancelar");
         }
     }
 
