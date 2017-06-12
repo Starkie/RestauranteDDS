@@ -1,28 +1,30 @@
-package restaurante.modelo.Patron_Comando;
+package restaurante.ordenes;
 
 import model.PedidoRestaurante;
 import persistance.AppContext;
 import persistance.PedidoRestauranteService;
+import restaurante.modelo.Patron_Comando.Orden;
+import restaurante.modelo.Patron_Comando.OrdenCocinar;
+import restaurante.modelo.Patron_Comando.OrdenRepartir;
 import restaurante.modelo.Patron_Estado.EstadoCocinado;
 import restaurante.modelo.Patron_Estado.EstadoPendiente;
 
 import java.util.*;
 
-public class EmisorOrdenes {
+public class MockEmisorOrdenes{
     private Queue<OrdenRepartir> ordenesARepartir;
     private Queue<OrdenCocinar> ordenesACocinar;
-    private List<Repartidor> repartidores;
-    private List<Cocinero> cocineros;
+    private List<MockRepartidor> MockRepartidores;
+    private List<MockCocinero> MockCocineros;
 
-    private static EmisorOrdenes elEmisor;
+    private static MockEmisorOrdenes elEmisor;
 
-    private EmisorOrdenes( boolean recuperarDatosDB) {
+    private MockEmisorOrdenes( boolean recuperarDatosDB) {
         ordenesARepartir = new ArrayDeque<OrdenRepartir>();
         ordenesACocinar = new ArrayDeque<OrdenCocinar>();
-        cocineros = new ArrayList<Cocinero>();
-        repartidores = new ArrayList<Repartidor>();
+        MockCocineros = new ArrayList<MockCocinero>();
+        MockRepartidores = new ArrayList<MockRepartidor>();
         if(recuperarDatosDB) recuperarOrdenesDB();
-        getThreadDisponibilidad().start();
     }
 
     private void recuperarOrdenesDB() {
@@ -35,17 +37,17 @@ public class EmisorOrdenes {
         }
     }
 
-    public static EmisorOrdenes getEmisorOrdenes() {
-        if (elEmisor == null) elEmisor = new EmisorOrdenes(true);
+    public static MockEmisorOrdenes getEmisorOrdenes() {
+        if (elEmisor == null) elEmisor = new MockEmisorOrdenes(true);
         return elEmisor;
     }
 
-    public static EmisorOrdenes getEmisorOrdenes(boolean recuperarDatosDB) {
+    public static MockEmisorOrdenes getEmisorOrdenes(boolean recuperarDatosDB) {
         if(recuperarDatosDB){
-            return getEmisorOrdenes();
+            return MockEmisorOrdenes.getEmisorOrdenes();
         }
         else{
-            if (elEmisor == null) elEmisor = new EmisorOrdenes(false);
+            if (elEmisor == null) elEmisor = new MockEmisorOrdenes(false);
             return elEmisor;
         }
     }
@@ -75,33 +77,29 @@ public class EmisorOrdenes {
         return ordenesACocinar;
     }
 
-    public void registrarRepartidor(Repartidor repartidor) {
-        repartidores.add(repartidor);
+    public void registrarMockRepartidor(MockRepartidor MockRepartidor) {
+        MockRepartidores.add(MockRepartidor);
     }
 
-    public void registrarCocinero(Cocinero cocinero) {
-        cocineros.add(cocinero);
+    public void registrarMockCocinero(MockCocinero MockCocinero) {
+        MockCocineros.add(MockCocinero);
     }
 
-    public List<Repartidor> getRepartidores() {
-        return repartidores;
+    public List<MockRepartidor> getMockRepartidores() {
+        return MockRepartidores;
     }
 
-    public List<Cocinero> getCocineros() {
-        return cocineros;
+    public List<MockCocinero> getMockCocineros() {
+        return MockCocineros;
     }
 
-    public Thread getThreadDisponibilidad() {
-        return new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while (true) {
+    public void ejecutarThread(){
                     if(ordenesACocinar.size()>0) {
                         OrdenCocinar ordCocina = ordenesACocinar.element();
-                        for (Cocinero c : cocineros) {
+                        for (MockCocinero c : MockCocineros) {
                             if (c.isDisponible()) {
                                 c.setDisponible(false);
-                                cocineros.remove(c);
+                                MockCocineros.remove(c);
                                 ordenesACocinar.remove(); //Eliminamos la 1ºorden
                                 ordCocina.ejecutar(c);
                                 break;
@@ -110,10 +108,10 @@ public class EmisorOrdenes {
                     }
                     if(ordenesARepartir.size()>0) {
                         OrdenRepartir ordReparto = ordenesARepartir.element();
-                        for (Repartidor r : repartidores) {
+                        for (MockRepartidor r : MockRepartidores) {
                             if (r.isDisponible()) {
                                 r.setDisponible(false);
-                                repartidores.remove(r);
+                                MockRepartidores.remove(r);
                                 ordenesARepartir.remove(); //Eliminamos la 1ºorden
                                 ordReparto.ejecutar(r);
                                 break;
@@ -122,8 +120,15 @@ public class EmisorOrdenes {
                         }
                     }
                 }
-            }
-        });
-    }
 
+    public void vaciar(){
+        ordenesARepartir = new ArrayDeque<OrdenRepartir>();
+        ordenesACocinar = new ArrayDeque<OrdenCocinar>();
+        MockCocineros = new ArrayList<MockCocinero>();
+        MockRepartidores = new ArrayList<MockRepartidor>();
+    }
 }
+
+
+    
+
