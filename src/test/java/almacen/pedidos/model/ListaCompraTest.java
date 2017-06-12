@@ -60,7 +60,7 @@ public class ListaCompraTest {
     }
 
     @Test
-    public void ShouldIterateOverAllElements() {
+    public void ShouldReturnIteratorWithAllChildren() {
         ListaCompra base = new ListaCompuesto("Lista 1", "Ejemplo");
 
         Alimento alimento = new Alimento();
