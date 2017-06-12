@@ -1,10 +1,12 @@
 package restaurante.business.modelo.Patron_Decorador;
 
+import domain.Alimento;
 import restaurante.domain.Plato;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
+import java.util.List;
 
 @Entity
 public abstract class Decorador extends Plato {
@@ -14,9 +16,9 @@ public abstract class Decorador extends Plato {
     public Decorador() {
     }
 
-    public Decorador(Plato plato, double precio, double calorias, String descripcion, int numeroComplementosGamba, int numeroComplementosPollo, int numeroComplementosTernera)
+    public Decorador(Plato plato, double precio, double calorias, String descripcion, int numeroComplementosGamba, int numeroComplementosPollo, int numeroComplementosTernera, Alimento alimento)
     {
-        super(precio,calorias,descripcion,numeroComplementosGamba,numeroComplementosPollo,numeroComplementosTernera);
+        super(precio,calorias,descripcion,numeroComplementosGamba,numeroComplementosPollo,numeroComplementosTernera,alimento);
         this.plato=plato;
     }
 
@@ -84,6 +86,13 @@ public abstract class Decorador extends Plato {
 
     private boolean tieneComplementos(){
         return (getNumeroComplementosGamba() + getNumeroComplementosPollo() + getNumeroComplementosTernera())>0;
+    }
+
+    @Override
+    public List<Alimento> getAlimentosPlato(){
+            List<Alimento> alimentosDelPlato = plato.getAlimentosPlato();
+            alimentosDelPlato.add(this.getAlimento());
+            return alimentosDelPlato;
     }
 
     public Plato getPlato(){

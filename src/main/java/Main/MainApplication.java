@@ -1,5 +1,11 @@
 package Main;
 
+import almacen.domain.Producto;
+import almacen.domain.ProductoAlmacen;
+import almacen.domain.UnidadesCantidad;
+import almacen.persistance.ProductoAlmacenService;
+import almacen.persistance.ProductoService;
+import domain.Alimento;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -10,6 +16,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import persistance.AlimentoService;
 import persistance.AppContext;
 import persistance.PersonaService;
 import restaurante.business.modelo.Patron_Comando.Cocinero;
@@ -28,6 +35,9 @@ public class MainApplication extends Application{
         SpringApplication.run(MainApplication.class, args);
 
         PersonaService personaService = (PersonaService) AppContext.getBean("personaService");
+        AlimentoService alimentoService = (AlimentoService) AppContext.getBean("alimentoService");
+        ProductoService productoService = (ProductoService) AppContext.getBean("productoService");
+        ProductoAlmacenService productoAlmacenService = (ProductoAlmacenService) AppContext.getBean("productoAlmacenService");
 
         //Usuario
         personaService.add(new Usuario("Paco",26755185,"Direccion","123"));
@@ -37,6 +47,22 @@ public class MainApplication extends Application{
 
         //Repartidor
         personaService.add(new Repartidor("Manu",22344545,"123"));
+
+        //Alimentos
+        String[] alimentos = new String[]{"Arroz","Tallarines","Pollo","Ternera","Gambas","Cacahuetes","Ostras"};
+        for(int i=0; i<alimentos.length;i++){
+            Alimento a = new Alimento(alimentos[i]);
+            alimentoService.add(a);
+            Producto p = new Producto(alimentos[i],a,5,6,UnidadesCantidad.Unidades);
+            productoService.add(p);
+            ProductoAlmacen prodAlm = new ProductoAlmacen();
+            productoAlmacenService.add(prodAlm);
+            prodAlm.setProducto(p);
+            prodAlm.setSock(20);
+        }
+
+
+
 
 /*            AlimentoService alimentoService = (AlimentoService) AppContext.getBean("alimentoService");
             alimentoService.add(new Alimento("manzana"));

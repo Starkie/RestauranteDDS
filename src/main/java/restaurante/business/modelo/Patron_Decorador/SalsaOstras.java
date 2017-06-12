@@ -4,6 +4,7 @@ package restaurante.business.modelo.Patron_Decorador;/*
  * and open the template in the editor.
  */
 
+import domain.Alimento;
 import restaurante.domain.Plato;
 
 import javax.persistence.Entity;
@@ -15,7 +16,8 @@ public class SalsaOstras extends DecoradorSalsa {
     }
 
     public SalsaOstras(Plato plato) throws Exception{
-        super(plato,0,60,"Salsa de Ostras",0,0,0);
+        super(plato,0,60,"Salsa de Ostras",0,
+                0,0,new Alimento("Ostras"));
     }
     
     @Override

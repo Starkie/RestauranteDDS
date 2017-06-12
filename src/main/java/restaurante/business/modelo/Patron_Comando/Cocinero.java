@@ -4,7 +4,6 @@ import domain.Persona;
 import restaurante.business.modelo.Patron_Estado.EstadoCocinado;
 import restaurante.business.modelo.Patron_Estado.EstadoCocinandose;
 import restaurante.domain.PedidoRestaurante;
-import restaurante.domain.Plato;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -36,14 +35,14 @@ public class Cocinero extends Persona {
     public void cocinarPedido(PedidoRestaurante pedido){
         this.pedidoAtendiendo = pedido;
         pedido.setEstado(new EstadoCocinandose());
-        for (Plato p:pedido.getPlatosPedido()) {
-            //A LA ESPERA DE INTEGRAR CON ALMACÉN
-        }
     }
 
     public void finalizarCocinaPedido(){
-        if(pedidoAtendiendo != null){ this.pedidoAtendiendo.setEstado(new EstadoCocinado());
-        EmisorOrdenes.getEmisorOrdenes().anyadirOrden(new OrdenRepartir(pedidoAtendiendo));}
+        if(pedidoAtendiendo != null){
+            this.pedidoAtendiendo.setEstado(new EstadoCocinado());
+            EmisorOrdenes.getEmisorOrdenes().anyadirOrden(new OrdenRepartir(pedidoAtendiendo));
+            pedidoAtendiendo.setEstaCocinado(true);
+        }
         this.pedidoAtendiendo = null;
         this.disponible=true;
         EmisorOrdenes.getEmisorOrdenes().registrarCocinero(this);

@@ -1,7 +1,11 @@
 package restaurante.pedido;
 
+import domain.Alimento;
 import org.junit.Assert;
+import org.junit.BeforeClass;
 import org.junit.Test;
+import persistance.AlimentoService;
+import persistance.AppContext;
 import restaurante.business.modelo.Patron_Decorador.BaseArroz;
 import restaurante.business.modelo.Patron_Estado.EstadoCocinandose;
 import restaurante.domain.PedidoRestaurante;
@@ -11,6 +15,20 @@ import restaurante.domain.Usuario;
 import java.util.Calendar;
 
 public class TestPedido {
+
+    private static AlimentoService alimentoService;
+
+    @BeforeClass
+    public static void prepararAlmacen(){
+        alimentoService = (AlimentoService) AppContext.getBean("alimentoService");
+        alimentoService.add(new Alimento("Arroz"));
+        alimentoService.add(new Alimento("Tallarines"));
+        alimentoService.add(new Alimento("Pollo"));
+        alimentoService.add(new Alimento("Ternera"));
+        alimentoService.add(new Alimento("Gambas"));
+        alimentoService.add(new Alimento("Cacahuetes"));
+        alimentoService.add(new Alimento("Ostras"));
+    }
 
     @Test
     public void testConfirmarPedidoNuevo() throws Exception {

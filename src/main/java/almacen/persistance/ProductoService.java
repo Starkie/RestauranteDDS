@@ -1,6 +1,7 @@
 package almacen.persistance;
 
 import almacen.domain.Producto;
+import domain.Alimento;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import persistance.CrudService;
@@ -33,5 +34,9 @@ public class ProductoService implements CrudService<Producto, Long> {
     @Override
     public Iterable<Producto> findAll() {
         return repository.findAll();
+    }
+
+    public Iterable<Producto> findAllByAlimento(Alimento alimento) {
+        return repository.findAllByAlimento(alimento);
     }
 }

@@ -1,6 +1,6 @@
 package almacen.pedidos.domain;
 
-public abstract class AlmacenException extends Exception {
+public class AlmacenException extends Exception {
 
     public AlmacenException() {}
 
