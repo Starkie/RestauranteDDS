@@ -1,6 +1,6 @@
 package restaurante.business.bussiness_controller;
 
-import persistance.AppContext;
+import persistance.ServiceLocator;
 import restaurante.business.modelo.Patron_Comando.EmisorOrdenes;
 import restaurante.business.modelo.Patron_Comando.OrdenCocinar;
 import restaurante.domain.PedidoRestaurante;
@@ -14,13 +14,16 @@ public class ControladorPedidoRestaurante {
 
     private static ControladorPedidoRestaurante controladorPedidoRestaurante;
 
-    private ControladorPedidoRestaurante() {
+    private ControladorPedidoRestaurante(PedidoRestauranteService pedidoRestauranteService) {
         elEmisor = EmisorOrdenes.getEmisorOrdenes();
-        pedidoRestauranteService = (PedidoRestauranteService) AppContext.getBean("pedidoRestauranteService");
+        this.pedidoRestauranteService = pedidoRestauranteService;
     }
 
     public static ControladorPedidoRestaurante getControladorPedidoRestaurante(){
-        if(controladorPedidoRestaurante == null) controladorPedidoRestaurante = new ControladorPedidoRestaurante();
+        if(controladorPedidoRestaurante == null) {
+            PedidoRestauranteService pedidoRestauranteService = ServiceLocator.getPedidoRestauranteService();
+            controladorPedidoRestaurante = new ControladorPedidoRestaurante(pedidoRestauranteService);
+        }
         return controladorPedidoRestaurante;
     }
 

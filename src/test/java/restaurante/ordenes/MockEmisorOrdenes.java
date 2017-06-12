@@ -1,6 +1,6 @@
 package restaurante.ordenes;
 
-import persistance.AppContext;
+import persistance.ServiceLocator;
 import restaurante.business.modelo.Patron_Comando.Orden;
 import restaurante.business.modelo.Patron_Comando.OrdenCocinar;
 import restaurante.business.modelo.Patron_Comando.OrdenRepartir;
@@ -28,7 +28,7 @@ public class MockEmisorOrdenes{
     }
 
     private void recuperarOrdenesDB() {
-        PedidoRestauranteService pedidoRestauranteService = (PedidoRestauranteService) AppContext.getBean("pedidoRestauranteService");
+        PedidoRestauranteService pedidoRestauranteService = ServiceLocator.getPedidoRestauranteService();
         Iterator<PedidoRestaurante> iterator = pedidoRestauranteService.findAll().iterator();
         while (iterator.hasNext()){
             PedidoRestaurante p = iterator.next();

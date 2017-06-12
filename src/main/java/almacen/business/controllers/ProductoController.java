@@ -3,7 +3,6 @@ package almacen.business.controllers;
 
 import almacen.domain.Producto;
 import almacen.persistance.ProductoService;
-import persistance.AppContext;
 import persistance.ServiceLocator;
 
 import java.util.ArrayList;

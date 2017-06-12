@@ -1,6 +1,6 @@
 package restaurante.business.modelo.Patron_Comando;
 
-import persistance.AppContext;
+import persistance.ServiceLocator;
 import restaurante.business.modelo.Patron_Estado.EstadoCocinado;
 import restaurante.business.modelo.Patron_Estado.EstadoPendiente;
 import restaurante.domain.PedidoRestaurante;
@@ -26,7 +26,7 @@ public class EmisorOrdenes {
     }
 
     private void recuperarOrdenesDB() {
-        PedidoRestauranteService pedidoRestauranteService = (PedidoRestauranteService) AppContext.getBean("pedidoRestauranteService");
+        PedidoRestauranteService pedidoRestauranteService = ServiceLocator.getPedidoRestauranteService();
         Iterator<PedidoRestaurante> iterator = pedidoRestauranteService.findAll().iterator();
         while (iterator.hasNext()){
             PedidoRestaurante p = iterator.next();

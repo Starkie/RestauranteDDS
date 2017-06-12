@@ -7,8 +7,8 @@ import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.boot.SpringApplication;
-import persistance.AppContext;
 import persistance.PersonaService;
+import persistance.ServiceLocator;
 import restaurante.business.modelo.Patron_Comando.Cocinero;
 import restaurante.business.modelo.Patron_Comando.Repartidor;
 import restaurante.domain.PedidoRestaurante;
@@ -22,7 +22,7 @@ public class TestPersonaService {
     @BeforeClass
     public static void setUp(){
         SpringApplication.run(MainApplication.class);
-        crudService = (PersonaService) AppContext.getBean("personaService");
+        crudService = ServiceLocator.getPersonaService();
     }
 
     @Test

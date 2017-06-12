@@ -1,6 +1,6 @@
 package restaurante.business.bussiness_controller;
 
-import persistance.AppContext;
+import persistance.ServiceLocator;
 import restaurante.business.modelo.Patron_Decorador.*;
 import restaurante.domain.PedidoRestaurante;
 import restaurante.domain.Plato;
@@ -13,13 +13,17 @@ public class ControladorPlato {
     private PlatoService platoService;
     private PedidoRestauranteService pedidoRestauranteService;
 
-    private ControladorPlato() {
-        platoService = (PlatoService) AppContext.getBean("platoService");
-        pedidoRestauranteService = (PedidoRestauranteService) AppContext.getBean("pedidoRestauranteService");
+    private ControladorPlato(PlatoService platoService, PedidoRestauranteService pedidoRestauranteService) {
+        this.platoService = platoService;
+        this.pedidoRestauranteService = pedidoRestauranteService;
     }
 
     public static ControladorPlato getControladorPlato(){
-        if(controladorPlato == null) controladorPlato = new ControladorPlato();
+        if(controladorPlato == null) {
+            PlatoService platoService = ServiceLocator.getPlatoService();
+            PedidoRestauranteService pedidoRestauranteService = ServiceLocator.getPedidoRestauranteService();
+            controladorPlato = new ControladorPlato(platoService, pedidoRestauranteService);
+        }
         return controladorPlato;
     }
 

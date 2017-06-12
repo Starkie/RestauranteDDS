@@ -6,7 +6,7 @@ import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.boot.SpringApplication;
-import persistance.AppContext;
+import persistance.ServiceLocator;
 import restaurante.business.modelo.Patron_Decorador.BaseArroz;
 import restaurante.domain.PedidoRestaurante;
 import restaurante.domain.Reclamacion;
@@ -22,7 +22,7 @@ public class TestReclamacionService {
     @BeforeClass
     public static void setUp(){
         SpringApplication.run(MainApplication.class);
-        crudService = (ReclamacionService) AppContext.getBean("reclamacionService");
+        crudService = ServiceLocator.getReclamacionService();
     }
 
     @Test

@@ -6,7 +6,7 @@ import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.boot.SpringApplication;
-import persistance.AppContext;
+import persistance.ServiceLocator;
 import restaurante.business.modelo.Patron_Decorador.BaseTallarines;
 import restaurante.business.modelo.Patron_Decorador.ComplementoGamba;
 import restaurante.business.modelo.Patron_Decorador.ComplementoTernera;
@@ -24,7 +24,7 @@ public class TestPlatoService {
     @BeforeClass
     public static void setUp(){
         SpringApplication.run(MainApplication.class);
-        crudService = (PlatoService) AppContext.getBean("platoService");
+        crudService = ServiceLocator.getPlatoService();
     }
 
     @Test
