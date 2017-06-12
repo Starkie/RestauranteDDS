@@ -9,6 +9,7 @@ import org.junit.Test;
 import restaurante.modelo.Patron_Comando.OrdenCocinar;
 import restaurante.modelo.Patron_Decorador.BaseArroz;
 import restaurante.modelo.Patron_Decorador.BaseTallarines;
+import restaurante.modelo.Patron_Estado.EstadoCancelado;
 import restaurante.modelo.Patron_Estado.EstadoPendiente;
 
 import java.util.Iterator;
@@ -103,6 +104,20 @@ public class TestEmisorOrdenes {
         Assert.assertEquals(0,elEmisor.getOrdenesACocinar().size());
     }
 
+    @Test
+    public void cancelarOrden(){
+        MockCocinero Cocinero = new MockCocinero();
+        PedidoRestaurante  pedidoRestaurante = new PedidoRestaurante(new Usuario("Pedro",2121,"Hola calle","12120"));
+        pedidoRestaurante.addPlatoPedido(new BaseArroz());
+        simularConfirmarPedido(pedidoRestaurante);
+
+        Assert.assertEquals(1,elEmisor.getOrdenesACocinar().size());
+
+        simularCancelarPedido(pedidoRestaurante);
+
+        Assert.assertEquals(0,elEmisor.getOrdenesACocinar().size());
+    }
+
     @After
     public void acabarTest(){
         elEmisor.vaciar();
@@ -111,6 +126,11 @@ public class TestEmisorOrdenes {
     private void simularConfirmarPedido(PedidoRestaurante pedidoRestaurante){
         pedidoRestaurante.setEstado(new EstadoPendiente());
         elEmisor.anyadirOrden(new OrdenCocinar(pedidoRestaurante));
+    }
+
+    private void simularCancelarPedido(PedidoRestaurante pedidoRestaurante){
+        pedidoRestaurante.setEstado(new EstadoCancelado());
+        elEmisor.cancelarOrden(pedidoRestaurante);
     }
 
 }

@@ -2,6 +2,7 @@ package restaurante;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
+import restaurante.ordenes.TestEmisorOrdenes;
 import restaurante.pedido.TestPedido;
 import restaurante.persistencia.TestPedidoRestauranteService;
 import restaurante.persistencia.TestPersonaService;
@@ -12,6 +13,6 @@ import restaurante.plato.TestNoMasDe1Salsa;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({TestPedido.class, TestPedidoRestauranteService.class, TestPersonaService.class, TestPlatoService.class,
-        TestReclamacionService.class, TestElaboracionPlato.class, TestNoMasDe1Salsa.class})
+        TestReclamacionService.class, TestElaboracionPlato.class, TestNoMasDe1Salsa.class,TestEmisorOrdenes.class})
 public class TestsRestaurante {
 }
