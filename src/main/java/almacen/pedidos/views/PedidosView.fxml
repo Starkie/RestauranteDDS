@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="almacen.pedidos.views.PedidosController">
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="almacen.pedidos.views.PedidosController">
     <center>
         <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
             <children>
@@ -36,24 +39,26 @@
                             </columnResizePolicy>
                         </TableView>
                         <Separator orientation="VERTICAL" prefHeight="200.0" HBox.hgrow="ALWAYS" />
-                        <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="295.0" prefWidth="99.0" HBox.hgrow="NEVER">
+                        <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="295.0" prefWidth="105.0" HBox.hgrow="NEVER">
                             <children>
-                                <Button fx:id="nuevoPedidoButton" mnemonicParsing="false" onAction="#OnNuevoPedidoClick" prefHeight="25.0" prefWidth="75.0" text="Nuevo" />
-                        <Button fx:id="abrirPedidoButton" layoutX="15.0" layoutY="10.0" mnemonicParsing="false" onAction="#OnAbrirPedidoClick" prefHeight="25.0" prefWidth="75.0" text="Abrir">
+                                <Button fx:id="nuevoPedidoButton" mnemonicParsing="false" onAction="#OnNuevoPedidoClick" prefHeight="25.0" prefWidth="98.0" text="Nuevo" />
+                        <Button fx:id="abrirPedidoButton" layoutX="15.0" layoutY="10.0" mnemonicParsing="false" onAction="#OnAbrirPedidoClick" prefHeight="25.0" prefWidth="94.0" text="Abrir">
                            <VBox.margin>
                               <Insets top="10.0" />
                            </VBox.margin>
                         </Button>
-                        <Button fx:id="recibirPedidoButton" disable="true" layoutX="15.0" layoutY="80.0" mnemonicParsing="false" onAction="#OnRecibirPedidoClick" prefHeight="25.0" prefWidth="76.0" text="Recibir">
+                        <Button fx:id="recibirPedidoButton" disable="true" layoutX="15.0" layoutY="80.0" mnemonicParsing="false" onAction="#OnRecibirPedidoClick" prefHeight="25.0" prefWidth="95.0" text="Recibir">
                            <VBox.margin>
                               <Insets top="10.0" />
                            </VBox.margin>
                         </Button>
-                                <Button fx:id="cancelarPedidoButton" disable="true" mnemonicParsing="false" onAction="#OnCancelarPedidoClick" prefHeight="25.0" prefWidth="76.0" text="Cancelar" VBox.vgrow="ALWAYS">
+                                <Button fx:id="cancelarPedidoButton" disable="true" mnemonicParsing="false" onAction="#OnCancelarPedidoClick" prefHeight="25.0" prefWidth="96.0" text="Cancelar" VBox.vgrow="ALWAYS">
                                     <VBox.margin>
                                         <Insets top="10.0" />
                                     </VBox.margin>
                                 </Button>
+                        <Pane prefHeight="200.0" prefWidth="200.0" />
+                        <Button fx:id="reutilizarPedidoButton" layoutX="15.0" layoutY="10.0" mnemonicParsing="false" onAction="#OnReutilizarPedidoClick" prefHeight="25.0" prefWidth="95.0" text="Reutilizar" />
                             </children>
                             <padding>
                                 <Insets left="5.0" right="10.0" />
