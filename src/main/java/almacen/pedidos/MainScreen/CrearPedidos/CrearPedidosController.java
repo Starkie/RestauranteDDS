@@ -3,10 +3,13 @@ package almacen.pedidos.MainScreen.CrearPedidos;
 
 import almacen.controllers.ProductoController;
 import almacen.model.Producto;
+import almacen.pedidos.util.AdaptadorListaCompra;
+import almacen.pedidos.util.FilaTabla;
 import almacen.pedidos.controllers.GestorPedidos;
 import almacen.pedidos.model.Pedido;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,6 +21,7 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.text.DecimalFormat;
 import java.text.ParsePosition;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -25,6 +29,7 @@ public class CrearPedidosController implements Initializable{
 
     @FXML
     private TableView tablaProductos;
+
     @FXML
     private TableColumn<Producto, String> nombreColumn;
     @FXML
@@ -37,13 +42,30 @@ public class CrearPedidosController implements Initializable{
     private TableColumn<Producto, Number> precioColumn;
 
     @FXML
+    private TableView tablaPedido;
+    @FXML
+    private TableColumn<FilaTabla, Number> unidadesProductoColumn;
+    @FXML
+    private TableColumn<FilaTabla, String> nombrePedidoColumn;
+    @FXML
+    private TableColumn<FilaTabla, String> alimentoPedidoColumn;
+    @FXML
+    private TableColumn<FilaTabla, Number> cantidadPedidoColumn;
+    @FXML
+    private TableColumn<FilaTabla, String> unidadPedidoColumn;
+    @FXML
+    private TableColumn<FilaTabla, Number> precioPedidoColumn;
+
+    @FXML
     private Button addProductoButton;
     @FXML
-    private Button borrarProductoButton;
+    private Button removePedidoButton;
     @FXML
     private Button confirmarPedidoButton;
 
     private ObservableList<Producto> productos;
+
+    private ObservableList<FilaTabla> listaPedido;
 
     private ProductoController productoController;
 
@@ -59,6 +81,8 @@ public class CrearPedidosController implements Initializable{
 
         addProductoButton.disableProperty().bind(Bindings.isEmpty(tablaProductos.getSelectionModel().getSelectedItems()));
 
+        removePedidoButton.disableProperty().bind(Bindings.isEmpty(tablaPedido.getSelectionModel().getSelectedItems()));
+
         productos = FXCollections.observableArrayList(productoController.getAllProductos());
 
         nombreColumn.setCellValueFactory(p -> new SimpleStringProperty(p.getValue().getNombre()));
@@ -73,11 +97,31 @@ public class CrearPedidosController implements Initializable{
 
         tablaProductos.setItems(productos);
 
+        unidadesProductoColumn.setCellValueFactory(p -> new SimpleIntegerProperty(p.getValue().getUnidades()));
+
+        nombrePedidoColumn.setCellValueFactory(p -> new SimpleStringProperty(p.getValue().getProducto().getNombre()));
+
+        alimentoPedidoColumn.setCellValueFactory(p -> new SimpleStringProperty(p.getValue().getProducto().getAlimento().getNombre()));
+
+        cantidadPedidoColumn.setCellValueFactory(p -> new SimpleDoubleProperty(p.getValue().getProducto().getCantidad()));
+
+        unidadPedidoColumn.setCellValueFactory(p -> new SimpleStringProperty(p.getValue().getProducto().getUnidades().toString()));
+
+        precioPedidoColumn.setCellValueFactory(p -> new SimpleDoubleProperty(p.getValue().getProducto().getPrecio()));
+
     }
 
     public void setPedido(Pedido pedido) {
         this.pedido = pedido;
     }
+
+
+    private void refreshPedidoTable() {
+        List<FilaTabla> list = AdaptadorListaCompra.adaptarListaCompra(pedido.getLista());
+        listaPedido = FXCollections.observableArrayList(list);
+        tablaPedido.setItems(listaPedido);
+    }
+
 
     @FXML
     public void OnAddProductoClick() {
@@ -85,8 +129,11 @@ public class CrearPedidosController implements Initializable{
         if (result.isPresent()){
             Producto producto = (Producto) tablaProductos.getSelectionModel().getSelectedItem();
             gestorPedidos.addProductoToPedido(pedido, producto, (int) Double.parseDouble(result.get()));
+            confirmarPedidoButton.setDisable(false);
+            refreshPedidoTable();
         }
     }
+
 
     public Optional<String> promptUnidadesProducto() {
         TextInputDialog dialog = new TextInputDialog("1");
@@ -132,9 +179,7 @@ public class CrearPedidosController implements Initializable{
 
         if(resultado.get() == ButtonType.OK) {
             gestorPedidos.guardarPedido(pedido);
-
             Stage stage = (Stage) confirmarPedidoButton.getScene().getWindow();
-
             stage.close();
         }
     }
