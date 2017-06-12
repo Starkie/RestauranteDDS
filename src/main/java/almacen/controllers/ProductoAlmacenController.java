@@ -32,8 +32,10 @@ public class ProductoAlmacenController {
 
     public void actualizarStock(Producto producto, int unidades) {
         ProductoAlmacen productoAlmacen = buscarPorProducto(producto);
-        productoAlmacen.setSock(productoAlmacen.getStock() + unidades);
-        guardarProducto(productoAlmacen);
+        if(productoAlmacen != null) {
+            productoAlmacen.setSock(productoAlmacen.getStock() + unidades);
+            guardarProducto(productoAlmacen);
+        }
     }
 
 
