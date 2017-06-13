@@ -10,13 +10,17 @@ abstract class ListaCompra {
 	{abstract}void add(ListaCompra p)
 	{abstract}void remove(ListaCompra p)
 	{abstract}double getPrecio()
+	{abstract}Iterator<ListaCompra> createIterator()
 }
 
 
 class ListaElemento {
+	-producto : Producto
+
 	add(ListaCompra p)
 	remove(ListaCompra p)
 	double getPrecio()
+	Iterator<ListaCompra> createIterator()
 	string toString()
 }
 note left
@@ -34,6 +38,7 @@ class ListaCompuesto {
 	void add(ListaCompra p)
 	void remove(ListaCompra p)
 	double getPrecio()
+	Iterator<ListaCompra> createIterator()
 	string toString()
 }
 note left

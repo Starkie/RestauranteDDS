@@ -1,0 +1,36 @@
+@startuml
+
+
+class AppContext {
+	{static} #context : ApplicationContext
+	
+	{static}Object getBean(String serviceName) 
+}
+
+class ServiceLocator {
+	{static} ALIMENTO_SERVICE : String
+	
+	{static} AlimentoService getAlimentoService()
+}
+
+class AlimentoService {
+
+}
+
+class AlimentoController {
+	{static} alimentoService : AlimentoService
+}
+
+
+
+
+AlimentoController --> ServiceLocator : getAlimentoService()
+
+ServiceLocator ..> AlimentoService : almacena
+
+ServiceLocator --> AppContext : getBean(nombreServicio)
+
+AppContext --> AlimentoService : crea
+
+
+@enduml
