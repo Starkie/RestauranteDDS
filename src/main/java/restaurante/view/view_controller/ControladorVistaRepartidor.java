@@ -6,11 +6,16 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import restaurante.business.bussiness_controller.ControladorPersona;
 import restaurante.business.modelo.Patron_Comando.Repartidor;
 import restaurante.domain.PedidoRestaurante;
+
+import java.io.IOException;
 
 public class ControladorVistaRepartidor {
 
@@ -76,5 +81,18 @@ public class ControladorVistaRepartidor {
 
     private void iniciarLabelAcceso() {
         lblAcceso.setText("Repartidor: "+ repartidor.getNombre());
+    }
+
+    @FXML
+    void volverPress(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/restaurante/view/view_files/LoginView.fxml"));
+        Parent root = loader.load();
+
+        ControladorVistaLogin controladorLogin = loader.getController();
+        controladorLogin.initStage(stage);
+        stage.setTitle("Login");
+        stage.setScene(new Scene(root));
+        stage.setResizable(false);
+        stage.show();
     }
 }

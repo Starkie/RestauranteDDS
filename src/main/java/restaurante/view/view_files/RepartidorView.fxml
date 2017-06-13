@@ -38,6 +38,7 @@
                </children>
             </VBox>
             <Button id="btnSiguientePedido" fx:id="btnSiguientePedido" mnemonicParsing="false" onAction="#pressSiguiente" text="Siguiente Pedido" />
+            <Button mnemonicParsing="false" onAction="#volverPress" text="Volver" />
          </children>
          <BorderPane.margin>
             <Insets right="20.0" />

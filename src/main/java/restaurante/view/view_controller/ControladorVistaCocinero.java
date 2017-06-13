@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
@@ -94,6 +95,19 @@ public class ControladorVistaCocinero {
     }
 
     private void iniciarLabelAcceso() {lblAcceso.setText("Cocinero: "+ cocinero.getNombre());
+    }
+
+    @FXML
+    void volverPress(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/restaurante/view/view_files/LoginView.fxml"));
+        Parent root = loader.load();
+
+        ControladorVistaLogin controladorLogin = loader.getController();
+        controladorLogin.initStage(stage);
+        stage.setTitle("Login");
+        stage.setScene(new Scene(root));
+        stage.setResizable(false);
+        stage.show();
     }
 }
 

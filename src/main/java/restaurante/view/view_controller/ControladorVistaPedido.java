@@ -171,5 +171,18 @@ public class ControladorVistaPedido{
         stage.show();
     }
 
+
+    @FXML
+    void volverPress(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/restaurante/view/view_files/LoginView.fxml"));
+        Parent root = loader.load();
+
+        ControladorVistaLogin controladorLogin = loader.getController();
+        controladorLogin.initStage(stage);
+        stage.setTitle("Login");
+        stage.setScene(new Scene(root));
+        stage.setResizable(false);
+        stage.show();
+    }
 }
 
