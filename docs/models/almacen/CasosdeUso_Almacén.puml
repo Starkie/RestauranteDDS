@@ -1,0 +1,12 @@
+@startuml
+
+Cocinero -> (Registrar productos)
+Cocinero --> (Consultar productos en el almacén)
+Cocinero -> (Editar productos)
+Cocinero --> (Eliminar productos del almacén)
+
+Cocinero --> (Realizar pedidos)
+Cocinero --> (Consultar histórico y estado de pedidos)
+Cocinero --> (Marcar pedidos como recibidos)
+Cocinero --> (Cancelar pedidos)
+@enduml

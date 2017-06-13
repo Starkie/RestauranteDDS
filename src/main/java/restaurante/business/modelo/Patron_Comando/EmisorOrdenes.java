@@ -97,7 +97,7 @@ public class EmisorOrdenes {
         return new Thread(new Runnable() {
             @Override
             public void run() {
-                while (continuarThread) {
+                while (isContinuarThread()) {
                     if(ordenesACocinar.size()>0) {
                         OrdenCocinar ordCocina = ordenesACocinar.element();
                         for (Cocinero c : cocineros) {
