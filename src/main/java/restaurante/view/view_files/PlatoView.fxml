@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="570.0" prefWidth="886.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="restaurante.view.view_controller.ControladorVistaPlato">
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="570.0" prefWidth="886.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="restaurante.view.view_controller.ControladorVistaPlato">
    <top>
       <HBox spacing="20.0" BorderPane.alignment="CENTER" />
    </top>
@@ -19,7 +21,7 @@
                      <graphic>
                         <ImageView fitHeight="31.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../../../docs/images/Arroz.PNG" />
+                              <Image url="/images/Arroz.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -28,7 +30,7 @@
                      <graphic>
                         <ImageView fitHeight="31.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../../../docs/images/Tallarines.PNG" />
+                              <Image url="/images/Tallarines.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -43,7 +45,7 @@
                      <graphic>
                         <ImageView fitHeight="31.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../../../docs/images/Pollo.png" />
+                              <Image url="/images/Pollo.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -52,7 +54,7 @@
                      <graphic>
                         <ImageView fitHeight="31.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../../../docs/images/Ternera.png" />
+                              <Image url="/images/Ternera.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -61,7 +63,7 @@
                      <graphic>
                         <ImageView fitHeight="31.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../../../docs/images/Gamba.png" />
+                              <Image url="/images/Gamba.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -76,7 +78,7 @@
                      <graphic>
                         <ImageView fitHeight="31.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../../../docs/images/Cacahuete.png" />
+                              <Image url="/images/Cacahuete.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -85,7 +87,7 @@
                      <graphic>
                         <ImageView fitHeight="31.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../../../docs/images/Ostra.png" />
+                              <Image url="/images/Ostra.png" />
                            </image>
                         </ImageView>
                      </graphic>
