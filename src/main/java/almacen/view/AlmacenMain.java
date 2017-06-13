@@ -99,8 +99,7 @@ public class AlmacenMain implements Initializable {
             alert2.setHeaderText("Producto Elminado Correctamente");
             alert2.showAndWait();
 
-            productos = FXCollections.observableArrayList(productoAlmacenController.getAllProductos());
-            tablaProductos.setItems(productos);
+            refreshTable();
         }
     }
     @FXML
@@ -114,8 +113,7 @@ public class AlmacenMain implements Initializable {
         stage.setMinHeight(440);
         stage.showAndWait();
 
-        productos = FXCollections.observableArrayList(productoAlmacenController.getAllProductos());
-        tablaProductos.setItems(productos);
+        refreshTable();
     }
 
     @FXML
@@ -133,6 +131,10 @@ public class AlmacenMain implements Initializable {
         stage.setMinHeight(440);
         stage.showAndWait();
 
+        refreshTable();
+    }
+
+    private void refreshTable() {
         productos = FXCollections.observableArrayList(productoAlmacenController.getAllProductos());
         tablaProductos.setItems(productos);
     }
@@ -150,8 +152,7 @@ public class AlmacenMain implements Initializable {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
 
-        productos = FXCollections.observableArrayList(productoAlmacenController.getAllProductos());
-        tablaProductos.setItems(productos);
+        refreshTable();
     }
 
 }
