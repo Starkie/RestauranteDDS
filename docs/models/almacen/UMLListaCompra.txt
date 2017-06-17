@@ -1,0 +1,56 @@
+@startuml
+
+
+abstract class ListaCompra {
+	#nombre : String
+	#descripcion : String
+	#precio : int
+	#unidades : int
+
+	{abstract}void add(ListaCompra p)
+	{abstract}void remove(ListaCompra p)
+	{abstract}double getPrecio()
+	{abstract}Iterator<ListaCompra> createIterator()
+}
+
+
+class ListaElemento {
+	-producto : Producto
+
+	add(ListaCompra p)
+	remove(ListaCompra p)
+	double getPrecio()
+	Iterator<ListaCompra> createIterator()
+	string toString()
+}
+note left
+	Devuelve una excepcion 
+	UnsupportedOperationException 
+	al intentar usar los métodos 
+	<i>add()</i> y <i>remove()</i>
+end note
+
+
+
+class ListaCompuesto {
+	-hijos : List<ListaCompra>
+
+	void add(ListaCompra p)
+	void remove(ListaCompra p)
+	double getPrecio()
+	Iterator<ListaCompra> createIterator()
+	string toString()
+}
+note left
+	<i>add(p)</i> => hijos.add( p );
+	getPrecio() => 
+		<b>para cada</b> p <b>en</b> hijos:
+			precio += p.getPrecio();
+end note
+
+ListaCompra <|-down- ListaCompuesto
+ListaCompra <|-- ListaElemento
+
+ListaCompuesto o-- ListaCompra
+
+@enduml

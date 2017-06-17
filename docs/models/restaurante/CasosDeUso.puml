@@ -1,0 +1,14 @@
+@startuml
+
+Usuario --> (Crear un plato)
+Usuario --> (Confirmar un pedido)
+Usuario --> (Cancelar un pedido)
+Usuario --> (Reclamar un retraso)
+
+Cocinero --> (Comenzar a Cocinar Pedido)
+Cocinero --> (Finalizar de Cocinar Pedido)
+Cocinero --> (Acceso al módulo almacén)
+
+Repartidor --> (Comenzar Reperto de un Pedido)
+Repartidor --> (Finalizar Reparto de un Pedido)
+@enduml
