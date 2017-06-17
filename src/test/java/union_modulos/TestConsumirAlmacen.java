@@ -1,4 +1,4 @@
-package union_modulos;
+/*package union_modulos;
 
 import Main.MainApplication;
 import almacen.business.controllers.ProductoAlmacenController;
@@ -112,3 +112,4 @@ public class TestConsumirAlmacen {
     }
 
 }
+*/

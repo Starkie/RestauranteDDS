@@ -1,4 +1,4 @@
-package restaurante;
+/*package restaurante;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
@@ -16,3 +16,4 @@ import restaurante.plato.TestNoMasDe1Salsa;
         TestReclamacionService.class, TestElaboracionPlato.class, TestNoMasDe1Salsa.class,TestEmisorOrdenes.class})
 public class TestsRestaurante {
 }
+*/

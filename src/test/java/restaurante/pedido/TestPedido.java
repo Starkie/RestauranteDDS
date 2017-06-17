@@ -1,13 +1,15 @@
-package restaurante.pedido;
+/*package restaurante.pedido;
 
 import Main.MainApplication;
 import almacen.domain.Producto;
 import almacen.domain.ProductoAlmacen;
 import almacen.domain.UnidadesCantidad;
+import almacen.pedidos.domain.AlmacenException;
 import almacen.persistance.ProductoAlmacenService;
 import almacen.persistance.ProductoService;
 import domain.Alimento;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.boot.SpringApplication;
@@ -28,8 +30,8 @@ public class TestPedido {
     private static AlimentoService alimentoService;
     private static PlatoService platoService;
 
-    @BeforeClass
-    public static void prepararAlmacen(){
+    @Before
+    public void prepararAlmacen(){
         SpringApplication.run(MainApplication.class);
         platoService = (PlatoService) AppContext.getBean("platoService");
         alimentoService = (AlimentoService) AppContext.getBean("alimentoService");
@@ -110,7 +112,7 @@ public class TestPedido {
     }
 
     @Test
-    public void testCofirmarPedidoExcepcion(){
+    public void testCofirmarPedidoExcepcion() throws Exception{
         try {
             PedidoRestaurante pedido = new PedidoRestaurante(new Usuario("Paco", 232, "Hola", "12"));
             Plato p = crearPlato();
@@ -127,3 +129,4 @@ public class TestPedido {
         } catch(Exception e){Assert.assertEquals("Un pedido debe contener almenos 1 plato",e.getMessage());}
     }
 }
+*/
